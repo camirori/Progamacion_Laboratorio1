@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1554002432 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion1_laboratorio1\ejercicios material github\materialclase03_ej01_v01\main.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+

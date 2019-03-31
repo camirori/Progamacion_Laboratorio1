@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1554065512 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion1_laboratorio1\tps\tp1\main.c
+	<stdio.h>
+	<stdlib.h>
+

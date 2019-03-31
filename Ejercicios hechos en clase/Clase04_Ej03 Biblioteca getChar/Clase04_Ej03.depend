@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1554002239 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion1_laboratorio1\ejercicios hechos en clase\clase04_ej03 biblioteca getchar\main.c
+	<stdio.h>
+	<stdlib.h>
+
