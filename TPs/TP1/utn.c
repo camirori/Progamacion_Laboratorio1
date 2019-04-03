@@ -12,7 +12,10 @@ int calculoOperaciones(int operandoA, int operandoB, int *suma, int *resta, int 
 {
     *suma=operandoA+operandoB;
     *resta=operandoA-operandoB;
-    *division=operandoA/operandoB;
+    if(operandoB!=0)
+    {
+        *division=operandoA/operandoB;
+    }
     *multiplicacion=operandoA*operandoB;
     *factorialA=1;
     *factorialB=1;
@@ -37,7 +40,7 @@ int mostrarResultados(int operandoA, int operandoB, int suma, int resta, int div
     printf("\nEl resultado de %d-%d es: %d",operandoA,operandoB,resta);
     if(operandoB==0)
     {
-        printf("No es posible dividir por cero");
+        printf("\nNo es posible dividir por cero");
     }
     else
     {

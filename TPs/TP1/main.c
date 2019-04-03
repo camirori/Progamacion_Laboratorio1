@@ -27,6 +27,8 @@
 #include <stdlib.h>
 #include "utn.h"
 
+int mensajeMenu(int verificadorA, int verificadorB, int operandoA, int operandoB);
+
 int main()
 {
     int opcion;
@@ -44,18 +46,18 @@ int main()
 
     while(opcion!=5)
     {
-        printf("\n1 Ingresar 1er operando (A=%d)\n2 Ingresar 2do operando (B=%d)\n3 Calcular todas las operaciones \n4 Informar resultados \n5 Salir\n",verificadorA,verificadorB);
+        mensajeMenu(verificadorA,verificadorB,operandoA,operandoB);
         getInt("",&opcion);
 
         switch(opcion)
         {
             case 1:
                 getInt("\nIngrese primer operando ",&operandoA);
-                verificadorA=operandoA;
+                verificadorA=1;
                 break;
             case 2:
                 getInt("\nIngrese segundo operando ",&operandoB);
-                verificadorB=operandoB;
+                verificadorB=1;
                 break;
             case 3:
                 if(verificadorA==0)
@@ -87,6 +89,27 @@ int main()
         }
     }
 
+    return 0;
+}
+
+int mensajeMenu(int verificadorA, int verificadorB, int operandoA, int operandoB)
+{
+    if(verificadorA==0 && verificadorB==0)
+    {
+        printf("\n1 Ingresar 1er operando (A=x)\n2 Ingresar 2do operando (B=y)\n3 Calcular todas las operaciones \n4 Informar resultados \n5 Salir\n");
+    }
+    else if(verificadorA!=0 && verificadorB==0)
+    {
+        printf("\n1 Ingresar 1er operando (A=%d)\n2 Ingresar 2do operando (B=y)\n3 Calcular todas las operaciones \n4 Informar resultados \n5 Salir\n",operandoA);
+    }
+    else if(verificadorA==0 && verificadorB!=0)
+    {
+        printf("\n1 Ingresar 1er operando (A=x)\n2 Ingresar 2do operando (B=%d)\n3 Calcular todas las operaciones \n4 Informar resultados \n5 Salir\n",operandoB);
+    }
+    else
+    {
+        printf("\n1 Ingresar 1er operando (A=%d)\n2 Ingresar 2do operando (B=%d)\n3 Calcular todas las operaciones \n4 Informar resultados \n5 Salir\n",operandoA,operandoB);
+    }
     return 0;
 }
 
