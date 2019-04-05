@@ -92,6 +92,14 @@ int main()
     return 0;
 }
 
+/**
+* @brief Imprime el menu de opciones
+* @param verificadorA Verifica que A se haya inicializado
+* @param verificadorB Verifica que B se haya inicializado
+* @param operandoA Entero ingresado por el usuario
+* @param operandoB Entero ingresado por el usuario
+* @return 0 sin errores
+*/
 int mensajeMenu(int verificadorA, int verificadorB, int operandoA, int operandoB)
 {
     if(verificadorA==0 && verificadorB==0)
