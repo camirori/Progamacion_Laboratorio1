@@ -9,6 +9,7 @@ int getChar(char* input,char message[],char eMessage[], char lowLimit, char hiLi
 int isValidChar(char min, char max, char valorIngresado);
 int solicitoValorChar(char *mensaje, char *valorIngresado);
 int getString(char* input,char message[],char eMessage[], int lowLimit, int hiLimit, int reintentos);
+int solicitoValorStriing(char *mensaje, char *valorIngresado);
 int isValidString(char lowLimit, char hiLimit, char *valorIngresado);
 void mostrarArray(int size,char* pArray);
 

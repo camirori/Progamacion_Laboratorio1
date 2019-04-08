@@ -203,7 +203,7 @@ int getString(char* input,char message[],char eMessage[], int lowLimit, int hiLi
     {
         for(;reintentos>0;)
         {
-            solicitoValorChar(message,valorIngresado);
+            solicitoValorStriing(message,valorIngresado);
             if(isValidString(lowLimit,hiLimit,valorIngresado)==0)
             {
                 reintentos--;
@@ -214,17 +214,30 @@ int getString(char* input,char message[],char eMessage[], int lowLimit, int hiLi
                     break;
                 }
             }
-            strcpy(input,valorIngresado);
-            retorno=0;
+            else
+            {
+                strcpy(input,valorIngresado);
+                break;
+            }
         }
+        retorno=0;
     }
 
     return retorno;
 }
 
+int solicitoValorStriing(char *mensaje, char *valorIngresado)
+{
+    printf("%s",mensaje);
+    fflush(stdin); //windows
+    //fpurge(stdin); //linux
+    scanf("%s",valorIngresado);
+    return 0;
+}
+
 int isValidString(char lowLimit, char hiLimit, char *valorIngresado)
 {
-    if(strlen(*valorIngresado)>=lowLimit+1 && strlen(*valorIngresado)<=hiLimit+1)
+    if(strlen(valorIngresado)>=lowLimit && strlen(valorIngresado)<=hiLimit)
     {
         return 1;
     }

@@ -4,5 +4,11 @@
 	<stdlib.h>
 	"Input.h"
 
-1554676101 f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\bibliotecas\biblioteca inputs\input.h
+1554690826 f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\bibliotecas\biblioteca inputs\input.h
+
+1554690808 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\bibliotecas\biblioteca inputs\input.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Input.h"
 
