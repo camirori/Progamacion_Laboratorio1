@@ -1,0 +1,34 @@
+# depslib dependency file v1.0
+1554065512 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion1_laboratorio1\tps\tp1\main.c
+	<stdio.h>
+	<stdlib.h>
+
+1554434483 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\tps\tp1\utn.c
+	<stdio.h>
+	<stdlib.h>
+
+1554434565 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\tps\tp1\main.c
+	<stdio.h>
+	<stdlib.h>
+	"utn.h"
+
+1554433821 f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\tps\tp1\utn.h
+
+1554515984 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\tps\tp1 v2\main.c
+	<stdio.h>
+	<stdlib.h>
+	"utn.h"
+
+1554433821 f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\tps\tp1 v2\utn.h
+
+1554524847 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\tps\tp1 v3\main.c
+	<stdio.h>
+	<stdlib.h>
+	"utn.h"
+
+1554524776 f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\tps\tp1 v3\utn.h
+
+1554524770 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\tps\tp1 v3\utn.c
+	<stdio.h>
+	<stdlib.h>
+

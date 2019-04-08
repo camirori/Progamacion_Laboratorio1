@@ -2,10 +2,10 @@
 #include <stdlib.h>
 
 /**
-* @brief Solicita el ingreso de un entero
-* @param mensaje Mensaje a imprimir
-* @param valorIngresado Entero ingresado por el usuario
-* @return 0 sin errores, -1 parametro no valido
+*\brief Solicita el ingreso de un entero
+*\param mensaje Mensaje a imprimir
+*\param valorIngresado Puntero al entero ingresado por el usuario
+*\return 0 sin errores, -1 parámetros inválidos
 */
 int getInt(char *mensaje, int *valorIngresado)
 {
@@ -20,9 +20,16 @@ int getInt(char *mensaje, int *valorIngresado)
 }
 
 /**
-* @brief Realiza las operaciones de suma, resta, división, multiplicación y factorial de dos enteros
-* @param
-* @return 0 sin errores, -1 parametro no valido
+*\brief Realiza las operaciones de suma, resta, division, multiplicación y factorial de dos enteros
+*\param operandoA Entero ingresado por el usuario
+*\param operandoB Entero ingresado por el usuario
+*\param suma Puntero
+*\param resta Puntero
+*\param division Puntero
+*\param multiplicacion Puntero
+*\param factorialA Puntero
+*\param factorialB Puntero
+*\return 0 sin errores, -1 parámetros inválidos
 */
 int calculoOperaciones(int operandoA, int operandoB, int *suma, int *resta, int *division, int *multiplicacion,int *factorialA,int *factorialB)
 {
@@ -61,9 +68,16 @@ int calculoOperaciones(int operandoA, int operandoB, int *suma, int *resta, int 
 }
 
 /**
-* @brief Imprime el resultado de las operaciones de suma, resta, división, multiplicación y factorial de dos enteros
-* @param
-* @return 0 sin errores
+*\brief Imprime el resultado de las operaciones de suma, resta, division, multiplicación y factorial de dos enteros
+*\param operandoA Entero ingresado por el usuario
+*\param operandoB Entero ingresado por el usuario
+*\param suma Resultado de la suma de operandoA y operandoB
+*\param resta Resultado de la resta de operandoA y operandoB
+*\param division Resultado de la division de operandoA y operandoB
+*\param multiplicacion Resultado de la multiplicacion de operandoA y operandoB
+*\param factorialA Resultado del factorial del operandoA
+*\param factorialB Resultado del factorial del operandoB
+*\return 0 sin errores
 */
 int mostrarResultados(int operandoA, int operandoB, int suma, int resta, int division, int multiplicacion,int factorialA,int factorialB)
 {

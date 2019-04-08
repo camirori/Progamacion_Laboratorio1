@@ -11,7 +11,7 @@ int swap(int* A,int i);
 
 int main()
 {
-    int A[CANTIDAD_NUMEROS]={8,4,6,1};
+    int A[CANTIDAD_NUMEROS]={8,4,6,1,5};
     int limite=CANTIDAD_NUMEROS;
     int i;
 
@@ -26,7 +26,7 @@ int main()
 
     for(i=0;i<CANTIDAD_NUMEROS;i++)
     {
-        printf("%d",A[i]);
+        printf("%d ",A[i]);
     }
 
     return 0;
@@ -39,9 +39,10 @@ int burbujeo(int *A, int limite)
 
     do
     {
+        flagSwap=0;
         for(i=0;i<limite-1;i++)
         {
-            flagSwap=0;
+
             if(A[i]>A[i+1])
             {
                 swap(A,i);

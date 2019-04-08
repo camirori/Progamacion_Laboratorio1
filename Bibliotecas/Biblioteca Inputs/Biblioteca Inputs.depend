@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1554675230 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\bibliotecas\biblioteca inputs\main.c
+	<stdio.h>
+	<stdlib.h>
+	"Input.h"
+
+1554676101 f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\bibliotecas\biblioteca inputs\input.h
+
