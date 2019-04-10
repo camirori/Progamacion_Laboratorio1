@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1554851331 source:/home/alumno/workspace/Progamacion_Laboratorio1/Ejercicios hechos en clase/Clase06_Ej02/main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+

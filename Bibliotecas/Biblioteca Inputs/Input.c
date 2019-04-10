@@ -194,16 +194,16 @@ int solicitoValorChar(char *mensaje, char *valorIngresado)
 * \return Si obtuvo la cadena [0] si no [-1]
 *
 */
-int getString(char* input,char message[],char eMessage[], int lowLimit, int hiLimit, int reintentos)
+int getString(char* input,char message[],char eMessage[], int lowLimit, int hiLimit, int reintentos, int size)
 {
     int retorno=-1;
-    char valorIngresado[hiLimit];
+    char valorIngresado[strlen(input)];
 
     if(message!=NULL && eMessage!=NULL && lowLimit<=hiLimit && reintentos>0 && input!=NULL)
     {
         for(;reintentos>0;)
         {
-            solicitoValorStriing(message,valorIngresado);
+            solicitoValorString(message,valorIngresado);
             if(isValidString(lowLimit,hiLimit,valorIngresado)==0)
             {
                 reintentos--;
@@ -216,7 +216,7 @@ int getString(char* input,char message[],char eMessage[], int lowLimit, int hiLi
             }
             else
             {
-                strcpy(input,valorIngresado);
+                strncpy(input,valorIngresado,size);
                 break;
             }
         }
@@ -231,24 +231,46 @@ int solicitoValorStriing(char *mensaje, char *valorIngresado)
     printf("%s",mensaje);
     fflush(stdin); //windows
     //fpurge(stdin); //linux
-    scanf("%s",valorIngresado);
+    fgets(valorIngresado,sizeof(valorIngresado),stdin);
     return 0;
 }
 
 int isValidString(char lowLimit, char hiLimit, char *valorIngresado)
 {
+    int i;
+    int retorno=1;
     if(strlen(valorIngresado)>=lowLimit && strlen(valorIngresado)<=hiLimit)
     {
-        return 1;
+        for(i=0;i<strlen(valorIngresado)-1;i++) //strlen incluye el 0
+        {
+            if(*(valorIngresado+i)<'A' || (*(valorIngresado+i)>'Z' && *(valorIngresado+i)<'a') || *(valorIngresado+i)>'z')
+            {
+                return 0;
+            }
+        }
     }
     return 0;
 }
 
-void mostrarArray(int size,char* pArray)
+/********************************************************************************************************************************************************************************/
+/**
+* \brief Solicita una cadena de caracteres al usuario y la valida
+* \param input Se carga el string ingresado
+* \param message Es el mensaje a ser mostrado
+* \param eMessage Es el mensaje a ser mostrado en caso de error
+* \param lowLimit Longitud mínima de la cadena
+* \param hiLimit Longitud máxima de la cadena
+* \return Si obtuvo la cadena [0] si no [-1]
+*
+*/
+
+int getArrayInt(int* input,char message[],char eMessage[], int lowLimit, int hiLimit, int reintentos, int size)
+
+void mostrarArray(int size,int* pArray)
 {
     int i;
     for(i=0;i<size;i++)
     {
-        printf("%c",*(pArray+i));
+        printf("%d",*(pArray+i));
     }
 }
