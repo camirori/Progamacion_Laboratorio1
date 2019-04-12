@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1555027902 source:/home/alumno/workspace/Progamacion_Laboratorio1/Ejercicios hechos en clase/Clase07_Ej01/main.c
+	<stdio.h>
+	<stdlib.h>
+	"utn.h"
+
+1555020583 /home/alumno/workspace/Progamacion_Laboratorio1/Ejercicios hechos en clase/Clase07_Ej01/Input.h
+
+1555027887 source:/home/alumno/workspace/Progamacion_Laboratorio1/Ejercicios hechos en clase/Clase07_Ej01/utn.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+
+1555026253 /home/alumno/workspace/Progamacion_Laboratorio1/Ejercicios hechos en clase/Clase07_Ej01/utn.h
+
