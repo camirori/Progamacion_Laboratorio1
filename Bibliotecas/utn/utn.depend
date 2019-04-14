@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1555222601 source:/home/camila/Documents/Facu/Progamacion_Laboratorio1/Bibliotecas/utn/main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+
+1555221880 /home/camila/Documents/Facu/Progamacion_Laboratorio1/Bibliotecas/utn/utn.h
+
+1555222070 source:/home/camila/Documents/Facu/Progamacion_Laboratorio1/Bibliotecas/utn/utn.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+
