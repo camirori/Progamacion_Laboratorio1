@@ -7,28 +7,28 @@
 /**
 * \brief Solicita un número al usuario y lo valida
 * \param input Se carga el numero ingresado
-* \param message Es el mensaje a ser mostrado
+* \param message Es el mensaje a ser mostrado al solicitar valor
 * \param eMessage Es el mensaje a ser mostrado en caso de error
 * \param lowLimit Limite inferior a validar (incluido)
 * \param hiLimit Limite superior a validar (incluido)
-* \reintentos Cantidad de veces que se le volverá a pedir al usuario que ingrese un dato en caso de error
-* \return Si obtuvo el numero [0] si no [-1]
+* \param reintentos Cantidad de veces que se le volverá a pedir al usuario que ingrese un dato en caso de error
+* \return Si obtuvo el numero [0] sino [-1]
 */
-int getInt(int* input,char message[],char eMessage[], int lowLimit, int hiLimit, int reintentos)
+int getInt(int* input,char *message,char *eMessage, int lowLimit, int hiLimit, int reintentos)
 {
-    int valorIngresado;
+    int bufferInt;
     int retorno=-1;
 
-    if(message!= NULL && eMessage!= NULL)
+    if(message!= NULL && eMessage!= NULL && input!=NULL && lowLimit<hiLimit && reintentos>=0)
     {
-        for(;reintentos>0;)
+        do
         {
-            pidoIngreso(message,&valorIngresado);
+            pidoIngresoInt(message,&bufferInt);
 
-            if(isValidInt(valorIngresado,hiLimit,lowLimit)==0)
+            if(isValidInt(bufferInt,hiLimit,lowLimit)==0)
             {
                 reintentos--;
-                printf("\n%s, cantidad de intentos restantes: %d\n",eMessage,reintentos);
+                printf("%s, intentos restantes: %d\n",eMessage,reintentos);
                 if(reintentos==0)
                 {
                     printf("\nSe han agotado los reintentos");
@@ -37,11 +37,12 @@ int getInt(int* input,char message[],char eMessage[], int lowLimit, int hiLimit,
             }
             else
             {
-                *input=valorIngresado;
+                *input=bufferInt;
+                retorno=0;
                 break;
             }
         }
-        retorno=0;
+        while(reintentos>0);
     }
     return retorno;
 }
@@ -55,7 +56,7 @@ int isValidInt(int numero,int max, int min)
         return 0;
 }
 
-int pidoIngreso(char *mensaje, int *ingreso)
+int pidoIngresoInt(char *mensaje, int *ingreso)
 {
     printf("%s",mensaje);
     scanf("%d",ingreso);
@@ -65,30 +66,31 @@ int pidoIngreso(char *mensaje, int *ingreso)
 
 /********************************************************************************************************************************************************************************/
 /**
-* \brief Solicita un número al usuario y lo valida
+* \brief Solicita un número flotante al usuario y lo valida
 * \param input Se carga el numero ingresado
-* \param message Es el mensaje a ser mostrado
+* \param message Es el mensaje a ser mostrado al solicitar valor
 * \param eMessage Es el mensaje a ser mostrado en caso de error
 * \param lowLimit Limite inferior a validar
 * \param hiLimit Limite superior a validar
+* \param reintentos Cantidad de veces que se le volverá a pedir al usuario que ingrese un dato en caso de error
 * \return Si obtuvo el numero [0] si no [-1]
 *
 */
-int getFloat(float* input,char message[],char eMessage[], float lowLimit, float hiLimit, int reintentos)
+int getFloat(float* input,char* message,char* eMessage, float lowLimit, float hiLimit, int reintentos)
 {
-    float valorIngresado;
+    float bufferFloat;
     int retorno=-1;
 
-    if(message!= NULL && eMessage!= NULL)
+    if(message!= NULL && eMessage!= NULL && input!=NULL && lowLimit<hiLimit && reintentos>=0)
     {
-        for(;reintentos>0;)
+        do
         {
-            solicitoValorFloat(message,&valorIngresado);
+            pidoIngresoFloat(message,&bufferFloat);
 
-            if(isValidFloat(lowLimit,hiLimit,valorIngresado)==0)
+            if(isValidFloat(bufferFloat,hiLimit,lowLimit)==0)
             {
                 reintentos--;
-                printf("\n%s, cantidad de intentos restantes: %d\n",eMessage,reintentos);
+                printf("%s, intentos restantes: %d\n",eMessage,reintentos);
                 if(reintentos==0)
                 {
                     printf("\nSe han agotado los reintentos");
@@ -97,16 +99,17 @@ int getFloat(float* input,char message[],char eMessage[], float lowLimit, float 
             }
             else
             {
-                *input=valorIngresado;
+                *input=bufferFloat;
+                retorno=0;
                 break;
             }
         }
-        retorno=0;
+        while(reintentos>0);
     }
     return retorno;
 }
 
-int isValidFloat(float min, float max, float valorIngresado)
+int isValidFloat(float valorIngresado, float min, float max)
 {
     if(valorIngresado>=min && valorIngresado<=max)
     {
@@ -115,7 +118,7 @@ int isValidFloat(float min, float max, float valorIngresado)
     return 0;
 }
 
-int solicitoValorFloat(char *mensaje, float *valorIngresado)
+int pidoIngresoFloat(char *mensaje, float *valorIngresado)
 {
     printf("%s",mensaje);
     scanf("%f",valorIngresado);
@@ -126,28 +129,29 @@ int solicitoValorFloat(char *mensaje, float *valorIngresado)
 /**
 * \brief Solicita un caracter al usuario y lo valida
 * \param input Se carga el caracter ingresado
-* \param message Es el mensaje a ser mostrado
+* \param message Es el mensaje a ser mostrado al solicitar valor
 * \param eMessage Es el mensaje a ser mostrado en caso de error
 * \param lowLimit Limite inferior a validar
 * \param hiLimit Limite superior a validar
+* \param reintentos Cantidad de veces que se le volverá a pedir al usuario que ingrese un dato en caso de error
 * \return Si obtuvo el caracter [0] si no [-1]
 *
 */
-int getChar(char* input,char message[],char eMessage[], char lowLimit, char hiLimit, int reintentos)
+int getChar(char* input,char* message,char* eMessage, char lowLimit, char hiLimit, int reintentos)
 {
-    char valorIngresado;
+    char bufferChar;
     int retorno=-1;
 
-    if(message!= NULL && eMessage!= NULL)
+    if(message!= NULL && eMessage!= NULL && input!=NULL && lowLimit<hiLimit && reintentos>=0)
     {
-        for(;reintentos>0;)
+        do
         {
-            solicitoValorChar(message,&valorIngresado);
+            pidoIngresoChar(message,&bufferChar);
 
-            if(isValidChar(lowLimit,hiLimit,valorIngresado)==0)
+            if(isValidInt(bufferChar,hiLimit,lowLimit)==0)
             {
                 reintentos--;
-                printf("\n%s, cantidad de intentos restantes: %d\n",eMessage,reintentos);
+                printf("%s, intentos restantes: %d\n",eMessage,reintentos);
                 if(reintentos==0)
                 {
                     printf("\nSe han agotado los reintentos");
@@ -156,16 +160,17 @@ int getChar(char* input,char message[],char eMessage[], char lowLimit, char hiLi
             }
             else
             {
-                *input=valorIngresado;
+                *input=bufferChar;
+                retorno=0;
                 break;
             }
         }
-        retorno=0;
+        while(reintentos>0);
     }
     return retorno;
 }
 
-int isValidChar(char min, char max, char valorIngresado)
+int isValidChar(char valorIngresado, char min, char max)
 {
     if(valorIngresado>=min && valorIngresado<=max)
     {
@@ -174,7 +179,7 @@ int isValidChar(char min, char max, char valorIngresado)
     return 0;
 }
 
-int solicitoValorChar(char *mensaje, char *valorIngresado)
+int pidoIngresoChar(char *mensaje, char *valorIngresado)
 {
     printf("%s",mensaje);
     fflush(stdin); //windows
@@ -186,28 +191,30 @@ int solicitoValorChar(char *mensaje, char *valorIngresado)
 /********************************************************************************************************************************************************************************/
 /**
 * \brief Solicita una cadena de caracteres al usuario y la valida
-* \param input Se carga el string ingresado
-* \param message Es el mensaje a ser mostrado
+* \param input Donde se almacena el string ingresado
+* \param message Es el mensaje a ser mostrado al solicitar valor
 * \param eMessage Es el mensaje a ser mostrado en caso de error
 * \param lowLimit Longitud mínima de la cadena
 * \param hiLimit Longitud máxima de la cadena
+* \param reintentos Cantidad de veces que se le volverá a pedir al usuario que ingrese un dato en caso de error
 * \return Si obtuvo la cadena [0] si no [-1]
 *
 */
-int getString(char* input,char message[],char eMessage[], int lowLimit, int hiLimit, int reintentos, int size)
+int getString(char* input,char* message,char* eMessage, int lowLimit, int hiLimit, int reintentos)
 {
+    char bufferString;
     int retorno=-1;
-    char valorIngresado[strlen(input)];
 
-    if(message!=NULL && eMessage!=NULL && lowLimit<=hiLimit && reintentos>0 && input!=NULL)
+    if(message!= NULL && eMessage!= NULL && input!=NULL && lowLimit<hiLimit && reintentos>=0)
     {
-        for(;reintentos>0;)
+        do
         {
-            solicitoValorString(message,valorIngresado);
-            if(isValidString(lowLimit,hiLimit,valorIngresado)==0)
+            pidoIngresoString(message,&bufferString);
+
+            if(isValidInt(bufferString,hiLimit,lowLimit)==0)
             {
                 reintentos--;
-                printf("\n%s, cantidad de intentos restantes: %d\n",eMessage,reintentos);
+                printf("%s, intentos restantes: %d\n",eMessage,reintentos);
                 if(reintentos==0)
                 {
                     printf("\nSe han agotado los reintentos");
@@ -216,17 +223,17 @@ int getString(char* input,char message[],char eMessage[], int lowLimit, int hiLi
             }
             else
             {
-                strncpy(input,valorIngresado,size);
+                *input=bufferString;
+                retorno=0;
                 break;
             }
         }
-        retorno=0;
+        while(reintentos>=0);
     }
-
     return retorno;
 }
 
-int solicitoValorString(char *mensaje, char *valorIngresado)
+int pidoIngresoString(char *mensaje, char *valorIngresado)
 {
     printf("%s",mensaje);
     fflush(stdin); //windows
@@ -235,36 +242,63 @@ int solicitoValorString(char *mensaje, char *valorIngresado)
     return 0;
 }
 
-int isValidString(char lowLimit, char hiLimit, char *valorIngresado)
+int isValidString(char *valorIngresado, char lowLimit, char hiLimit)
 {
-    int i;
-    int retorno=1;
     if(strlen(valorIngresado)>=lowLimit && strlen(valorIngresado)<=hiLimit)
     {
-        for(i=0;i<strlen(valorIngresado)-1;i++) //strlen incluye el 0
-        {
-            if(*(valorIngresado+i)<'A' || (*(valorIngresado+i)>'Z' && *(valorIngresado+i)<'a') || *(valorIngresado+i)>'z')
-            {
-                return 0;
-            }
-        }
+        return 1;
     }
-    return retorno;
+    return 0;
 }
 
 /********************************************************************************************************************************************************************************/
 /**
 * \brief Solicita una cadena de caracteres al usuario y la valida
 * \param input Se carga el string ingresado
-* \param message Es el mensaje a ser mostrado
+* \param message Es el mensaje a ser mostrado al solicitar valor
 * \param eMessage Es el mensaje a ser mostrado en caso de error
-* \param lowLimit Longitud mínima de la cadena
-* \param hiLimit Longitud máxima de la cadena
+* \param lowLimitInt Limite inferior a validar (incluido)
+* \param hiLimitInt Limite superior a validar (incluido)
+* \param lowLimitArray Longitud mínima de la cadena
+* \param hiLimitArray Longitud máxima de la cadena
+* \param reintentos Cantidad de veces que se le volverá a pedir al usuario que ingrese un dato en caso de error
 * \return Si obtuvo la cadena [0] si no [-1]
 *
 */
-/*
-int getArrayInt(int* input,char message[],char eMessage[], int lowLimit, int hiLimit, int reintentos, int size)
+
+int getArrayInt(int* input,char *message,char *eMessage, int lowLimitInt, int hiLimitInt, int lowLimitArray, int hiLimitArray, int reintentos)
+{
+    int retorno=-1;
+    int i;
+    int j;
+    int bufferArray[hiLimitArray];
+    int bufferInt;
+
+    if(message!= NULL && eMessage!= NULL && input!=NULL && lowLimitInt<hiLimitInt && lowLimitArray<hiLimitArray && reintentos>=0)
+    {
+        for(i=0;i<hiLimitArray;i++)
+        {
+            getInt(&bufferInt,message,eMessage,lowLimitInt,hiLimitInt,reintentos);
+            *(bufferArray+i)=bufferInt;
+        }
+        if(isValidArrayInt(bufferArray,lowLimitArray,hiLimitArray))
+        {
+            for(j=0;j<hiLimitArray;j++)
+                *(input+i)=bufferArray[i];
+        }
+        retorno=0;
+    }
+    return retorno;
+}
+
+int isValidArrayInt(int *valorIngresado, int lowLimit, int hiLimit)
+{
+    if(sizeof(valorIngresado)/sizeof(int)>=lowLimit && sizeof(valorIngresado)/sizeof(int)<=hiLimit)
+    {
+        return 1;
+    }
+    return 0;
+}
 
 void mostrarArray(int size,int* pArray)
 {
@@ -274,4 +308,4 @@ void mostrarArray(int size,int* pArray)
         printf("%d",*(pArray+i));
     }
 }
-*/
+
