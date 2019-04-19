@@ -1,0 +1,29 @@
+# depslib dependency file v1.0
+1555222601 source:/home/camila/Documents/Facu/Progamacion_Laboratorio1/Bibliotecas/utn/main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+
+1555221880 /home/camila/Documents/Facu/Progamacion_Laboratorio1/Bibliotecas/utn/utn.h
+
+1555222070 source:/home/camila/Documents/Facu/Progamacion_Laboratorio1/Bibliotecas/utn/utn.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+
+1555636655 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\bibliotecas\utn\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+
+1555636488 f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\bibliotecas\utn\utn.h
+
+1555634514 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\bibliotecas\utn\utn.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+

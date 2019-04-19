@@ -23,13 +23,13 @@ int getString(  char* msg,
             printf("%s",msg);   //no poner salto de linea, se va a pasar en el mensaje por valor
             fgets(bufferStr,sizeof(bufferStr),stdin);
             bufferStr[strlen(bufferStr)-1]='\0';
-            if(strlen(bufferStr)>=min && strlen(bufferStr)<max)
+            if(strlen(bufferStr)>=min && strlen(bufferStr)<=max)
             {
                 strncpy(resultado,bufferStr,max);
                 retorno=0;
                 break;
             }
-            printf("%s",msgError);
+            printf("%s 1",msgError);
             reintentos--;
         }
         while(reintentos>=0);
