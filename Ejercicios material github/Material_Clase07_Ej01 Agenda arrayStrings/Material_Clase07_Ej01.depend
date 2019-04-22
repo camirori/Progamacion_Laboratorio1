@@ -1,0 +1,24 @@
+# depslib dependency file v1.0
+1555205143 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios material github\material_clase07_ej01\input.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Input.h"
+
+1555204765 f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios material github\material_clase07_ej01\input.h
+
+1555713762 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios material github\material_clase07_ej01\utn.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+
+1555709908 f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios material github\material_clase07_ej01\utn.h
+
+1555803999 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios material github\material_clase07_ej01\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Input.h"
+	"utn.h"
+

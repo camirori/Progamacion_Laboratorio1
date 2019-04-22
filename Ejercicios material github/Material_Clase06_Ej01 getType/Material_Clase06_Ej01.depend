@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1555639975 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios material github\material_clase06_ej01 biblioteca get\utn.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+
+1555639797 f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios material github\material_clase06_ej01 biblioteca get\utn.h
+

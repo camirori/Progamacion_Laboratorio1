@@ -1,0 +1,39 @@
+# depslib dependency file v1.0
+1555461947 source:/home/alumno/workspace/Temp/Clase08_Ej01/main.c
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	"utn.h"
+
+1555462088 source:/home/alumno/workspace/Temp/Clase08_Ej01/utn.c
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	"utn.h"
+
+1555462089 /home/alumno/workspace/Temp/Clase08_Ej01/utn.h
+
+1555905158 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase08_ej01 arraystrings\array.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+	"array.h"
+
+1555818513 f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase08_ej01 arraystrings\array.h
+
+1555904324 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase08_ej01 arraystrings\utn.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+
+1555639797 f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase08_ej01 arraystrings\utn.h
+
+1555905095 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase08_ej01 arraystrings\main.c
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	"utn.h"
+	"array.h"
+

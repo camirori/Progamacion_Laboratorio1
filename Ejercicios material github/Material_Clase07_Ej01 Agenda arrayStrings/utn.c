@@ -24,7 +24,7 @@ utn_getAlfanumerico
 *
 ***************************/
 
-int getString(char* msg, char* msgError, int min, int max, int* reintentos, char* resultado)
+int utn_getString(char* msg, char* msgError, int min, int max, int* reintentos, char* resultado)
 {
     int retorno=-1;
     char bufferStr[max+10];
@@ -34,7 +34,7 @@ int getString(char* msg, char* msgError, int min, int max, int* reintentos, char
         do
         {
             printf("%s",msg);   //no poner salto de linea, se va a pasar en el mensaje por valor
-            //fflush(stdin);
+            fflush(stdin);
             fgets(bufferStr,sizeof(bufferStr),stdin);
             bufferStr[strlen(bufferStr)-1]='\0';
 
@@ -61,7 +61,7 @@ int utn_getName(char* msg, char* msgError, int min, int max, int reintentos, cha
     {
         do
         {
-            if(!getString(msg,msgError,min,max,&reintentos,bufferStr)) //==0
+            if(!utn_getString(msg,msgError,min,max,&reintentos,bufferStr)) //==0
             {
                 if(isValidName(bufferStr)==1)
                 {
@@ -107,7 +107,7 @@ int utn_getNumero(  char* msg,char* msgError,int minSize,int maxSize,int min,int
     {
         do
         {
-            if(!getString(msg,msgError,minSize,maxSize,&reintentos,bufferStr)) //==0 sin errores !0
+            if(!utn_getString(msg,msgError,minSize,maxSize,&reintentos,bufferStr)) //==0 sin errores !0
             {
                 if(isValidNumber(bufferStr)==1)
                 {
@@ -151,7 +151,7 @@ int utn_getNumeroConSigno(char* msg, char* msgError, int minSize, int maxSize, i
     {
         do
         {
-            if(!getString(msg,msgError,minSize,maxSize,&reintentos,bufferStr)) //==0 sin errores !0
+            if(!utn_getString(msg,msgError,minSize,maxSize,&reintentos,bufferStr)) //==0 sin errores !0
             {
                 if(isValidSignedNumber(bufferStr)==1)
                 {
@@ -195,7 +195,7 @@ int utn_getNumeroConDecimales(char* msg, char* msgError, int minSize, int maxSiz
     {
         do
         {
-            if(!getString(msg,msgError,minSize,maxSize,&reintentos,bufferStr)) //==0 sin errores !0
+            if(!utn_getString(msg,msgError,minSize,maxSize,&reintentos,bufferStr)) //==0 sin errores !0
             {
                 if(isValidFloatNumber(bufferStr)==1)
                 {
@@ -239,7 +239,7 @@ int utn_getTelefono(char* msg, char* msgError, int minSize, int maxSize, int min
     {
         do
         {
-            if(!getString(msg,msgError,minSize,maxSize,&reintentos,bufferStr)) //==0 sin errores !0
+            if(!utn_getString(msg,msgError,minSize,maxSize,&reintentos,bufferStr)) //==0 sin errores !0
             {
                 if(isValidTelephone(bufferStr)==1)
                 {
@@ -265,7 +265,7 @@ int isValidTelephone(char* stringRecibido)
     int i;
     for(i=0;stringRecibido[i]!='\0';i++)
     {
-        if((stringRecibido[i]<'0' || stringRecibido[i]>'9') && (stringRecibido[i]!='-' || stringRecibido[i]!=' '))
+        if((stringRecibido[i]<'0' || stringRecibido[i]>'9') && (stringRecibido[i]!='-'))
         {
             retorno=0;
             break;
@@ -285,7 +285,7 @@ int utn_getDNI(char* msg, char* msgError, int minSize, int maxSize, int reintent
     {
         do
         {
-            if(!getString(msg,msgError,minSize,maxSize,&reintentos,bufferStr)) //==0 sin errores !0
+            if(!utn_getString(msg,msgError,minSize,maxSize,&reintentos,bufferStr)) //==0 sin errores !0
             {
                 if(isValidDNI(bufferStr)==1)
                 {
@@ -332,7 +332,7 @@ int utn_getCUIT(char* msg, char* msgError, int minSize, int maxSize, int reinten
     {
         do
         {
-            if(!getString(msg,msgError,minSize,maxSize,&reintentos,bufferStr)) //==0 sin errores !0
+            if(!utn_getString(msg,msgError,minSize,maxSize,&reintentos,bufferStr)) //==0 sin errores !0
             {
                 if(isValidCUIT(bufferStr)==1)
                 {
@@ -411,7 +411,7 @@ int utn_getEmail(char* msg, char* msgError, int minSize, int maxSize, int reinte
     {
         do
         {
-            if(!getString(msg,msgError,minSize,maxSize,&reintentos,bufferStr)) //==0 sin errores !0
+            if(!utn_getString(msg,msgError,minSize,maxSize,&reintentos,bufferStr)) //==0 sin errores !0
             {
                 if(isValidEmail(bufferStr)==1)
                 {
@@ -457,7 +457,7 @@ int utn_getTexto(char* msg, char* msgError, int minSize, int maxSize, int reinte
     {
         do
         {
-            if(!getString(msg,msgError,minSize,maxSize,&reintentos,bufferStr)) //==0 sin errores !0
+            if(!utn_getString(msg,msgError,minSize,maxSize,&reintentos,bufferStr)) //==0 sin errores !0
             {
                 if(isValidTexto(bufferStr)==1)
                 {
@@ -502,7 +502,7 @@ int utn_getAlfanumerico(char* msg, char* msgError, int minSize, int maxSize, int
     {
         do
         {
-            if(!getString(msg,msgError,minSize,maxSize,&reintentos,bufferStr)) //==0 sin errores !0
+            if(!utn_getString(msg,msgError,minSize,maxSize,&reintentos,bufferStr)) //==0 sin errores !0
             {
                 if(isValidAlphanumeric(bufferStr)==1)
                 {
@@ -537,41 +537,3 @@ int isValidAlphanumeric(char* stringRecibido)
     return retorno;
 }
 
-//***************************************************************************************************
-/*
-int utn_getNumeroAleatorio(  char* msg,char* msgError,int minSize,int maxSize,int min,int max,int reintentos,int* input)
-{
-    int retorno=-1;
-    char bufferStr[maxSize];
-
-    if(msg!=NULL && msgError!=NULL && minSize<maxSize && min<max && reintentos>=0 && input!=NULL)
-    {
-        do
-        {
-            if(!getString(msg,msgError,minSize,maxSize,&reintentos,bufferStr)) //==0 sin errores !0
-            {
-                if(isValidNumber(bufferStr)==1)
-                {
-                    *input=atoi(bufferStr);     // unsigned long int strtoul(const char *str, char **end, int base)?
-                    retorno=0;
-                    break;
-                }
-                else
-                {
-                    printf("%s 2",msgError);
-                    reintentos--;
-                }
-            }
-        }
-        while(reintentos>=0);
-    }
-    return retorno;
-}
-
-char getNumeroAleatorio(int desde , int hasta, int iniciar)
-{
-    if(iniciar)
-        srand (time(NULL));
-    return desde + (rand() % (hasta + 1 - desde)) ;
-}
-*/
