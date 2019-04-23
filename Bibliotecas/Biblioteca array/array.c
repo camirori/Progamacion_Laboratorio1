@@ -145,6 +145,9 @@ int array_listarArrayString(char array[][SIZE_TEXTO], int size)  // no se puede 
     {
         for(i=0;i<size;i++)
         {
+            if(strcmp(array[i],"")==0)
+                continue;
+            else
             printf("\n%s",array[i]);
         }
         retorno=0;

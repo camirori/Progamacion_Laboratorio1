@@ -24,7 +24,6 @@ El programa permitira ingresar hasta 100 nombres.
 
 int main()
 {
-    int i;
     int opcion=0;
     int posicion;
 
@@ -33,15 +32,9 @@ int main()
 
     array_inicializarArrayString(arrayNombres,QTY_EMPLEADOS);
 
-    for(i=0;i<3;i++)
-    {
-        printf("%s",arrayNombres[i]);
-    }
-
     do
     {
-        printf("\n\n1) ingresar nuevo nombre (no acepta nombres repetidos) \n2) listar todo \n3) ordenar por nombre \n4) Borrar nombre \n5) Salir\n");
-        scanf("%d",&opcion);
+        utn_getNumero("\n\n1) ingresar nuevo nombre (no acepta nombres repetidos) \n2) listar todo \n3) ordenar por nombre \n4) Borrar nombre \n5) Salir\n","\nError",1,2,1,5,1,&opcion);
         switch(opcion)
         {
             case 1:
