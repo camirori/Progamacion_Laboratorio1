@@ -65,12 +65,13 @@ int empleado_buscarNombre(Empleado array[], int size, char* valorBuscado, int* i
 //********************************************************************************
 // Alta-Baja
 
-int empleado_alta(Empleado array[], int size, int id)
+int empleado_alta(Empleado array[], int size, int* contadorId)
 {
     int posicion;
     char bufferNombres[TEXT_SIZE];
 
     empleado_buscarPrimerOcurrenciaInt(array,size,1,&posicion);
+    printf("%d",posicion);
     if(posicion==-1)    //no encuentra ninguno vacio -1
     {
         printf("\nNo hay lugares libres");
@@ -79,13 +80,17 @@ int empleado_alta(Empleado array[], int size, int id)
     {
         utn_getName("\nNombre: ","\nError",1,TEXT_SIZE,1,bufferNombres);
         printf("%s",bufferNombres);
-        if(empleado_buscarNombre(array,size,bufferNombres,&posicion)==0)
+        if(empleado_buscarNombre(array,size,bufferNombres,&posicion)==0 && array[posicion].isEmpty==0)
         {
             printf("\nEl nombre ya existe");
         }
         else
         {
-        strncpy(array[posicion].nombre,bufferNombres,TEXT_SIZE);
+            (*contadorId)++;
+            strncpy(array[posicion].nombre,bufferNombres,TEXT_SIZE);                        //cargo el nombre e indico que el lugar está ocupado
+            array[posicion].idEmpleado=*contadorId;
+            array[posicion].isEmpty=0;
+            printf("\nP %d ID %d N %s E %d",posicion, array[posicion].idEmpleado, array[posicion].nombre, array[posicion].isEmpty);
         }
     }
 
@@ -125,6 +130,8 @@ int empleado_ordenarporNombre(Empleado array[],int size)
         for (i = 1; i < size; i++)
         {
             strcpy(buffer,array[i].nombre);
+            bufferId=array[i].idEmpleado;
+            bufferIsEmpty=array[i].isEmpty;
             j = i - 1;
             while ((j >= 0) && strcmp(buffer,array[j].nombre)<0)     //(j >= 0) > se repite hasta que A[j+1] (i) llega a la posicion 0 o hasta que encuentra uno menor a A[j]
             {
@@ -134,7 +141,28 @@ int empleado_ordenarporNombre(Empleado array[],int size)
                 j--;                                //chequeo si el primer valor superior (buffer) tmb es mayor a las posiciones anteriores y se van pasando a una posicion superior
             }
             strcpy(array[j + 1].nombre,buffer);
-                                                            //inserto el primer valor superior (buffer) en la minima posicion alcanzada hasta encontrar uno menor
+            array[j + 1].idEmpleado=bufferId;
+            array[j + 1].isEmpty=bufferIsEmpty;                                                 //inserto el primer valor superior (buffer) en la minima posicion alcanzada hasta encontrar uno menor
+        }
+        retorno=0;
+    }
+    return retorno;
+}
+
+//***********************************************************************************************
+// Listar
+int empleado_listar(Empleado array[], int size)
+{
+    int retorno=-1;
+    int i;
+    if(array!=NULL && size>=0)
+    {
+        for(i=0;i<size;i++)
+        {
+            if(array[i].isEmpty==1)
+                continue;
+            else
+                printf("\nID %d N %s",array[i].idEmpleado,array[i].nombre);
         }
         retorno=0;
     }

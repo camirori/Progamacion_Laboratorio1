@@ -15,9 +15,11 @@ typedef struct empleados
 int empleado_inicializarArrayInt(Empleado array[], int size);
 int empleado_buscarPrimerOcurrenciaInt (Empleado array[], int size, int valorBuscado, int* indice);
 int empleado_buscarNombre(Empleado array[], int size, char* valorBuscado, int* indice);
-int empleado_alta(Empleado array[], int size, int id);
+int empleado_alta(Empleado array[], int size, int* id);
 int empleado_baja(Empleado array[], int size);
 int empleado_ordenarporNombre(Empleado array[],int size);
+int empleado_listar(Empleado array[], int size);
+
 
 
 

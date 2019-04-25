@@ -7,12 +7,9 @@
 
 #define QTY_EMPLEADOS 3
 
-
-
-
 int main()
 {
-    int id=0;
+    int contadorId=0;
     int opcion;
 
     Empleado arrayEmpleados[QTY_EMPLEADOS];
@@ -26,8 +23,7 @@ int main()
         switch(opcion)
         {
             case 1: //Alta
-                id++;
-                empleado_alta(arrayEmpleados,QTY_EMPLEADOS,id);
+                empleado_alta(arrayEmpleados,QTY_EMPLEADOS,&contadorId);
                 break;
 
             case 2: //Baja
@@ -38,13 +34,9 @@ int main()
                 empleado_ordenarporNombre(arrayEmpleados,QTY_EMPLEADOS);
                 break;
 
-
-            /*
-
             case 4:
-                array_listarArrayString(arrayNombres,QTY_EMPLEADOS);
-
-                break;*/
+                empleado_listar(arrayEmpleados,QTY_EMPLEADOS);
+                break;
 
             case 5:
                 break;
@@ -53,3 +45,10 @@ int main()
     while(opcion!=5);
     return 0;
 }
+
+/*
+ problemas:
+ El ID empieza en 2 en lugar de 1
+ Cuando se ingresan más elementos que el tamaño se reemplazan los anteriores, de abajo para arriba, en algun momento se cambia isEmpty?
+ */
+
