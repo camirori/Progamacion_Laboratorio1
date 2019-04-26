@@ -1,21 +1,21 @@
 # depslib dependency file v1.0
-1556057754 source:/home/alumno/workspace/Progamacion_Laboratorio1/Ejercicios hechos en clase/Clase09_Ej02/array.c
+1556228547 source:/home/alumno/workspace/Progamacion_Laboratorio1/Ejercicios hechos en clase/Clase09_Ej02/array.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"array.h"
 
-1556057754 /home/alumno/workspace/Progamacion_Laboratorio1/Ejercicios hechos en clase/Clase09_Ej02/array.h
+1556228547 /home/alumno/workspace/Progamacion_Laboratorio1/Ejercicios hechos en clase/Clase09_Ej02/array.h
 
-1556057754 source:/home/alumno/workspace/Progamacion_Laboratorio1/Ejercicios hechos en clase/Clase09_Ej02/utn.c
+1556228547 source:/home/alumno/workspace/Progamacion_Laboratorio1/Ejercicios hechos en clase/Clase09_Ej02/utn.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"utn.h"
 
-1556057754 /home/alumno/workspace/Progamacion_Laboratorio1/Ejercicios hechos en clase/Clase09_Ej02/utn.h
+1556228547 /home/alumno/workspace/Progamacion_Laboratorio1/Ejercicios hechos en clase/Clase09_Ej02/utn.h
 
-1556067330 source:/home/alumno/workspace/Progamacion_Laboratorio1/Ejercicios hechos en clase/Clase09_Ej02/empleado.c
+1556228547 source:/home/alumno/workspace/Progamacion_Laboratorio1/Ejercicios hechos en clase/Clase09_Ej02/empleado.c
 	<string.h>
 	<stdio.h>
 	<stdlib.h>
@@ -23,9 +23,9 @@
 	"array.h"
 	"empleado.h"
 
-1556066985 /home/alumno/workspace/Progamacion_Laboratorio1/Ejercicios hechos en clase/Clase09_Ej02/empleado.h
+1556228679 /home/alumno/workspace/Progamacion_Laboratorio1/Ejercicios hechos en clase/Clase09_Ej02/empleado.h
 
-1556067379 source:/home/alumno/workspace/Progamacion_Laboratorio1/Ejercicios hechos en clase/Clase09_Ej02/main.c
+1556228547 source:/home/alumno/workspace/Progamacion_Laboratorio1/Ejercicios hechos en clase/Clase09_Ej02/main.c
 	<string.h>
 	<stdio.h>
 	<stdlib.h>

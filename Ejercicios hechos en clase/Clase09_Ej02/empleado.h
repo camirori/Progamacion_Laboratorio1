@@ -3,7 +3,7 @@
 
 #define TEXT_SIZE 20
 
-typedef struct empleados
+typedef struct
 {
     int idEmpleado;         //siempre
     int isEmpty;            //siempre

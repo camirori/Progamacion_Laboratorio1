@@ -38,6 +38,8 @@ int main()
                 empleado_listar(arrayEmpleados,QTY_EMPLEADOS);
                 break;
 
+                //Falta modificar
+
             case 5:
                 break;
         }

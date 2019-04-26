@@ -70,9 +70,7 @@ int empleado_alta(Empleado array[], int size, int* contadorId)
     int posicion;
     char bufferNombres[TEXT_SIZE];
 
-    empleado_buscarPrimerOcurrenciaInt(array,size,1,&posicion);
-    printf("%d",posicion);
-    if(posicion==-1)    //no encuentra ninguno vacio -1
+    if(empleado_buscarPrimerOcurrenciaInt(array,size,1,&posicion)==-1)    //no encuentra ninguno vacio -1
     {
         printf("\nNo hay lugares libres");
     }
