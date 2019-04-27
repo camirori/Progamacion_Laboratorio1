@@ -160,9 +160,64 @@ int empleado_listar(Empleado array[], int size)
             if(array[i].isEmpty==1)
                 continue;
             else
-                printf("\nID %d N %s",array[i].idEmpleado,array[i].nombre);
+                printf("\nID %d N %s Empty %d",array[i].idEmpleado,array[i].nombre,array[i].isEmpty);
         }
         retorno=0;
     }
     return retorno;
 }
+
+//***********************************************************************************************
+// Modificar
+/*
+int empleado_modificar(Empleado array[], int size)
+{
+    int posicion;
+    char bufferNombres[TEXT_SIZE];
+    int opcion;
+
+    utn_getName("\nNombre a modificar: ","\nError",1,TEXT_SIZE,1,bufferNombres);
+    empleado_buscarNombre(array,size,bufferNombres,&posicion);
+    if(posicion==-1)
+    {
+        printf("\nEl nombre no existe");
+    }
+    else
+    {
+        do
+        {
+            printf("N %s",array[posicion].nombre);         //pregunta qué modificar de ese legajo
+            getChar(&opcion,"\nQue desea modificar? N S(Salir)","Error",'N','S',1);
+            switch(opcion)
+            {
+
+                case 'N':
+                    utn_getName("\nNombre: ","\nError",1,SIZE_TEXTO,1,array);
+                    break;
+
+                case 'L':
+                    utn_getNumero("\nLegajo: ","\nError",1,3,1,QTY_CLIENTES,1,&auxLegajo);
+                    if(buscarPrimerOcurrencia(legajo,QTY_CLIENTES,auxLegajo)!=-1)
+                    {
+                        printf("\nEl legajo ya existe");
+                    }
+                    else
+                    {
+                        legajo[posicion]=auxLegajo;
+                    }
+                    break;
+                case 'A':
+                    utn_getName("\nApellido: ","\nError",1,SIZE_TEXTO,1,&apellido[posicion][0]);
+                    break;
+
+
+                case 'S':
+                    break;
+            }
+        }
+        while(opcion!='S');
+    }
+    return 0;
+}
+
+*/

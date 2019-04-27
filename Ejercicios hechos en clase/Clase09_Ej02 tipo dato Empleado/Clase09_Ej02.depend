@@ -67,3 +67,37 @@
 	"array.h"
 	"empleado.h"
 
+1556380844 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase09_ej02 tipo dato empleado\array.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"array.h"
+
+1556380844 f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase09_ej02 tipo dato empleado\array.h
+
+1556380844 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase09_ej02 tipo dato empleado\utn.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+
+1556380844 f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase09_ej02 tipo dato empleado\utn.h
+
+1556383467 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase09_ej02 tipo dato empleado\main.c
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	"utn.h"
+	"array.h"
+	"empleado.h"
+
+1556380844 f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase09_ej02 tipo dato empleado\empleado.h
+
+1556383229 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase09_ej02 tipo dato empleado\empleado.c
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	"utn.h"
+	"array.h"
+	"empleado.h"
+

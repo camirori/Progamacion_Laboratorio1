@@ -9,17 +9,16 @@
 
 int main()
 {
-    int contadorId=0;
+
     int opcion;
+    int contadorId=0;   //si lo declaro antes de opcion se cambia a 1 despues de inicializar arrayInt, por que????????
 
     Empleado arrayEmpleados[QTY_EMPLEADOS];
-
     empleado_inicializarArrayInt(arrayEmpleados,QTY_EMPLEADOS);
-
 
     do
     {
-        utn_getNumero("\n\n1) Alta \n2) Baja \n3) Ordenar \n4) Listar \n5)Salir\n","\nError",1,2,1,5,1,&opcion);
+        utn_getNumero("\n\n1) Alta \n2) Baja \n3) Ordenar \n4) Listar \n5) Modificar \n6) Salir\n","\nError",1,2,1,6,1,&opcion);
         switch(opcion)
         {
             case 1: //Alta
@@ -34,17 +33,19 @@ int main()
                 empleado_ordenarporNombre(arrayEmpleados,QTY_EMPLEADOS);
                 break;
 
-            case 4:
+            case 4: //Listar
                 empleado_listar(arrayEmpleados,QTY_EMPLEADOS);
                 break;
 
-                //Falta modificar
+            case 5://Modificar
 
-            case 5:
+                break;
+
+            case 6://Salir
                 break;
         }
     }
-    while(opcion!=5);
+    while(opcion!=6);
     return 0;
 }
 
