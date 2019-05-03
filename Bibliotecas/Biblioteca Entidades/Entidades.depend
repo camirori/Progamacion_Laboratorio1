@@ -1,0 +1,25 @@
+# depslib dependency file v1.0
+1556427203 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\bibliotecas\entidades\main.c
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	"utn.h"
+	"entidades.h"
+
+1556426217 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\bibliotecas\entidades\utn.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+
+1556483107 f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\bibliotecas\entidades\utn.h
+
+1556480949 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\bibliotecas\entidades\entidades.c
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	"utn.h"
+	"entidades.h"
+
+1556480936 f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\bibliotecas\entidades\entidades.h
+
