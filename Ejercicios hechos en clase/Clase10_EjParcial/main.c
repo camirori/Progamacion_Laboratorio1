@@ -4,6 +4,7 @@
 #include "utn.h"
 #include "publicidad.h"
 #include "pantalla.h"
+#include "informes.h"
 
 #define QTY_PANTALLAS 3
 #define QTY_CONTRATACIONES 3
@@ -59,33 +60,33 @@ int main()
             case 5://Modificar condiciones de publicacion
                 /*Se pedirá que se ingrese el cuit del cliente y se listaran todas las pantallas de video que el cliente tiene contratadas mostrando todos sus campos.
                 Luego de ingresar el ID de la pantalla, se permitirá modificar la cantidad de días contratados​ ​para​ ​la​ ​misma.*/
-
-    //Falta listar por CUIT, los campos de la pantalla o de la publicacion?
     //Solo modificar dias?
                 utn_getCUIT("\nCUIT: ","\nError",11,14,1,bufferCuit);
-                Publicidad_listarPorCuit(arrayPublicidad,QTY_CONTRATACIONES,bufferCuit);
+                Informes_listarPantallasPorCuit(arrayPublicidad,arrayPantallas,QTY_CONTRATACIONES,QTY_PANTALLAS,bufferCuit);
                 Publicidad_modificar(arrayPublicidad,QTY_CONTRATACIONES); // fata modificar
+                strcpy(bufferCuit,"");
                 break;
 
             case 6://Cancelar contratacion
                 /* ​Se pedirá que se ingrese el cuit del cliente y se listaran todas las pantallas de video que el cliente tiene contratadas mostrando todos sus campos.
                 Luego ingresar​ ​el​ ​ID​ ​de​ ​la​ ​pantalla​ ​de​ ​la​ ​cual​ ​se​ ​quiere​ ​cancelar​ ​la​ ​contratación.*/
-    //Falta listar por CUIT, los campos de la pantalla o de la publicacion?
                 utn_getCUIT("\nCUIT: ","\nError",11,14,1,bufferCuit);
-                Publicidad_listarPorCuit(arrayPublicidad,QTY_CONTRATACIONES,bufferCuit);
+                Informes_listarPantallasPorCuit(arrayPublicidad,arrayPantallas,QTY_CONTRATACIONES,QTY_PANTALLAS,bufferCuit);
                 Publicidad_bajaPantallaCuit(arrayPublicidad,QTY_CONTRATACIONES,bufferCuit);
-
+                strcpy(bufferCuit,"");
                 break;
 
             case 7://Consulta facturacion
                 //Se deberá ingresar el cuit del cliente y se deberá listar el importe a​ ​pagar​ ​por​ ​cada​ ​contratación.
-
+                utn_getCUIT("\nCUIT: ","\nError",11,14,1,bufferCuit);
+                Informes_listarFacturacionPorCuit(arrayPublicidad,arrayPantallas,QTY_CONTRATACIONES,QTY_PANTALLAS,bufferCuit);
+                Publicidad_bajaPantallaCuit(arrayPublicidad,QTY_CONTRATACIONES,bufferCuit);
+                strcpy(bufferCuit,"");
                 break;
 
             case 8://Listar contrataciones
                 // deberán listar las contrataciones indicando nombre de la pantalla,​ ​nombre​ ​de​ ​video,​ ​cantidad​ ​de​ ​días​ ​y​ ​cuit​ ​de​ ​cliente.
-    //Falta nombre de la pantalla
-                Publicidad_listar(arrayPublicidad,QTY_CONTRATACIONES);
+                Informes_listarContrataciones(arrayPublicidad,arrayPantallas,QTY_CONTRATACIONES,QTY_PANTALLAS);
                 break;
 
             case 9://Listar​ ​pantallas     ok
@@ -96,6 +97,8 @@ int main()
             case 10://Informar
                 /*1. Lista​ ​de​ ​cada​ ​cliente​ ​con​ ​cantidad​ ​de​ ​contrataciones​ ​e​ ​importe​ ​a​ ​pagar​ ​por​ ​cada​ ​una.
                 2. Cliente​ ​con​ ​importe​ ​más​ ​alto​ ​a​ ​facturar​ ​(si​ ​hay​ ​más​ ​de​ ​uno​ ​indicar​ ​el​ ​primero)*/
+
+                Informes_listarCuit(arrayPublicidad,arrayPantallas,QTY_CONTRATACIONES,QTY_PANTALLAS);
 
                 break;
 

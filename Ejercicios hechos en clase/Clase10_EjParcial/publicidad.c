@@ -62,8 +62,7 @@ int Publicidad_buscarID(Publicidad array[], int size, int valosBuscado, int* pos
 }
 
 //String
-/*
-int Tipo_buscarNombre(Empleado array[], int size, char* valorBuscado, int* indice)
+int Publicidad_buscarCuit(Publicidad array[], int size, char* valorBuscado, int* indice)
 {
     int retorno=-1;
     int i;
@@ -71,7 +70,7 @@ int Tipo_buscarNombre(Empleado array[], int size, char* valorBuscado, int* indic
     {
         for(i=0;i<size;i++)
         {
-            if (strcmp(array[i].nombre,valorBuscado)==0)
+            if (strcmp(array[i].cuit,valorBuscado)==0)
             {
                 *indice=i;
                 retorno=0;
@@ -81,7 +80,7 @@ int Tipo_buscarNombre(Empleado array[], int size, char* valorBuscado, int* indic
     }
     return retorno;
 }
-*/
+
 //*****************************************
 //Alta
 int Publicidad_alta(Publicidad array[], int size, int* contadorID)
@@ -294,21 +293,5 @@ int Publicidad_listar(Publicidad array[], int size)
     return retorno;
 }
 
-int Publicidad_listarPorCuit(Publicidad array[], int size, char* cuitBuscado)
-{
-    int retorno=-1;
-    int i;
-    if(array!=NULL && size>=0)
-    {
-        for(i=0;i<size;i++)
-        {
-            if(array[i].isEmpty==1 && strcmp(array[i].cuit,cuitBuscado)!=0)
-                continue;
-            else
-                printf("\nID publicidad: %d\nDias a contratar: %d\nNombre Archivo: %s\nID pantalla: %d",array[i].idPublicidad,array[i].dias,array[i].archivo,array[i].idPantalla);
-        }
-        retorno=0;
-    }
-    return retorno;
-}
+
 

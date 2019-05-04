@@ -29,6 +29,7 @@ Listar
 int Publicidad_Inicializar(Publicidad array[], int size);
 int Publicidad_buscarEmpty(Publicidad array[], int size, int* posicion);
 int Publicidad_buscarID(Publicidad array[], int size, int valosBuscado, int* posicion);
+int Publicidad_buscarCuit(Publicidad array[], int size, char* valorBuscado, int* indice);
 int Publicidad_alta(Publicidad array[], int size, int* contadorID);
 int Publicidad_baja(Publicidad array[], int sizeArray);
 int Publicidad_bajaPantalla(Publicidad array[], int sizeArray, int valorIDPantalla);

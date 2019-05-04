@@ -30,6 +30,7 @@ Listar
 
 int Tipo_Inicializar(Tipo array[], int size);                                    //cambiar Tipo
 int Tipo_buscarEmpty(Tipo array[], int size, int* posicion);                    //cambiar Tipo
+int Tipo_buscarID(Tipo array[], int size, int valosBuscado, int* posicion);                    //cambiar Tipo
 int Tipo_buscarInt(Tipo array[], int size, int valosBuscado, int* posicion);                    //cambiar Tipo
 int Tipo_buscarString(Tipo array[], int size, char* valorBuscado, int* indice);                    //cambiar Tipo
 int Tipo_alta(Tipo array[], int size, int* contadorID);                          //cambiar Tipo

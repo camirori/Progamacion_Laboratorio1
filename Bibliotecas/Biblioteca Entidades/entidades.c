@@ -57,6 +57,31 @@ int Tipo_buscarEmpty(Tipo array[], int size, int* posicion)                    /
     return retorno;
 }
 
+/** \brief Busca un ID en un array y devuelve la posicion en que se encuentra
+* \param array Tipo Array de Tipo
+* \param size int Tamaño del array
+* \param posicion int* Puntero a la posicion del array donde se encuentra el valor buscado
+* \return int Return (-1) si no encuentra el valor buscado o Error [Invalid length or NULL pointer] - (0) si encuentra el valor buscado
+*
+*/
+int Tipo_buscarID(Tipo array[], int size, int valosBuscado, int* posicion)                    //cambiar Tipo
+{
+    int retorno=-1;
+    int i;
+    if(array!= NULL && size>=0)
+    {
+        for(i=0;i<size;i++)
+        {
+            if(array[i].idEntidad==valosBuscado)                                                   //cambiar campo ID
+            {
+                retorno=0;
+                *posicion=i;
+                break;
+            }
+        }
+    }
+    return retorno;
+}
 /** \brief Busca un int en un array y devuelve la posicion en que se encuentra
 * \param array Tipo Array de Tipo
 * \param size int Tamaño del array
@@ -125,7 +150,7 @@ int Tipo_alta(Tipo array[], int size, int* contadorID)                          
     int posicion;
     if(array!=NULL && size>0 && contadorID!=NULL)
     {
-        if(Tipo_buscarEmpty(array,size,&posicion)==-1)
+        if(Tipo_buscarEmpty(array,size,&posicion)==-1)                          //cambiar Tipo
         {
             printf("\nNo hay lugares vacios");
         }
@@ -285,8 +310,6 @@ int Tipo_ordenarPorString(Tipo array[],int size)                              //
     float bufferFloat;                                          //cambiar buffer varFloat
     char bufferLongString[TEXT_SIZE];                           //cambiar campo varLongString
 
-
-
     if(array!=NULL && size>=0)
     {
         for (i = 1; i < size; i++)
@@ -301,8 +324,8 @@ int Tipo_ordenarPorString(Tipo array[],int size)                              //
 
 
             j = i - 1;
-            while ((j >= 0) && strcmp(bufferString,array[j].varString)<0)         //cambiar campo varString
-            {
+            while ((j >= 0) && strcmp(bufferString,array[j].varString)<0)         //cambiar campo varString                 //Si tiene mas de un criterio se lo agrego, Ej. bufferInt<array[j].varInt
+            {                                                                                                               //buffer < campo ascendente   buffer > campo descendente
                 strcpy(array[j + 1].varString,array[j].varString);          //cambiar campo varString
                 array[j + 1].idEntidad=array[j].idEntidad;                                //cambiar campo id
                 array[j + 1].isEmpty=array[j].isEmpty;
@@ -325,6 +348,7 @@ int Tipo_ordenarPorString(Tipo array[],int size)                              //
     }
     return retorno;
 }
+
 //*****************************************
 //Listar
 /** \brief Lista los elementos de un array

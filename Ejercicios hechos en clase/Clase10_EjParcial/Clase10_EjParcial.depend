@@ -1,13 +1,14 @@
 # depslib dependency file v1.0
-1556483320 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase10_ejparcial\main.c
+1556994886 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase10_ejparcial\main.c
 	<string.h>
 	<stdio.h>
 	<stdlib.h>
 	"utn.h"
 	"publicidad.h"
 	"pantalla.h"
+	"informes.h"
 
-1556483639 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase10_ejparcial\publicidad.c
+1556990462 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase10_ejparcial\publicidad.c
 	<string.h>
 	<stdio.h>
 	<stdlib.h>
@@ -31,7 +32,15 @@
 
 1556480427 f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase10_ejparcial\pantalla.h
 
-1556483512 f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase10_ejparcial\publicidad.h
+1556994898 f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase10_ejparcial\publicidad.h
 
-1556480368 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase10_ejparcial\informes.c
+1556938595 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase10_ejparcial\informes.c
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	"utn.h"
+	"publicidad.h"
+	"pantalla.h"
+
+1557007127 f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase10_ejparcial\informes.h
 
