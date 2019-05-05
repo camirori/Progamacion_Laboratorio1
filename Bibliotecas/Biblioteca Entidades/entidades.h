@@ -5,7 +5,7 @@
 
 typedef struct
 {
-    int idEntidad;         //siempre
+    int idUnico;         //siempre
     int isEmpty;            //siempre
     //-----------------
     char varString[TEXT_SIZE];

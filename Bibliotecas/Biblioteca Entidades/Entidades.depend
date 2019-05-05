@@ -32,7 +32,7 @@
 
 1556483107 f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\bibliotecas\biblioteca entidades\utn.h
 
-1557001036 f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\bibliotecas\biblioteca entidades\entidades.h
+1557013703 f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\bibliotecas\biblioteca entidades\entidades.h
 
 1556483094 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\bibliotecas\biblioteca entidades\utn.c
 	<stdio.h>
@@ -40,7 +40,7 @@
 	<string.h>
 	"utn.h"
 
-1557002186 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\bibliotecas\biblioteca entidades\entidades.c
+1557013694 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\bibliotecas\biblioteca entidades\entidades.c
 	<string.h>
 	<stdio.h>
 	<stdlib.h>

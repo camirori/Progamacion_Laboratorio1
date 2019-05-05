@@ -43,6 +43,8 @@ int main()
 
             case 6://Salir
                 break;
+            default:
+                printf("\nOpcion no valida");
         }
     }
     while(opcion!=6);

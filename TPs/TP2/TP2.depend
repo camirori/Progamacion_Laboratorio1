@@ -1,0 +1,26 @@
+# depslib dependency file v1.0
+1557089117 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\tps\tp2\main.c
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	"utn.h"
+	"employee.h"
+
+1557088084 f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\tps\tp2\utn.h
+
+1557082344 f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\tps\tp2\employee.h
+
+1557088873 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\tps\tp2\utn.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+	<time.h>
+
+1557088776 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\tps\tp2\employee.c
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	"utn.h"
+	"employee.h"
+

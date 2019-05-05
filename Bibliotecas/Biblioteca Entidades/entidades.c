@@ -4,6 +4,24 @@
 #include "utn.h"
 #include "entidades.h"  //cambiar por nombre entidad
 
+
+/*
+-Inicializar
+-Buscar
+    Empty
+    ID
+    Int
+    String
+-Alta
+-Baja
+    Valor unico
+    Valor repetido
+-Modificar
+-Ordenar
+-Listar
+*/
+
+
 //***************************************************************
 //Init
 /** \brief  To indicate that all position in the array are empty,
@@ -72,7 +90,9 @@ int Tipo_buscarID(Tipo array[], int size, int valosBuscado, int* posicion)      
     {
         for(i=0;i<size;i++)
         {
-            if(array[i].idEntidad==valosBuscado)                                                   //cambiar campo ID
+            if(array[i].isEmpty==1)
+                continue;
+            else if(array[i].idUnico==valosBuscado)                                                   //cambiar campo ID
             {
                 retorno=0;
                 *posicion=i;
@@ -97,7 +117,9 @@ int Tipo_buscarInt(Tipo array[], int size, int valosBuscado, int* posicion)     
     {
         for(i=0;i<size;i++)
         {
-            if(array[i].varInt==valosBuscado)                                                   //cambiar campo varInt
+            if(array[i].isEmpty==1)
+                continue;
+            else if(array[i].varInt==valosBuscado)                                                   //cambiar campo varInt
             {
                 retorno=0;
                 *posicion=i;
@@ -124,7 +146,9 @@ int Tipo_buscarString(Tipo array[], int size, char* valorBuscado, int* indice)  
     {
         for(i=0;i<size;i++)
         {
-            if (strcmp(array[i].varString,valorBuscado)==0)                                        //cambiar campo varString
+            if(array[i].isEmpty==1)
+                continue;
+            else if(strcmp(array[i].varString,valorBuscado)==0)                                        //cambiar campo varString
             {
                 *indice=i;
                 retorno=0;
@@ -157,14 +181,14 @@ int Tipo_alta(Tipo array[], int size, int* contadorID)                          
         else
         {
             (*contadorID)++;
-            array[posicion].idEntidad=*contadorID;                                                       //campo ID
+            array[posicion].idUnico=*contadorID;                                                       //campo ID
             array[posicion].isEmpty=0;
             utn_getUnsignedInt("\n: ","\nError",1,sizeof(int),1,1,1,&array[posicion].varInt);           //mensaje + cambiar campo varInt
             utn_getFloat("\n: ","\nError",1,sizeof(float),0,1,1,&array[posicion].varFloat);             //mensaje + cambiar campo varFloat
             utn_getName("\n: ","\nError",1,TEXT_SIZE,1,array[posicion].varString);                      //mensaje + cambiar campo varString
             utn_getTexto("\n: ","\nError",1,TEXT_SIZE,1,array[posicion].varLongString);                 //mensaje + cambiar campo varLongString
             printf("\n Posicion: %d\n ID: %d\n varInt: %d\n varFloat: %f\n varString: %s\n varLongString: %s",
-                   posicion, array[posicion].idEntidad,array[posicion].varInt,array[posicion].varFloat,array[posicion].varString,array[posicion].varLongString);
+                   posicion, array[posicion].idUnico,array[posicion].varInt,array[posicion].varFloat,array[posicion].varString,array[posicion].varLongString);
             retorno=0;
         }
     }
@@ -187,14 +211,14 @@ int Tipo_baja(Tipo array[], int sizeArray)                                      
     if(array!=NULL && sizeArray>0)
     {
         utn_getUnsignedInt("\nID a cancelar: ","\nError",1,sizeof(int),1,sizeArray,1,&id);          //cambiar si no se busca por ID
-        if(Tipo_buscarInt(array,sizeArray,id,&posicion)==-1)                                   //cambiar si no se busca por ID
+        if(Tipo_buscarID(array,sizeArray,id,&posicion)==-1)                                   //cambiar si no se busca por ID
         {
             printf("\nNo existe este ID");                                                          //cambiar si no se busca por ID
         }
         else
         {
             array[posicion].isEmpty=1;
-            array[posicion].idEntidad=0;                                                                   //cambiar campo id
+            array[posicion].idUnico=0;                                                                   //cambiar campo id
             array[posicion].varInt=0;                                                               //cambiar campo varInt
             array[posicion].varFloat=0;                                                             //cambiar campo varFloat
             strcpy(array[posicion].varString,"");                                                   //cambiar campo varString
@@ -221,10 +245,10 @@ int Tipo_bajaValorRepetidoInt(Tipo array[], int sizeArray, int valorBuscado) //c
     {
         for(i=0;i<sizeArray;i++)
         {
-            if(array[i].idEntidad==valorBuscado)                                                        //cambiar si no se busca por ID
+            if(array[i].idUnico==valorBuscado)                                                        //cambiar si no se busca por ID
             {
                 array[i].isEmpty=1;
-                array[i].idEntidad=0;                                                                   //cambiar campo id
+                array[i].idUnico=0;                                                                   //cambiar campo id
                 array[i].varInt=0;                                                               //cambiar campo varInt
                 array[i].varFloat=0;                                                             //cambiar campo varFloat
                 strcpy(array[i].varString,"");                                                   //cambiar campo varString
@@ -255,7 +279,7 @@ int Tipo_modificar(Tipo array[], int sizeArray)                                /
     if(array!=NULL && sizeArray>0)
     {
         utn_getUnsignedInt("\nID a modificar: ","\nError",1,sizeof(int),1,sizeArray,1,&id);         //cambiar si no se busca por ID
-        if(Tipo_buscarInt(array,sizeArray,id,&posicion)==-1)                                   //cambiar si no se busca por ID
+        if(Tipo_buscarID(array,sizeArray,id,&posicion)==-1)                                   //cambiar si no se busca por ID
         {
             printf("\nNo existe este ID");                                                          //cambiar si no se busca por ID
         }
@@ -264,7 +288,7 @@ int Tipo_modificar(Tipo array[], int sizeArray)                                /
             do
             {       //copiar printf de alta
                 printf("\n Posicion: %d\n ID: %d\n varInt: %d\n varFloat: %f\n varString: %s\n varLongString: %s",
-                       posicion, array[posicion].idEntidad,array[posicion].varInt,array[posicion].varFloat,array[posicion].varString,array[posicion].varLongString);
+                       posicion, array[posicion].idUnico,array[posicion].varInt,array[posicion].varFloat,array[posicion].varString,array[posicion].varLongString);
                 utn_getChar("\nModificar: A B C D S(salir)","\nError",1,sizeof(char),1,&opcion);
                 switch(opcion)
                 {
@@ -282,6 +306,8 @@ int Tipo_modificar(Tipo array[], int sizeArray)                                /
                         break;
                     case 'S':
                         break;
+                    default:
+                        printf("\nOpcion no valida");
                 }
             }while(opcion!='S');
             retorno=0;
@@ -315,7 +341,7 @@ int Tipo_ordenarPorString(Tipo array[],int size)                              //
         for (i = 1; i < size; i++)
         {
             strcpy(bufferString,array[i].varString);                      //cambiar campo varString
-            bufferId=array[i].idEntidad;                                   //cambiar campo id
+            bufferId=array[i].idUnico;                                   //cambiar campo id
             bufferIsEmpty=array[i].isEmpty;
 
             bufferInt=array[i].varInt;                                //cambiar campo varInt
@@ -327,7 +353,7 @@ int Tipo_ordenarPorString(Tipo array[],int size)                              //
             while ((j >= 0) && strcmp(bufferString,array[j].varString)<0)         //cambiar campo varString                 //Si tiene mas de un criterio se lo agrego, Ej. bufferInt<array[j].varInt
             {                                                                                                               //buffer < campo ascendente   buffer > campo descendente
                 strcpy(array[j + 1].varString,array[j].varString);          //cambiar campo varString
-                array[j + 1].idEntidad=array[j].idEntidad;                                //cambiar campo id
+                array[j + 1].idUnico=array[j].idUnico;                                //cambiar campo id
                 array[j + 1].isEmpty=array[j].isEmpty;
 
                 array[j + 1].varInt=array[j].varInt;                        //cambiar campo varInt
@@ -337,7 +363,7 @@ int Tipo_ordenarPorString(Tipo array[],int size)                              //
                 j--;
             }
             strcpy(array[j + 1].varString,bufferString);                     //cambiar campo varString
-            array[j + 1].idEntidad=bufferId;                                        //cambiar campo id
+            array[j + 1].idUnico=bufferId;                                        //cambiar campo id
             array[j + 1].isEmpty=bufferIsEmpty;
 
             array[j + 1].varInt=bufferInt;                                                        //cambiar campo varInt
@@ -369,7 +395,7 @@ int Tipo_listar(Tipo array[], int size)                      //cambiar Tipo
                 continue;
             else
                 printf("\n ID: %d\n varInt: %d\n varFloat: %f\n varString: %s\n varLongString: %s",
-                       array[i].idEntidad,array[i].varInt,array[i].varFloat,array[i].varString,array[i].varLongString);      //cambiar todos
+                       array[i].idUnico,array[i].varInt,array[i].varFloat,array[i].varString,array[i].varLongString);      //cambiar todos
         }
         retorno=0;
     }

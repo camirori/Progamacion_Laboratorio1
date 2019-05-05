@@ -4,7 +4,15 @@
 #include "utn.h"
 #include "entidades.h"  //cambiar por nombre entidad
 
-
+/** \brief Busca un valor y lista los elementos de dos arrays vinculados
+* \param arrayA Tipo Array de Tipo
+* \param arrayB Tipo Array de Tipo
+* \param sizeI int Tamaño del arrayA
+* \param sizeJ int Tamaño del arrayB
+* \param criterio char* Puntero al valor que debe contener el elemento del array para que se liste
+* \return int Return (-1) si Error [Invalid length or NULL pointer] - (0) Ok
+*
+*/
 int Informes_listarPorCriterio(Tipo arrayA[], Tipo arrayB[], int sizeI, int sizeJ, char* criterio)  //Valores de dos arrays. Si es valor repetido se vuelve a imprimir
 {
     int retorno=-1;
@@ -18,9 +26,9 @@ int Informes_listarPorCriterio(Tipo arrayA[], Tipo arrayB[], int sizeI, int size
                 continue;                                                                       //si esta vacio o no tiene el criterio > continue
             else
             {
-                Tipo_buscarID(arrayB,sizeJ,arrayA[i].idEntidad,&j);                            //Obtengo la posicion de la 2da entidad buscando por el campo en comun
+                Tipo_buscarID(arrayB,sizeJ,arrayA[i].idUnico,&j);                            //Obtengo la posicion de la 2da entidad buscando por el campo en comun
                 printf("\nID A: %d\nID B: %d",
-                       arrayA[i].idEntidad,arrayB[j].idEntidad);
+                       arrayA[i].idUnico,arrayB[j].idUnico);
             }
         }
         retorno=0;
@@ -28,6 +36,14 @@ int Informes_listarPorCriterio(Tipo arrayA[], Tipo arrayB[], int sizeI, int size
     return retorno;
 }
 
+/** \brief Busca un valor repetido y lo lista una sola vez, junto con otros elementos de dos arrays vinculados
+* \param arrayA Tipo Array de Tipo
+* \param arrayB Tipo Array de Tipo
+* \param sizeI int Tamaño del arrayA
+* \param sizeJ int Tamaño del arrayB
+* \return int Return (-1) si Error [Invalid length or NULL pointer] - (0) Ok
+*
+*/
 //Lista un campo que se repite, lo imprime una sola vez y calcula contador y acumulado
 int Informes_listarCriterioContadorAcumulado(Tipo arrayA[], Tipo arrayB[], int sizeI, int sizeJ)         //cambiar Tipo
 {
@@ -49,23 +65,22 @@ int Informes_listarCriterioContadorAcumulado(Tipo arrayA[], Tipo arrayB[], int s
             else
             {
                 printf("\nCampo: %s",arrayA[i].varString);                                   //Imprimo el valor que voy a listar
-                for(k=i;k<sizeI;k++)                                                            //Recorro por segunda vez el mismo array
+                for(k=i,contador=0,acumulado=0;k<sizeI;k++)                                                            //Recorro por segunda vez el mismo array
                 {
                     if(arrayA[k].isEmpty!=1 && strcmp(arrayA[k].varString,arrayA[i].varString)==0)     //Busco todas las veces que aparece ese cuit
                     {
-
-                        Tipo_buscarID(arrayB,sizeJ,arrayA[k].idEntidad,&j);                 //cambiar Tipo, busco por el campo en comun
+                        Tipo_buscarID(arrayB,sizeJ,arrayA[k].idUnico,&j);                 //cambiar Tipo, busco por el campo en comun
 
                         contador++;
                         acumulado+=(arrayA[k].varInt*arrayB[j].varInt);
 
                         printf("\nID A: %d\nID B: %d",
-                                arrayA[k].idEntidad,arrayB[j].idEntidad);
+                                arrayA[k].idUnico,arrayB[j].idUnico);
                     }
                 }
                 printf("\nCantidad: %d \nAcumulado: %d",contador,acumulado);
-                contador=0;
-                acumulado=0;
+                //contador=0;
+                //acumulado=0;
             }
         }
         retorno=0;
@@ -73,6 +88,14 @@ int Informes_listarCriterioContadorAcumulado(Tipo arrayA[], Tipo arrayB[], int s
     return retorno;
 }
 
+/** \brief Busca un maximo de ocurrencia y acumulado
+* \param arrayA Tipo Array de Tipo
+* \param arrayB Tipo Array de Tipo
+* \param sizeI int Tamaño del arrayA
+* \param sizeJ int Tamaño del arrayB
+* \return int Return (-1) si Error [Invalid length or NULL pointer] - (0) Ok
+*
+*/
 int Informes_maxContadorAcumulado(Tipo arrayA[], Tipo arrayB[], int sizeI, int sizeJ)
 {
     int retorno=-1;
@@ -102,13 +125,13 @@ int Informes_maxContadorAcumulado(Tipo arrayA[], Tipo arrayB[], int sizeI, int s
                     if(arrayA[k].isEmpty!=1 && strcmp(arrayA[k].varString,arrayA[i].varString)==0)     //Busco todas las veces que aparece ese cuit
                     {
 
-                        Tipo_buscarID(arrayB,sizeJ,arrayA[k].idEntidad,&j);                 //cambiar Tipo, busco por el campo en comun
+                        Tipo_buscarID(arrayB,sizeJ,arrayA[k].idUnico,&j);                 //cambiar Tipo, busco por el campo en comun
 
                         contador++;                                                         //calculos acumulados y contador
                         acumulador+=(arrayA[k].varInt*arrayB[j].varInt);
 
                         printf("\nID A: %d\nID B: %d",                                         //imprimo datos que haya que mostrar
-                                arrayA[k].idEntidad,arrayB[j].idEntidad);
+                                arrayA[k].idUnico,arrayB[j].idUnico);
                     }
                 }
                 //Guardo los max acumulado y contador
@@ -161,6 +184,14 @@ int Informes_maxContadorAcumulado(Tipo arrayA[], Tipo arrayB[], int sizeI, int s
     return retorno;
 }
 
+/** \brief Crea una entidad auxiliar para ordenar e informar XXXXX
+* \param arrayA Tipo Array de Tipo
+* \param arrayB Tipo Array de Tipo
+* \param sizeI int Tamaño del arrayA
+* \param sizeJ int Tamaño del arrayB
+* \return int Return (-1) si Error [Invalid length or NULL pointer] - (0) Ok
+*
+*/
 int Informes_listarAuxiliarOrdenar(Tipo arrayA[], Tipo arrayB[], int sizeI, int sizeJ)         //cambiar Tipo
 {
     int retorno=-1;
@@ -187,7 +218,7 @@ int Informes_listarAuxiliarOrdenar(Tipo arrayA[], Tipo arrayB[], int sizeI, int 
                 {
                     if(arrayA[k].isEmpty!=1 && strcmp(arrayA[k].varString,arrayA[i].varString)==0)     //Busco todas las veces que aparece ese cuit
                     {
-                        Tipo_buscarID(arrayB,sizeJ,arrayA[k].idEntidad,&j);                 //cambiar Tipo, busco por el campo en comun
+                        Tipo_buscarID(arrayB,sizeJ,arrayA[k].idUnico,&j);                 //cambiar Tipo, busco por el campo en comun
 
                         contador++;
                         acumulado+=(arrayA[k].varInt*arrayB[j].varInt);

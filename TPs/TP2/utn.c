@@ -114,18 +114,16 @@ int isValidName(char* stringRecibido)   //si fuera un numero podrìa necesitar p
 * \param msgError char* Mensaje de error a mostrar
 * \param minSize int Tamaño minimo del string
 * \param maxSize int Tamaño maximo del string Tamaño= elementos+1(\0)
-* \param min int Valor minimo
-* \param max int Valor maximo
 * \param reintentos int* Puntero a la cantidad de reintentos para ingresar el string solicitado
 * \param input int* Puntero a la variable donde se almacena el string ingresado
 * \return int Return (-1) if Error [Invalid length, content or NULL pointer] - (0) if Ok
 */
-int utn_getUnsignedInt(  char* msg,char* msgError,int minSize,int maxSize,int min,int max,int reintentos,int* input)
+int utn_getUnsignedInt(  char* msg,char* msgError,int minSize,int maxSize,int reintentos,int* input)
 {
     int retorno=-1;
     char bufferStr[maxSize];
 
-    if(msg!=NULL && msgError!=NULL && minSize<maxSize && min<max && reintentos>=0 && input!=NULL)
+    if(msg!=NULL && msgError!=NULL && minSize<maxSize && reintentos>=0 && input!=NULL)
     {
         do
         {
@@ -169,18 +167,16 @@ int isValidNumber(char* stringRecibido)
 * \param msgError char* Mensaje de error a mostrar
 * \param minSize int Tamaño minimo del string
 * \param maxSize int Tamaño maximo del string Tamaño= elementos+1(\0)
-* \param min int Valor minimo
-* \param max int Valor maximo
 * \param reintentos int* Puntero a la cantidad de reintentos para ingresar el string solicitado
 * \param input int* Puntero a la variable donde se almacena el string ingresado
 * \return int Return (-1) if Error [Invalid length, content or NULL pointer] - (0) if Ok
 */
-int utn_getSignedInt(char* msg, char* msgError, int minSize, int maxSize, int min, int max, int reintentos, int* input)
+int utn_getSignedInt(char* msg, char* msgError, int minSize, int maxSize, int reintentos, int* input)
 {
     int retorno=-1;
     char bufferStr[maxSize];
 
-    if(msg!=NULL && msgError!=NULL && minSize<maxSize && min<max && reintentos>=0 && input!=NULL)
+    if(msg!=NULL && msgError!=NULL && minSize<maxSize && reintentos>=0 && input!=NULL)
     {
         do
         {
@@ -224,18 +220,16 @@ int isValidSignedNumber(char* stringRecibido)
 * \param msgError char* Mensaje de error a mostrar
 * \param minSize int Tamaño minimo del string
 * \param maxSize int Tamaño maximo del string Tamaño= elementos+1(\0)
-* \param min int Valor minimo
-* \param max int Valor maximo
 * \param reintentos int* Puntero a la cantidad de reintentos para ingresar el string solicitado
 * \param input float* Puntero a la variable donde se almacena el string ingresado
 * \return int Return (-1) if Error [Invalid length, content or NULL pointer] - (0) if Ok
 */
-int utn_getFloat(char* msg, char* msgError, int minSize, int maxSize, int min, int max, int reintentos, float* input)
+int utn_getFloat(char* msg, char* msgError, int minSize, int maxSize, int reintentos, float* input)
 {
     int retorno=-1;
     char bufferStr[maxSize];
 
-    if(msg!=NULL && msgError!=NULL && minSize<maxSize && min<max && reintentos>=0 && input!=NULL)
+    if(msg!=NULL && msgError!=NULL && minSize<maxSize && reintentos>=0 && input!=NULL)
     {
         do
         {
@@ -679,36 +673,6 @@ int isValidChar(char charRecibido)
 }
 
 //***************************************************************************************************
-/*
-int utn_getNumeroAleatorio(  char* msg,char* msgError,int minSize,int maxSize,int min,int max,int reintentos,int* input)
-{
-    int retorno=-1;
-    char bufferStr[maxSize];
-
-    if(msg!=NULL && msgError!=NULL && minSize<maxSize && min<max && reintentos>=0 && input!=NULL)
-    {
-        do
-        {
-            if(!getString(msg,msgError,minSize,maxSize,&reintentos,bufferStr)) //==0 sin errores !0
-            {
-                if(isValidNumber(bufferStr)==1)
-                {
-                    *input=atoi(bufferStr);     // unsigned long int strtoul(const char *str, char **end, int base)?
-                    retorno=0;
-                    break;
-                }
-                else
-                {
-                    printf("%s 2",msgError);
-                    reintentos--;
-                }
-            }
-        }
-        while(reintentos>=0);
-    }
-    return retorno;
-}
-*/
 char getNumeroAleatorio(int desde , int hasta, int iniciar, int* resultado)
 {
     if(iniciar)                                                                 //la primera vez que se llama la funcion inciar=1 para ejecutar strand
