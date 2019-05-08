@@ -1,0 +1,32 @@
+# depslib dependency file v1.0
+1557272530 source:/home/alumno/Workspace/Progamacion_Laboratorio1/Ejercicios hechos en clase/Clase13_Ej01/main.c
+	<stdio.h>
+	<stdlib.h>
+
+1557266211 source:/home/alumno/Workspace/Progamacion_Laboratorio1/Ejercicios hechos en clase/Clase13_Ej01/utn.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+	<time.h>
+
+1557266211 /home/alumno/Workspace/Progamacion_Laboratorio1/Ejercicios hechos en clase/Clase13_Ej01/utn.h
+
+1557269988 source:/home/alumno/Workspace/Progamacion_Laboratorio1/Ejercicios hechos en clase/Clase13_Ej01/autores.c
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	"utn.h"
+	"autores.h"
+
+1557269986 /home/alumno/Workspace/Progamacion_Laboratorio1/Ejercicios hechos en clase/Clase13_Ej01/autores.h
+
+1557270147 source:/home/alumno/Workspace/Progamacion_Laboratorio1/Ejercicios hechos en clase/Clase13_Ej01/libros.c
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	"utn.h"
+	"libros.h"
+
+1557270153 /home/alumno/Workspace/Progamacion_Laboratorio1/Ejercicios hechos en clase/Clase13_Ej01/libros.h
+
