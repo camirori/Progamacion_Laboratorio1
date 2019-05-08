@@ -32,7 +32,7 @@
 * \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
 *
 */
-int Prestamos_Inicializar(Prestamos array[], int size)                                    //cambiar Tipo
+int Prestamos_inicializar(Prestamos array[], int size)                                    //cambiar Tipo
 {
     int retorno=-1;
     if(array!= NULL && size>0)

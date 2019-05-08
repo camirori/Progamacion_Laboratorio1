@@ -32,7 +32,7 @@
 * \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
 *
 */
-int Socios_Inicializar(Socios array[], int size)
+int Socios_inicializar(Socios array[], int size)
 {
     int retorno=-1;
     if(array!= NULL && size>0)
@@ -279,7 +279,7 @@ int Socios_bajaValorRepetidoInt(Socios array[], int sizeArray, int valorBuscado)
 * \return int Return (-1) si Error [largo no valido o NULL pointer o no encuentra elementos con el valor buscado] - (0) si se modifica el elemento exitosamente
 *
 */
-int Socios_modificar(Socios array[], int sizeArray)                                //cambiar Tipo
+int Socios_modificar(Socios array[], int sizeArray)
 {
     int retorno=-1;
     int posicion;
@@ -338,7 +338,7 @@ int Socios_modificar(Socios array[], int sizeArray)                             
 * \return int Return (-1) si Error [largo no valido o NULL pointer] - (0) si se ordena exitosamente
 *
 */
-int Socios_ordenarPorString(Socios array[],int size)                              //cambiar Tipo
+int Socios_ordenarPorString(Socios array[],int size)
 {
     int retorno=-1;
     int i, j;
@@ -406,7 +406,7 @@ int Socios_ordenarPorString(Socios array[],int size)                            
 * \return int Return (-1) si Error [largo no valido o NULL pointer] - (0) si se lista exitosamente
 *
 */
-int Socios_listar(Socios array[], int size)                      //cambiar Tipo
+int Socios_listar(Socios array[], int size)
 {
     int retorno=-1;
     int i;

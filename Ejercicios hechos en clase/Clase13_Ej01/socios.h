@@ -19,6 +19,17 @@ typedef struct
 }Socios;
 
 
+int Socios_inicializar(Socios array[], int size);
+int Socios_buscarEmpty(Socios array[], int size, int* posicion);
+int Socios_buscarID(Socios array[], int size, int valosBuscado, int* posicion);
+int Socios_alta(Socios array[], int size, int* contadorID);
+int Socios_baja(Socios array[], int sizeArray);
+int Socios_modificar(Socios array[], int sizeArray);
+int Socios_ordenarPorString(Socios array[],int size);
+int Socios_listar(Socios array[], int size);
+
+
+
 #endif // SOCIOS_H_INCLUDED
 
 /*

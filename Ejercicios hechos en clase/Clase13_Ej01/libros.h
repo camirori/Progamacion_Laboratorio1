@@ -13,7 +13,7 @@ typedef struct
 }Libros;
 
 
-int Libros_Inicializar(Libros array[], int size);
+int Libros_inicializar(Libros array[], int size);
 int Libros_buscarEmpty(Libros array[], int size, int* posicion);
 int Libros_buscarID(Libros array[], int size, int valosBuscado, int* posicion);
 int Libros_alta(Libros array[], int size, int* contadorID);

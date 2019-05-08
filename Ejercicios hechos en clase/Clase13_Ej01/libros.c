@@ -32,7 +32,7 @@
 * \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
 *
 */
-int Libros_Inicializar(Libros array[], int size)
+int Libros_inicializar(Libros array[], int size)
 {
     int retorno=-1;
     if(array!= NULL && size>0)

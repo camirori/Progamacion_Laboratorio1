@@ -25,15 +25,17 @@ int main()
     Socios arraySocios[QTY_SOCIOS];
     Prestamos arrayPrestamos[QTY_PRESTAMOS];
 
-    Autores_Inicializar(arrayAutores,QTY_AUTORES);
-    Libros_Inicializar(arrayLibros,QTY_LIBROS);
-    Socios_Inicializar(arraySocios,QTY_SOCIOS);
-    Prestamos_Inicializar(arrayPrestamos,QTY_PRESTAMOS);
+    Autores_inicializar(arrayAutores,QTY_AUTORES);
+    Libros_inicializar(arrayLibros,QTY_LIBROS);
+    Socios_inicializar(arraySocios,QTY_SOCIOS);
+    Prestamos_inicializar(arrayPrestamos,QTY_PRESTAMOS);
 
     do
     {
         utn_getUnsignedInt("\n\n1) DATOS PREVIOS \n2) OPCIONES SOCIOS \n3) Salir\n",                   //cambiar
                       "\nError",1,sizeof(int),1,11,1,&opcion);
+        switch(opcion)
+        {
         case 1://Datos previos
             do
             {
@@ -92,23 +94,24 @@ int main()
                 switch(opcion)
                 {
                     case 1: //Alta
-                        Socios_alta(arraySocios,QTY_TIPO,&contadorIdTipo);                   //cambiar
+                        Socios_alta(arraySocios,QTY_SOCIOS,&contadorIdSocios);                   //cambiar
                         break;
 
                     case 2: //Modificar
-                        Socios_modificar(arraySocios,QTY_TIPO);                   //cambiar
+                        Socios_modificar(arraySocios,QTY_SOCIOS);                   //cambiar
                         break;
 
                     case 3: //Baja
-                        Socios_baja(arraySocios,QTY_TIPO);                   //cambiar
+                        Socios_baja(arraySocios,QTY_SOCIOS);                   //cambiar
                         break;
 
                     case 4://Listar
-                        Socios_ordenarPorString(arraySocios,QTY_TIPO);                   //cambiar
-                        Socios_listar(arraySocios,QTY_TIPO);                   //cambiar
+                        Socios_ordenarPorString(arraySocios,QTY_SOCIOS);                   //cambiar
+                        Socios_listar(arraySocios,QTY_SOCIOS);                   //cambiar
                         break;
 
-                    case 5://Ordenar
+                    case 5://Alta prestamo
+                        Prestamos_alta(arrayPrestamos,QTY_PRESTAMOS,&contadorIdPrestamos);
                         break;
 
                     case 6://Salir

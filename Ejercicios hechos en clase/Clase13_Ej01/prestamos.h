@@ -14,6 +14,11 @@ typedef struct
 
 }Prestamos;
 
+int Prestamos_inicializar(Prestamos array[], int size);
+int Prestamos_buscarEmpty(Prestamos array[], int size, int* posicion);
+int Prestamos_buscarID(Prestamos array[], int size, int valosBuscado, int* posicion);
+int Prestamos_alta(Prestamos array[], int size, int* contadorID);
+
 #endif // PRESTAMOS_H_INCLUDED
 
 
