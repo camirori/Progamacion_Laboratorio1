@@ -1,23 +1,46 @@
 # depslib dependency file v1.0
-1557089117 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\tps\tp2\main.c
+1557451692 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\tps\tp2\main.c
 	<string.h>
 	<stdio.h>
 	<stdlib.h>
 	"utn.h"
 	"employee.h"
 
-1557088084 f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\tps\tp2\utn.h
+1557452292 f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\tps\tp2\utn.h
 
-1557082344 f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\tps\tp2\employee.h
+1557452373 f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\tps\tp2\employee.h
 
-1557088873 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\tps\tp2\utn.c
+1557450249 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\tps\tp2\utn.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"utn.h"
-	<time.h>
 
-1557088776 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\tps\tp2\employee.c
+1557452566 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\tps\tp2\employee.c
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	"utn.h"
+	"employee.h"
+
+1557453104 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\tp_laboratorio_1\tp2\employee.c
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	"utn.h"
+	"employee.h"
+
+1557452292 f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\tp_laboratorio_1\tp2\utn.h
+
+1557452970 f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\tp_laboratorio_1\tp2\employee.h
+
+1557450249 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\tp_laboratorio_1\tp2\utn.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+
+1557453562 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\tp_laboratorio_1\tp2\main.c
 	<string.h>
 	<stdio.h>
 	<stdlib.h>

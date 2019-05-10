@@ -6,15 +6,13 @@
 
 //***************************************************************
 //Init
-/** \brief  To indicate that all position in the array are empty,
-*          this function put the flag (isEmpty) in TRUE in all
-*          position of the array
-* \param array Employee Array of Employee
-* \param size int Array length
-* \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
+/** \brief Indica que todas las posiciones del array estan vacias inicializando el campo isEmpty en TRUE
+* \param array Employee Array de employee
+* \param size int Tamaño del array
+* \return int Return (-1) si hay Error [Invalid length or NULL pointer] - (0) si Ok
 *
 */
-int Employee_Inicializar(Employee array[], int size)
+int Employee_inicializar(Employee array[], int size)
 {
     int retorno=-1;
     if(array!= NULL && size>0)
@@ -63,7 +61,7 @@ int Employee_buscarEmpty(Employee array[], int size, int* posicion)
 * \return int Return (-1) si no encuentra el valor buscado o Error [Invalid length or NULL pointer] - (0) si encuentra el valor buscado
 *
 */
-int Employee_buscarID(Employee array[], int size, int valosBuscado, int* posicion)
+int Employee_buscarID(Employee array[], int size, int valorBuscado, int* posicion)
 {
     int retorno=-1;
     int i;
@@ -73,7 +71,7 @@ int Employee_buscarID(Employee array[], int size, int valosBuscado, int* posicio
         {
             if(array[i].isEmpty==1)
                 continue;
-            else if(array[i].idUnico==valosBuscado)
+            else if(array[i].idUnico==valorBuscado)
             {
                 retorno=0;
                 *posicion=i;
@@ -105,25 +103,28 @@ int Employee_alta(Employee array[], int size, int* contadorID)
         }
         else
         {
-            (*contadorID)++;
-            array[posicion].idUnico=*contadorID;
-            array[posicion].isEmpty=0;
-
-            utn_getName("\nNombre: ","\nError",1,TEXT_SIZE,1,array[posicion].name);
-            utn_getName("\nApellido: ","\nError",1,TEXT_SIZE,1,array[posicion].lastName);
-            utn_getFloat("\nSalario: ","\nError",1,sizeof(float),1,&array[posicion].salary);
-            utn_getUnsignedInt("\nSector: ","\nError",1,sizeof(int),1,&array[posicion].sector);
-
-            printf("\nPosicion: %d\nID: %d\nNombre: %s\nApellido: %s\nSalario: %.2f\nSector: %d",
-                   posicion, array[posicion].idUnico,array[posicion].name,array[posicion].lastName,array[posicion].salary,array[posicion].sector);
-            retorno=0;
+            if( utn_getName("\nNombre: ","\nError",1,TEXT_SIZE,1,array[posicion].name) == 0 &&
+                utn_getName("\nApellido: ","\nError",1,TEXT_SIZE,1,array[posicion].lastName) == 0 &&
+                utn_getFloat("\nSalario: ","\nError",1,sizeof(float),1,&array[posicion].salary) == 0 &&
+                utn_getUnsignedInt("\nSector: ","\nError",1,sizeof(int),1,&array[posicion].sector) == 0)
+            {
+                (*contadorID)++;
+                array[posicion].idUnico=*contadorID;
+                array[posicion].isEmpty=0;
+                printf("\nID: %d\nNombre: %s\nApellido: %s\nSalario: %.2f\nSector: %d",
+                        array[posicion].idUnico,array[posicion].name,array[posicion].lastName,array[posicion].salary,array[posicion].sector);
+                retorno=0;
+            }
+            else
+            {
+                printf("\nAlta no exitosa");
+            }
         }
     }
     return retorno;
 }
 
 //*****************************************
-//Baja valor unico
 /** \brief Borra un elemento del array por ID
 * \param array Employee Array de Employee
 * \param size int Tamaño del array
@@ -137,7 +138,7 @@ int Employee_baja(Employee array[], int sizeArray)
     int id;
     if(array!=NULL && sizeArray>0)
     {
-        utn_getUnsignedInt("\nID a cancelar: ","\nError",1,sizeof(int),1,&id);          //getInt max min
+        utn_getUnsignedInt("\nID a cancelar: ","\nError",1,sizeof(int),1,&id);
         if(Employee_buscarID(array,sizeArray,id,&posicion)==-1)
         {
             printf("\nNo existe este ID");
@@ -173,7 +174,7 @@ int Employee_modificar(Employee array[], int sizeArray)
     char opcion;
     if(array!=NULL && sizeArray>0)
     {
-        utn_getUnsignedInt("\nID a modificar: ","\nError",1,sizeof(int),1,&id);                 //getInt max min
+        utn_getUnsignedInt("\nID a modificar: ","\nError",1,sizeof(int),1,&id);
         if(Employee_buscarID(array,sizeArray,id,&posicion)==-1)
         {
             printf("\nNo existe este ID");
@@ -181,11 +182,11 @@ int Employee_modificar(Employee array[], int sizeArray)
         else
         {
             do
-            {       //copiar printf de alta
+            {
                 printf("\nID: %d\nNombre: %s\nApellido: %s\nSalario: %.2f\nSector: %d",
                         array[posicion].idUnico,array[posicion].name,array[posicion].lastName,array[posicion].salary,array[posicion].sector);
 
-                utn_getChar("\nModificar: A:Nombre B:Apellido C:Salario D:Sector S:Salir","\nError",1,&opcion);
+                utn_getLetra("\nModificar: A:Nombre B:Apellido C:Salario D:Sector S:Salir","\nError",1,&opcion);
                 switch(opcion)
                 {
                     case 'A':
@@ -242,9 +243,8 @@ int Employee_ordenar(Employee array[],int size)
             bufferSalario=array[i].salary;
             strcpy(bufferNombre,array[i].name);
 
-
             j = i - 1;
-            while ((j >= 0) && (strcmp(bufferApellido,array[j].lastName)>0 || (strcmp(bufferApellido,array[j].lastName)==0 && bufferSector<array[j].sector)))
+            while ((j >= 0) && (strcmp(bufferApellido,array[j].lastName)<0 || (strcmp(bufferApellido,array[j].lastName)==0 && bufferSector<array[j].sector)))
             {
                 strcpy(array[j + 1].lastName,array[j].lastName);
                 array[j + 1].idUnico=array[j].idUnico;
@@ -269,13 +269,38 @@ int Employee_ordenar(Employee array[],int size)
 
 //*****************************************
 //Listar
-/** \brief Lista los elementos de un array e informa total y promedio de los salarios, y cuántos empleados superan el salario promedio.
+/** \brief Lista los elementos de un array
 * \param array Employee Array de Employee
 * \param size int Tamaño del array
 * \return int Return (-1) si Error [largo no valido o NULL pointer] - (0) si se lista exitosamente
 *
 */
 int Employee_listar(Employee array[], int size)
+{
+    int retorno=-1;
+    int i;
+
+    if(array!=NULL && size>=0)
+    {
+        for(i=0;i<size;i++)
+        {
+            if(array[i].isEmpty==0)
+            {
+                printf("\nID: %d    Nombre: %s  Apellido: %s    Salario: %.2f   Sector: %d",array[i].idUnico,array[i].name,array[i].lastName,array[i].salary,array[i].sector);
+            }
+        }
+        retorno=0;
+    }
+    return retorno;
+}
+
+/** \brief Informa total y promedio de los salarios, y cuántos empleados superan el salario promedio.
+* \param array Employee Array de employee
+* \param size int Tamaño del array
+* \return int Return (-1) si Error [largo no valido o NULL pointer] - (0) si se informa
+*
+*/
+int Employee_informarSalario(Employee array[], int size)
 {
     int retorno=-1;
     int i;
@@ -288,7 +313,6 @@ int Employee_listar(Employee array[], int size)
         {
             if(array[i].isEmpty==0)
             {
-                printf("\nID: %d   Nombre: %s      Apellido: %s    Salario: %.2f     Sector: %d",array[i].idUnico,array[i].name,array[i].lastName,array[i].salary,array[i].sector);
                 contador++;
                 acumulado+=array[i].salary;
             }
@@ -306,7 +330,6 @@ int Employee_listar(Employee array[], int size)
             }
         }
         printf("\nCantidad de empleados que superan el salario promedio: %d",contador);
-
         retorno=0;
     }
     return retorno;

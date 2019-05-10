@@ -1,9 +1,12 @@
+#ifndef UTN_H_INCLUDED
+#define UTN_H_INCLUDED
+
 int getString(char* msg, char* msgError, int min, int max, int* reintentos, char* resultado);
 
 int utn_getName(char* msg,char* msgError,int min,int max,int reintentos,char* resultado);
 int isValidName(char* stringRecibido);
 
-int utn_getUnsignedInt(  char* msg,char* msgError,int minSize,int maxSize,int reintentos,int* input);
+int utn_getUnsignedInt(char* msg,char* msgError,int minSize,int maxSize,int reintentos,int* input);
 int isValidNumber(char* stringRecibido);
 
 int utn_getSignedInt(char* msg, char* msgError, int minSize, int maxSize, int reintentos, int* input);
@@ -27,12 +30,11 @@ int isValidEmail(char* stringRecibido);
 int utn_getTexto(char* msg, char* msgError, int minSize, int maxSize, int reintentos, char* input);
 int isValidTexto(char* stringRecibido);
 
-int utn_getChar(char* msg, char* msgError, int reintentos, char* resultado);
-int isValidChar(char charRecibido);
+int utn_getLetra(char* msg, char* msgError, int reintentos, char* resultado);
+int isValidLetra(char charRecibido);
 
 int utn_getAlfanumerico(char* msg, char* msgError, int minSize, int maxSize, int reintentos, char* input);
 int isValidAlphanumeric(char* stringRecibido);
 
-char getNumeroAleatorio(int desde , int hasta, int iniciar, int* resultado);
 
-
+#endif // INFORMES_H_INCLUDED
