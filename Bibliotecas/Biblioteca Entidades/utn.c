@@ -16,7 +16,8 @@ utn_getCUIT
 utn_getEmail
 utn_getTexto
 utn_getAlfanumerico
-    utn_getFecha
+getNumeroAleatorio
+utn_getDate
 */
 
 /** \brief Solicita el ingreso de un string y valida su tamaño
@@ -26,7 +27,7 @@ utn_getAlfanumerico
 * \param max intTamaño minimo del string Tamaño= elementos+1(\0)
 * \param reintentos int* Puntero a la cantidad de reintentos para ingresar el string solicitado
 * \param resultado char* Puntero a la variable donde se almacena el string ingresado
-* \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
+* \return int Return (-1) si Error [tamaño invalido o NULL pointer] - (0) si Ok
 */
 int getString(char* msg, char* msgError, int min, int max, int* reintentos, char* resultado)
 {
@@ -63,7 +64,7 @@ int getString(char* msg, char* msgError, int min, int max, int* reintentos, char
 * \param max intTamaño maximo del string Tamaño= elementos+1(\0)
 * \param reintentos int* Puntero a la cantidad de reintentos para ingresar el string solicitado
 * \param resultado char* Puntero a la variable donde se almacena el string ingresado
-* \return int Return (-1) if Error [Invalid length, content or NULL pointer] - (0) if Ok
+* \return int Return (-1) si Error [tamaño o contenido invalido o NULL pointer] - (0) si Ok
 */
 int utn_getName(char* msg, char* msgError, int min, int max, int reintentos, char* resultado)
 {
@@ -93,7 +94,7 @@ int utn_getName(char* msg, char* msgError, int min, int max, int reintentos, cha
     }
     return retorno;
 }
-int isValidName(char* stringRecibido)   //si fuera un numero podrìa necesitar parametros para validar max y min
+int isValidName(char* stringRecibido)
 {
     int retorno=1;  // para las funciones isValid arranco con verdadero y cambio cuando encuentro un error
     int i;
@@ -110,14 +111,14 @@ int isValidName(char* stringRecibido)   //si fuera un numero podrìa necesitar p
 }
 
 //-----------------------------------------
-/** \brief Solicita el ingreso de un string y valida su tamaño y su contenido (numero sin signo)
+/** \brief Solicita el ingreso de un numero y valida su tamaño y su contenido (numero sin signo)
 * \param msg char* Mensaje a mostrar al solicitar el string
 * \param msgError char* Mensaje de error a mostrar
 * \param minSize int Tamaño minimo del string
 * \param maxSize int Tamaño maximo del string Tamaño= elementos+1(\0)
 * \param reintentos int* Puntero a la cantidad de reintentos para ingresar el string solicitado
 * \param input int* Puntero a la variable donde se almacena el string ingresado
-* \return int Return (-1) if Error [Invalid length, content or NULL pointer] - (0) if Ok
+* \return int Return (-1) si Error [tamaño o contenido invalido o NULL pointer] - (0) si Ok
 */
 int utn_getUnsignedInt(char* msg,char* msgError,int minSize,int maxSize,int reintentos,int* input)
 {
@@ -148,7 +149,7 @@ int utn_getUnsignedInt(char* msg,char* msgError,int minSize,int maxSize,int rein
     return retorno;
 }
 
-int isValidNumber(char* stringRecibido)
+int isValidNumber(char* stringRecibido)     //podrìa necesitar parametros para validar max y min
 {
     int retorno=1;  // para las funciones isValid arranco con verdadero y cambio cuando encuentro un error
     int i;
@@ -163,14 +164,14 @@ int isValidNumber(char* stringRecibido)
     return retorno;
 }
 //-------------------------------------------------
-/** \brief Solicita el ingreso de un string y valida su tamaño y su contenido (numero con signo)
+/** \brief Solicita el ingreso de un numero y valida su tamaño y su contenido (numero con signo)
 * \param msg char* Mensaje a mostrar al solicitar el string
 * \param msgError char* Mensaje de error a mostrar
 * \param minSize int Tamaño minimo del string
 * \param maxSize int Tamaño maximo del string Tamaño= elementos+1(\0)
 * \param reintentos int* Puntero a la cantidad de reintentos para ingresar el string solicitado
 * \param input int* Puntero a la variable donde se almacena el string ingresado
-* \return int Return (-1) if Error [Invalid length, content or NULL pointer] - (0) if Ok
+* \return int Return (-1) si Error [tamaño o contenido invalido o NULL pointer] - (0) si Ok
 */
 int utn_getSignedInt(char* msg, char* msgError, int minSize, int maxSize, int reintentos, int* input)
 {
@@ -216,14 +217,14 @@ int isValidSignedNumber(char* stringRecibido)
     return retorno;
 }
 //*******************************************************
-/** \brief Solicita el ingreso de un string y valida su tamaño y su contenido (numero con decimales)
+/** \brief Solicita el ingreso de un numero y valida su tamaño y su contenido (numero con decimales)
 * \param msg char* Mensaje a mostrar al solicitar el string
 * \param msgError char* Mensaje de error a mostrar
 * \param minSize int Tamaño minimo del string
 * \param maxSize int Tamaño maximo del string Tamaño= elementos+1(\0)
 * \param reintentos int* Puntero a la cantidad de reintentos para ingresar el string solicitado
 * \param input float* Puntero a la variable donde se almacena el string ingresado
-* \return int Return (-1) if Error [Invalid length, content or NULL pointer] - (0) if Ok
+* \return int Return (-1) si Error [tamaño o contenido invalido o NULL pointer] - (0) si Ok
 */
 int utn_getFloat(char* msg, char* msgError, int minSize, int maxSize, int reintentos, float* input)
 {
@@ -269,14 +270,14 @@ int isValidFloatNumber(char* stringRecibido)
     return retorno;
 }
 //*************************************************************
-/** \brief Solicita el ingreso de un string y valida su tamaño y su contenido (numero de telefono)
+/** \brief Solicita el ingreso de un numero de telefono y valida su tamaño y su contenido (solo numeros, guiones o espacios)
 * \param msg char* Mensaje a mostrar al solicitar el string
 * \param msgError char* Mensaje de error a mostrar
 * \param minSize int Tamaño minimo del string
 * \param maxSize int Tamaño maximo del string Tamaño= elementos+1(\0)
 * \param reintentos int* Puntero a la cantidad de reintentos para ingresar el string solicitado
 * \param input char* Puntero a la variable donde se almacena el string ingresado
-* \return int Return (-1) if Error [Invalid length, content or NULL pointer] - (0) if Ok
+* \return int Return (-1) si Error [tamaño o contenido invalido o NULL pointer] - (0) si Ok
 */
 int utn_getTelefono(char* msg, char* msgError, int minSize, int maxSize, int reintentos, char* input)
 {
@@ -322,12 +323,12 @@ int isValidTelephone(char* stringRecibido)
     return retorno;
 }
 //***************************************
-/** \brief Solicita el ingreso de un string y valida su tamaño y su contenido (DNI)
+/** \brief Solicita el ingreso de un DNI y valida su tamaño y su contenido (solo numeros o puntos)
 * \param msg char* Mensaje a mostrar al solicitar el string
 * \param msgError char* Mensaje de error a mostrar
 * \param reintentos int* Puntero a la cantidad de reintentos para ingresar el string solicitado
 * \param input char* Puntero a la variable donde se almacena el string ingresado
-* \return int Return (-1) if Error [Invalid length, content or NULL pointer] - (0) if Ok
+* \return int Return (-1) si Error [tamaño o contenido invalido o NULL pointer] - (0) si Ok
 */
 int utn_getDNI(char* msg, char* msgError, int reintentos, char* input)
 {
@@ -376,17 +377,17 @@ int isValidDNI(char* stringRecibido)
 }
 
 //***************************************
-/** \brief Solicita el ingreso de un string y valida su tamaño y su contenido (CUIT)
+/** \brief Solicita el ingreso de un CUIT y valida su tamaño y su contenido (solo numeros y guiones)
 * \param msg char* Mensaje a mostrar al solicitar el string
 * \param msgError char* Mensaje de error a mostrar
 * \param reintentos int* Puntero a la cantidad de reintentos para ingresar el string solicitado
 * \param input char* Puntero a la variable donde se almacena el string ingresado
-* \return int Return (-1) if Error [Invalid length, content or NULL pointer] - (0) if Ok
+* \return int Return (-1) si Error [tamaño o contenido invalido o NULL pointer] - (0) si Ok
 */
 int utn_getCUIT(char* msg, char* msgError, int reintentos, char* input)
 {
     int maxSize=14; //con guiones 13 elementos
-    int minSize=11;  // sin puntos
+    int minSize=11;  // sin guiones
     int retorno=-1;
     char bufferStr[maxSize];
 
@@ -464,14 +465,14 @@ int isValidCUIT(char* stringRecibido)
 }
 
 //*************************************************************
-/** \brief Solicita el ingreso de un string y valida su tamaño y su contenido (direccion de e-mail)
+/** \brief Solicita el ingreso de una direccion de e-mail y valida su tamaño y su contenido
 * \param msg char* Mensaje a mostrar al solicitar el string
 * \param msgError char* Mensaje de error a mostrar
 * \param minSize int Tamaño minimo del string
 * \param maxSize int Tamaño maximo del string Tamaño= elementos+1(\0)
 * \param reintentos int* Puntero a la cantidad de reintentos para ingresar el string solicitado
 * \param input char* Puntero a la variable donde se almacena el string ingresado
-* \return int Return (-1) if Error [Invalid length, content or NULL pointer] - (0) if Ok
+* \return int Return (-1) si Error [tamaño o contenido invalido o NULL pointer] - (0) si Ok
 */
 int utn_getEmail(char* msg, char* msgError, int minSize, int maxSize, int reintentos, char* input)
 {
@@ -526,7 +527,7 @@ int isValidEmail(char* stringRecibido)
 * \param maxSize int Tamaño maximo del string Tamaño= elementos+1(\0)
 * \param reintentos int* Puntero a la cantidad de reintentos para ingresar el string solicitado
 * \param input char* Puntero a la variable donde se almacena el string ingresado
-* \return int Return (-1) if Error [Invalid length, content or NULL pointer] - (0) if Ok
+* \return int Return (-1) si Error [tamaño o contenido invalido o NULL pointer] - (0) si Ok
 */
 int utn_getTexto(char* msg, char* msgError, int minSize, int maxSize, int reintentos, char* input)
 {
@@ -573,14 +574,14 @@ int isValidTexto(char* stringRecibido)
 }
 
 //*************************************************************
-/** \brief Solicita el ingreso de un string y valida su tamaño y su contenido (alfanumerico)
+/** \brief Solicita el ingreso de un valor alfanumerico y valida su tamaño y su contenido (solo numeros y letras)
 * \param msg char* Mensaje a mostrar al solicitar el string
 * \param msgError char* Mensaje de error a mostrar
 * \param minSize int Tamaño minimo del string
 * \param maxSize int Tamaño maximo del string Tamaño= elementos+1(\0)
 * \param reintentos int* Puntero a la cantidad de reintentos para ingresar el string solicitado
 * \param input char* Puntero a la variable donde se almacena el string ingresado
-* \return int Return (-1) if Error [Invalid length, content or NULL pointer] - (0) if Ok
+* \return int Return (-1) si Error [tamaño o contenido invalido o NULL pointer] - (0) si Ok
 */
 int utn_getAlfanumerico(char* msg, char* msgError, int minSize, int maxSize, int reintentos, char* input)
 {
@@ -627,12 +628,12 @@ int isValidAlphanumeric(char* stringRecibido)
 }
 
 //------------------------------
-/** \brief Solicita el ingreso de un string y valida su tamaño y su contenido (Letra)
+/** \brief Solicita el ingreso de una letra y valida su tamaño y su contenido
 * \param msg char* Mensaje a mostrar al solicitar el string
 * \param msgError char* Mensaje de error a mostrar
 * \param reintentos int* Puntero a la cantidad de reintentos para ingresar el string solicitado
 * \param resultado char* Puntero a la variable donde se almacena el string ingresado
-* \return int Return (-1) if Error [Invalid length, content or NULL pointer] - (0) if Ok
+* \return int Return (-1) si Error [tamaño o contenido invalido o NULL pointer] - (0) si Ok
 */
 int utn_getLetra(char* msg, char* msgError, int reintentos, char* resultado)
 {
@@ -712,3 +713,97 @@ char getNumeroAleatorio(int desde , int hasta, int iniciar, int* resultado)
     return 0;
 }
 
+//***************************************
+/** \brief Solicita el ingreso de una fecha en formato dd/mm/yyyy y valida su tamaño y su contenido
+* \param msg char* Mensaje a mostrar al solicitar el string
+* \param msgError char* Mensaje de error a mostrar
+* \param reintentos int* Puntero a la cantidad de reintentos para ingresar el string solicitado
+* \param input char* Puntero a la variable donde se almacena el string ingresado
+* \return int Return (-1) si Error [tamaño o contenido invalido o NULL pointer] - (0) si Ok
+*/
+int utn_getDate(char* msg, char* msgError, int reintentos, char* input)
+{
+    int maxSize=11;
+    int minSize=10;
+    int retorno=-1;
+    char bufferStr[maxSize];
+
+    if(msg!=NULL && msgError!=NULL && minSize<maxSize && reintentos>=0 && input!=NULL)
+    {
+        do
+        {
+            if(!getString(msg,msgError,minSize,maxSize,&reintentos,bufferStr)) //==0 sin errores !0
+            {
+                if(isValidDate(bufferStr)==1)
+                {
+                    strncpy(input,bufferStr,maxSize);
+                    retorno=0;
+                    break;
+                }
+                else
+                {
+                    printf("%s 2",msgError);
+                    reintentos--;
+                }
+            }
+        }
+        while(reintentos>=0);
+    }
+    return retorno;
+}
+
+int isValidDate(char* stringRecibido)
+{
+    int retorno=1;  // para las funciones isValid arranco con verdadero y cambio cuando encuentro un error
+    int i;
+    char buffer[4];
+    int contador=0;
+    int day;
+    int month;
+    int year;
+
+    for(i=0;stringRecibido[i]!='\0';i++)
+    {
+        if((stringRecibido[i]<'0' || stringRecibido[i]>'9') && (stringRecibido[i]!='/')) // chequeo que solo sean numeros o /
+        {
+            retorno=0;
+            break;
+        }
+
+        if(stringRecibido[i]=='/')
+        {
+            contador++;
+        }
+    }
+    if(contador!=2)
+        retorno=0;
+
+    if(retorno==0)
+        printf("\nError de formato ");
+    else
+    {
+        for(i=0;i<2;i++)
+            strcpy(&buffer[i],&stringRecibido[i]);
+
+        day=atoi(buffer);
+
+        for(i=3;i<5;i++)
+            strcpy(&buffer[i-3],&stringRecibido[i]);
+
+        month=atoi(buffer);
+
+        for(i=6;i<10;i++)
+            strcpy(&buffer[i-6],&stringRecibido[i]);
+
+        year=atoi(buffer);
+
+        if(day>31 || day<1 || month>12 || month<1 || year<1900 || year >2100)
+            retorno=0;
+        else if((month==4 || month==6 || month==9 || month==11) && day>30)
+            retorno=0;
+        else if(month==2 && day>29)
+            retorno=0;
+    }
+
+    return retorno;
+}

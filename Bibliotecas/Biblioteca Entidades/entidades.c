@@ -24,12 +24,10 @@
 
 //***************************************************************
 //Init
-/** \brief  To indicate that all position in the array are empty,
-*          this function put the flag (isEmpty) in TRUE in all
-*          position of the array
+/** \brief Indica que todas las posiciones del array estan vacias inicializando el campo isEmpty en TRUE
 * \param array Tipo Array of Tipo
 * \param size int Array length
-* \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
+* \return int Return (-1) si Error [tamaño invalido o NULL pointer] - (0) si Ok
 *
 */
 int Tipo_Inicializar(Tipo array[], int size)                                    //cambiar Tipo
