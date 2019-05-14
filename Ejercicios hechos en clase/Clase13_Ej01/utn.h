@@ -27,12 +27,14 @@ int isValidEmail(char* stringRecibido);
 int utn_getTexto(char* msg, char* msgError, int minSize, int maxSize, int reintentos, char* input);
 int isValidTexto(char* stringRecibido);
 
-int utn_getChar(char* msg, char* msgError, int reintentos, char* resultado);
-int isValidChar(char charRecibido);
+int utn_getLetra(char* msg, char* msgError, int reintentos, char* resultado);
+int isValidLetra(char charRecibido);
 
 int utn_getAlfanumerico(char* msg, char* msgError, int minSize, int maxSize, int reintentos, char* input);
 int isValidAlphanumeric(char* stringRecibido);
 
 char getNumeroAleatorio(int desde , int hasta, int iniciar, int* resultado);
 
+int utn_getDate(char* msg, char* msgError, int reintentos, char* input);
+int isValidDate(char* stringRecibido);
 

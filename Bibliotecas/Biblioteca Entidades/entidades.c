@@ -199,6 +199,12 @@ int Tipo_alta(Tipo array[], int size, int* contadorID)                          
     }
     return retorno;
 }
+/*
+Si me pide que uno de los campos tiene que existir en otro array sumo en parametros ese otro array y el tamaño
+int posicion(no se usa)
+en la validacion (if) sumo Tipo_getInt/String/ID()!=-1 >> !=-1 significa que encontró ese valor
+agregar la entidad en define en el c y h
+*/
 
 //*****************************************
 //Baja valor unico
@@ -320,6 +326,18 @@ int Tipo_modificar(Tipo array[], int sizeArray)                                /
     }
     return retorno;
 }
+/*
+Si me pide que uno de los campos tiene que existir en otro array sumo en parametros ese otro array y el tamaño
+int posicion(no se usa)
+en la validacion (if) sumo Tipo_getInt/String/ID()!=-1 >> !=-1 significa que encontró ese valor
+agregar la entidad en define en el c y h
+
+
+int buffer;
+utn_getUnsignedInt("\n: ","\nError",1,sizeof(int),1,&buffer);
+if(Tipo_buscarID(arrayAux,sizeAux,buffer,&bufferPos)!=-1)
+    array[posicion].idArrayAux=buffer;
+*/
 
 //*****************************************
 //Ordenar
@@ -345,10 +363,10 @@ int Tipo_ordenarPorString(Tipo array[],int size)                              //
     {
         for (i = 1; i < size; i++)
         {
-            strcpy(bufferString,array[i].varString);                      //cambiar campo varString
             bufferId=array[i].idUnico;                                   //cambiar campo id
             bufferIsEmpty=array[i].isEmpty;
 
+            strcpy(bufferString,array[i].varString);                      //cambiar campo varString
             bufferInt=array[i].varInt;                                //cambiar campo varInt
             bufferFloat=array[i].varFloat;                            //cambiar campo varFloat
             strcpy(bufferLongString,array[i].varLongString);          //cambiar campo varLongString
@@ -357,9 +375,10 @@ int Tipo_ordenarPorString(Tipo array[],int size)                              //
             j = i - 1;
             while ((j >= 0) && strcmp(bufferString,array[j].varString)<0)         //cambiar campo varString                 //Si tiene mas de un criterio se lo agrego, Ej. bufferInt<array[j].varInt
             {                                                                                                               //buffer < campo ascendente   buffer > campo descendente
-                strcpy(array[j + 1].varString,array[j].varString);          //cambiar campo varString
                 array[j + 1].idUnico=array[j].idUnico;                                //cambiar campo id
                 array[j + 1].isEmpty=array[j].isEmpty;
+
+                strcpy(array[j + 1].varString,array[j].varString);          //cambiar campo varString
 
                 array[j + 1].varInt=array[j].varInt;                        //cambiar campo varInt
                 array[j + 1].varFloat=array[j].varFloat;                    //cambiar campo varFloat
@@ -367,9 +386,10 @@ int Tipo_ordenarPorString(Tipo array[],int size)                              //
 
                 j--;
             }
-            strcpy(array[j + 1].varString,bufferString);                     //cambiar campo varString
             array[j + 1].idUnico=bufferId;                                        //cambiar campo id
             array[j + 1].isEmpty=bufferIsEmpty;
+
+            strcpy(array[j + 1].varString,bufferString);                     //cambiar campo varString
 
             array[j + 1].varInt=bufferInt;                                                        //cambiar campo varInt
             array[j + 1].varFloat=bufferFloat;                                                    //cambiar campo varFloat

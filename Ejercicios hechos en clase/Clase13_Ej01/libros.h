@@ -1,3 +1,4 @@
+#include "autores.h"
 #ifndef LIBROS_H_INCLUDED
 #define LIBROS_H_INCLUDED
 
@@ -16,9 +17,9 @@ typedef struct
 int Libros_inicializar(Libros array[], int size);
 int Libros_buscarEmpty(Libros array[], int size, int* posicion);
 int Libros_buscarID(Libros array[], int size, int valosBuscado, int* posicion);
-int Libros_alta(Libros array[], int size, int* contadorID);
+int Libros_alta(Libros array[], int size, int* contadorID, Autores arrayAut[], int sizeAut);
 int Libros_baja(Libros array[], int sizeArray);
-int Libros_modificar(Libros array[], int sizeArray);
+int Libros_modificar(Libros array[], int sizeArray,Autores arrayAut[], int sizeAut);
 int Libros_ordenarPorTitulo(Libros array[],int size);
 int Libros_listar(Libros array[], int size);
 

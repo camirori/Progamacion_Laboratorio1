@@ -61,11 +61,11 @@ int main()
                         break;
 
                     case 5: //Alta
-                        Libros_alta(arrayLibros,QTY_LIBROS,&contadorIdLibros);
+                        Libros_alta(arrayLibros,QTY_LIBROS,&contadorIdLibros,arrayAutores,QTY_AUTORES);
                         break;
 
                     case 6: //Modificar
-                        Libros_modificar(arrayLibros,QTY_LIBROS);
+                        Libros_modificar(arrayLibros,QTY_LIBROS,arrayAutores,QTY_AUTORES);
                         break;
 
                     case 7: //Baja
@@ -89,7 +89,7 @@ int main()
         case 2://Socios
             do
             {
-                utn_getUnsignedInt("\n\n1) Alta \n2) Modificar \n3) Baja \n4) Listar \n5)  \n6) Salir\n",                   //cambiar
+                utn_getUnsignedInt("\n\n1) Alta \n2) Modificar \n3) Baja \n4) Listar socios \n5) Listar libros \n6) Listar autores \n7) Registar prestamo \n8) Salir\n",
                               "\nError",1,sizeof(int),1,11,1,&opcion);
                 switch(opcion)
                 {
@@ -105,22 +105,32 @@ int main()
                         Socios_baja(arraySocios,QTY_SOCIOS);                   //cambiar
                         break;
 
-                    case 4://Listar
+                    case 4://Listar socios
                         Socios_ordenarPorString(arraySocios,QTY_SOCIOS);                   //cambiar
                         Socios_listar(arraySocios,QTY_SOCIOS);                   //cambiar
                         break;
 
-                    case 5://Alta prestamo
+                    case 5://Listar libros
+                        Libros_ordenarPorTitulo(arrayLibros,QTY_LIBROS);
+                        Libros_listar(arrayLibros,QTY_LIBROS);
+                        break;
+
+                    case 6://Listar Autores
+                        Autores_ordenarPorApellido(arrayAutores,QTY_AUTORES);
+                        Autores_listar(arrayAutores,QTY_AUTORES);
+                        break;
+
+                    case 7://Alta prestamo
                         Prestamos_alta(arrayPrestamos,QTY_PRESTAMOS,&contadorIdPrestamos);
                         break;
 
-                    case 6://Salir
+                    case 8://Salir
                         break;
                     default:
                         printf("\nOpcion no valida");
                 }
             }
-            while(opcion!=6);
+            while(opcion!=8);
             break;
 
         case 3://Salir
@@ -165,9 +175,6 @@ Préstamos:
 */
 
 
-//en entidades ajustar utn_getChar, ya no pide tamaño
-//              Crear una opcion en alta para que valide que el dato en comun con otra entidad ya exista
-//Validar fecha
-//modificar orden de las variables en ordenar, todas juntas
-//El isEmpty deberia cambiar luego de que se hayan ingresado todos los datos correctamente
-//getchar cambiarlo por getLetra
+//Crear una opcion en alta para que valide que el dato en comun con otra entidad ya exista
+//El isEmpty deberia cambiar luego de que se hayan ingresado todos los datos correctamente      Listo en entidad, falta en este proyecto
+//cuando se da de baja un autor hay que dar de baja los libros con ese codigo?

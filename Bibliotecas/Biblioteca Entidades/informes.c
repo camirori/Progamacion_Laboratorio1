@@ -14,7 +14,7 @@
 *
 */
 int Informes_listarPorCriterio(Tipo arrayA[], Tipo arrayB[], int sizeI, int sizeJ, char* criterio)  //Valores de dos arrays. Si es valor repetido se vuelve a imprimir
-{
+{                                                                                                   //La solicitud del valor a buscar/criterio lo puedo hacer antes del for en lugar de parametro
     int retorno=-1;
     int i;
     int j;
@@ -22,9 +22,7 @@ int Informes_listarPorCriterio(Tipo arrayA[], Tipo arrayB[], int sizeI, int size
     {
         for(i=0;i<sizeI;i++)                                                                            //Obtengo la posicion de la primer entidad
         {
-            if(arrayA[i].isEmpty==1 && strcmp(arrayA[i].varString,criterio)!=0)                 //cambiar campo donde busco el criterio
-                continue;                                                                       //si esta vacio o no tiene el criterio > continue
-            else
+            if(arrayA[i].isEmpty!=1 && strcmp(arrayA[i].varString,criterio)==0)                 //cambiar campo donde busco el criterio
             {
                 Tipo_buscarID(arrayB,sizeJ,arrayA[i].idUnico,&j);                            //Obtengo la posicion de la 2da entidad buscando por el campo en comun
                 printf("\nID A: %d\nID B: %d",
@@ -135,7 +133,7 @@ int Informes_maxContadorAcumulado(Tipo arrayA[], Tipo arrayB[], int sizeI, int s
                     }
                 }
                 //Guardo los max acumulado y contador
-                if(acumulador>maxAcumulado)
+                if(acumulador>maxAcumulado || i==0)
                 {
                     maxAcumulado=acumulador;
                     iMaxAcumulado[i-1]=-1;                       //Si mas de un cuit tiene la mayor facturacion

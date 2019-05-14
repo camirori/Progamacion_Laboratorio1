@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include "utn.h"
 #include "libros.h"
-
+#include "autores.h"
 
 /*
 -Inicializar
@@ -170,10 +170,11 @@ int Tipo_buscarString(Tipo array[], int size, char* valorBuscado, int* indice)  
 * \return int Return (-1) si Error [largo no valido o NULL pointer o no hay posiciones vacias] - (0) si se agrega un nuevo elemento exitosamente
 *
 */
-int Libros_alta(Libros array[], int size, int* contadorID)
+int Libros_alta(Libros array[], int size, int* contadorID, Autores arrayAut[], int sizeAut)
 {
     int retorno=-1;
     int posicion;
+    int posicionAut;
     if(array!=NULL && size>0 && contadorID!=NULL)
     {
         if(Libros_buscarEmpty(array,size,&posicion)==-1)                          //cambiar Tipo
@@ -182,14 +183,21 @@ int Libros_alta(Libros array[], int size, int* contadorID)
         }
         else
         {
-            (*contadorID)++;
-            array[posicion].idUnico=*contadorID;                                                       //campo ID
-            array[posicion].isEmpty=0;
-            utn_getTexto("\nTitulo: ","\nError",1,TEXT_SIZE,1,array[posicion].titulo);                 //mensaje + cambiar campo varLongString
-            utn_getUnsignedInt("\nCodigo de autor: ","\nError",1,sizeof(int),1,1,1,&array[posicion].idAutor);           //mensaje + cambiar campo varInt
-            printf("\n Posicion: %d\n Codigo de libro: %d\n Titulo: %s\n Codigo de autor: %d",
-                   posicion, array[posicion].idUnico,array[posicion].titulo,array[posicion].idAutor);
-            retorno=0;
+            if( utn_getTexto("\nTitulo: ","\nError",1,TEXT_SIZE,1,array[posicion].titulo)==0 &&
+                utn_getUnsignedInt("\nCodigo de autor: ","\nError",1,sizeof(int),1,1,1,&array[posicion].idAutor)==0 &&
+                Autores_buscarID(arrayAut,sizeAut,array[posicion].idAutor,&posicionAut)!=-1)
+            {
+                (*contadorID)++;
+                array[posicion].idUnico=*contadorID;
+                array[posicion].isEmpty=0;
+
+                printf("\n Posicion: %d\n Codigo de libro: %d\n Titulo: %s\n Codigo de autor: %d", posicion, array[posicion].idUnico,array[posicion].titulo,array[posicion].idAutor);
+                retorno=0;
+            }
+            else
+            {
+                printf("\nAlta no exitosa");
+            }
         }
     }
     return retorno;
@@ -269,11 +277,13 @@ int Tipo_bajaValorRepetidoInt(Tipo array[], int sizeArray, int valorBuscado) //c
 * \return int Return (-1) si Error [largo no valido o NULL pointer o no encuentra elementos con el valor buscado] - (0) si se modifica el elemento exitosamente
 *
 */
-int Libros_modificar(Libros array[], int sizeArray)
+int Libros_modificar(Libros array[], int sizeArray,Autores arrayAut[], int sizeAut)
 {
     int retorno=-1;
     int posicion;
-    int id;                                                                                         //cambiar si no se busca por ID
+    int id;                                                               //cambiar si no se busca por ID
+    int buffer;
+    int bufferPos;
     char opcion;
     if(array!=NULL && sizeArray>0)
     {
@@ -288,14 +298,17 @@ int Libros_modificar(Libros array[], int sizeArray)
             {       //copiar printf de alta
                 printf("\n Codigo de libro: %d\n Titulo: %s\n Codigo de autor: %d",
                     array[posicion].idUnico,array[posicion].titulo,array[posicion].idAutor);
-                utn_getChar("\nModificar: A B C D S(salir)","\nError",1,&opcion);
+                utn_getLetra("\nModificar: A B C D S(salir)","\nError",1,&opcion);
                 switch(opcion)
                 {
                     case 'A':
                         utn_getTexto("\nTitulo: ","\nError",1,TEXT_SIZE,1,array[posicion].titulo);                 //mensaje + cambiar campo varLongString
                         break;
                     case 'B':
-                        utn_getUnsignedInt("\nCodigo de autor: ","\nError",1,sizeof(int),1,1,1,&array[posicion].idAutor);
+                        utn_getUnsignedInt("\nCodigo de autor: ","\nError",1,sizeof(int),1,1,1,&buffer);
+                        if(Autores_buscarID(arrayAut,sizeAut,buffer,&bufferPos)!=-1)
+                            array[posicion].idAutor=buffer;
+
                         break;
 
                     case 'S':

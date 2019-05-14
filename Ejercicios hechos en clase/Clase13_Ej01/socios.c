@@ -187,7 +187,7 @@ int Socios_alta(Socios array[], int size, int* contadorID)
             array[posicion].isEmpty=0;
             utn_getName("\nApellido: ","\nError",1,TEXT_SIZE,1,array[posicion].apellido);
             utn_getName("\nNombre: ","\nError",1,TEXT_SIZE,1,array[posicion].nombre);
-            utn_getChar("\nSexo (F/M):","\nError",1,&array[posicion].sexo);
+            utn_getLetra("\nSexo (F/M):","\nError",1,&array[posicion].sexo);
             utn_getTelefono("\nTelefono","\nError",1,TEL_SIZE,1,array[posicion].telefono);
             utn_getEmail("\nEmail","\nError",1,TEXT_SIZE,1,array[posicion].email);
             utn_getTexto("\nFecha: ","\nError",1,TEXT_SIZE,1,array[posicion].fechaAsociado);
@@ -300,7 +300,7 @@ int Socios_modificar(Socios array[], int sizeArray)
                    array[posicion].idUnico,array[posicion].apellido,array[posicion].nombre,array[posicion].sexo,
                    array[posicion].telefono,array[posicion].email,array[posicion].fechaAsociado);
 
-                utn_getChar("\nModificar: A B C D E S(salir)","\nError",1,&opcion);
+                utn_getLetra("\nModificar: A B C D E S(salir)","\nError",1,&opcion);
                 switch(opcion)
                 {
                     case 'A':
@@ -310,7 +310,7 @@ int Socios_modificar(Socios array[], int sizeArray)
                         utn_getName("\nNombre: ","\nError",1,TEXT_SIZE,1,array[posicion].nombre);
                         break;
                     case 'C':
-                        utn_getChar("\nSexo (F/M):","\nError",1,&array[posicion].sexo);
+                        utn_getLetra("\nSexo (F/M):","\nError",1,&array[posicion].sexo);
                         break;
                     case 'D':
                         utn_getTelefono("\nTelefono","\nError",1,TEL_SIZE,1,array[posicion].telefono);

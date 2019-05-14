@@ -54,3 +54,60 @@
 
 1557276710 /home/alumno/Workspace/Progamacion_Laboratorio1/Ejercicios hechos en clase/Clase13_Ej01/socios.h
 
+1557697265 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase13_ej01\autores.c
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	"utn.h"
+	"autores.h"
+
+1557697234 f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase13_ej01\utn.h
+
+1557367237 f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase13_ej01\autores.h
+
+1557700005 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase13_ej01\libros.c
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	"utn.h"
+	"libros.h"
+	"autores.h"
+
+1557700261 f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase13_ej01\libros.h
+	"autores.h"
+
+1557367237 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase13_ej01\prestamos.c
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	"utn.h"
+	"prestamos.h"
+
+1557367237 f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase13_ej01\prestamos.h
+
+1557697276 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase13_ej01\socios.c
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	"utn.h"
+	"socios.h"
+
+1557367237 f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase13_ej01\socios.h
+
+1557700701 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase13_ej01\main.c
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	"utn.h"
+	"autores.h"
+	"libros.h"
+	"socios.h"
+	"prestamos.h"
+
+1557697236 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase13_ej01\utn.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+	<time.h>
+

@@ -288,7 +288,7 @@ int Autores_modificar(Autores array[], int sizeArray)
             do
             {
                 printf("\n Codigo de autor: %d\n Apellido: %s\n Nombre: %s",array[posicion].idUnico,array[posicion].apellido,array[posicion].nombre);
-                utn_getChar("\nModificar: A B C D S(salir)","\nError",1,&opcion);
+                utn_getLetra("\nModificar: A B C D S(salir)","\nError",1,&opcion);
                 switch(opcion)
                 {
                     case 'A':
