@@ -1,0 +1,23 @@
+# depslib dependency file v1.0
+1557882390 source:/home/alumno/Workspace/Progamacion_Laboratorio1/Ejercicios hechos en clase/Clase15_Ej02/main.c
+	<stdio.h>
+	<stdlib.h>
+	"empleado.h"
+
+1557882279 source:/home/alumno/Workspace/Progamacion_Laboratorio1/Ejercicios hechos en clase/Clase15_Ej02/empleado.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"empleado.h"
+
+1557881957 /home/alumno/Workspace/Progamacion_Laboratorio1/Ejercicios hechos en clase/Clase15_Ej02/empleado.h
+
+1557869198 source:/home/alumno/Workspace/Progamacion_Laboratorio1/Ejercicios hechos en clase/Clase15_Ej02/utn.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+	<time.h>
+
+1557869198 /home/alumno/Workspace/Progamacion_Laboratorio1/Ejercicios hechos en clase/Clase15_Ej02/utn.h
+
