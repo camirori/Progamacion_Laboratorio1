@@ -53,3 +53,5 @@ int main()
     return 0;
 }
 
+
+//sprintf(destino,"%x",origen);     para pasar una variable a string

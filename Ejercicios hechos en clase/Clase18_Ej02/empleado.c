@@ -7,9 +7,40 @@
 
 
 
-Empleado* Emp_new(void)       //constructor
+Empleado* Emp_new(void)       //constructor         //nuevo empleado
 {
     return (Empleado*) malloc(sizeof(Empleado));
+}
+
+Empleado* Emp_newStr(char *id, char *nombre, char *apellido, char *estado)       //constructor         //nuevo empleado con los campos cargados
+{
+    Empleado* retorno=NULL;
+    Empleado* bufferP;
+    if(id!=NULL && nombre!=NULL && apellido!=NULL && estado!=NULL)
+    {
+        bufferP=Emp_new();
+        if(bufferP!=NULL)
+        {
+            if(!Emp_setIdStr(bufferP,id) &&                 //puedo poner retorno=-1,-2,-3 etc para saber cual es el param fuera de rango
+                !Emp_setNombre(bufferP,nombre) &&
+                !Emp_setApellido(bufferP,apellido) &&
+                !Emp_setEstadoStr(bufferP,estado))
+            {
+                retorno=bufferP;
+            }
+            else
+            {
+                Emp_delete(bufferP);
+            }
+        }
+    }
+    return retorno;
+}
+
+
+Empleado** Emp_newP(void)       //constructor       //nuevo puntero a empleado
+{
+    return (Empleado**) malloc(sizeof(Empleado*));
 }
 
 int Emp_delete(Empleado* this)       //destructor
@@ -23,6 +54,16 @@ int Emp_delete(Empleado* this)       //destructor
     return retorno;
 }
 
+int Emp_deleteP(Empleado** this)       //destructor     //borro puntero
+{
+    int retorno=-1;
+    if(this!=NULL)
+    {
+        free(this);
+        retorno=0;
+    }
+    return retorno;
+}
 
 int Emp_setId(Empleado* this, int id)      //para escribir
 {
@@ -35,12 +76,36 @@ int Emp_setId(Empleado* this, int id)      //para escribir
     return retorno;
 }
 
+int Emp_setIdStr(Empleado* this, char *id)      //siempre que el get original no sea char hay que hace un getStr
+{
+    int retorno=-1;
+    if(this!=NULL && id!=NULL && !isValidNumber(id))
+    {
+        retorno=Emp_setId(this,atoi(id));
+    }
+    return retorno;
+}
+
+
 int Emp_getId(Empleado* this, int* resultado)       //para traer/consultar  int idAux=Emp_getId();
 {
     int retorno=-1;
     if(this!=NULL && resultado!=NULL)
     {
         *resultado=this->id;
+        retorno=0;
+    }
+    return retorno;
+}
+
+int Emp_getIdStr(Empleado* this, char* resultado)       //trae el id y lo puedo transformar
+{
+    int retorno=-1;
+    int bufferInt;
+    if(this!=NULL && resultado!=NULL)
+    {
+        Emp_getId(this,&bufferInt);
+        sprintf(resultado,"%d",bufferInt);
         retorno=0;
     }
     return retorno;
@@ -118,20 +183,3 @@ int Emp_getEstado(Empleado* this, int* resultado)
     return retorno;
 }
 
-int Emp_nuevoEmpleado(Empleado* pEmpleado[], int* indice)
-{
-    int retorno=-1;
-    if(pEmpleado!=NULL)
-    {
-        int indiceActual=*indice;
-
-        Emp_new();
-        (*indice)++;
-        printf("Ok\n");
-
-        if( !Emp_setId(pEmpleado[indiceActual],14) && !Emp_setPeso(pEmpleado[indiceActual],50) &&
-            !Emp_setNombre(pEmpleado[indiceActual],"abc") && !Emp_setId(pEmpleado[indiceActual],1))     //==0   //set>escribe un campo de empleado
-            retorno=0;
-    }
-    return retorno;
-}
