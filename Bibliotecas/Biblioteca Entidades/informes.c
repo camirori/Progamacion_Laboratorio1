@@ -18,17 +18,28 @@ int Informes_listarPorCriterio(Tipo arrayA[], Tipo arrayB[], int sizeI, int size
     int retorno=-1;
     int i;
     int j;
+    int flag=-1;
     if(arrayA!=NULL && sizeI>=0 && arrayB!=NULL && sizeJ>=0 && criterio!=NULL)
     {
+        //puedo solicitar el criterio a comparar aca utn_getdato
         for(i=0;i<sizeI;i++)                                                                            //Obtengo la posicion de la primer entidad
         {
             if(arrayA[i].isEmpty!=1 && strcmp(arrayA[i].varString,criterio)==0)                 //cambiar campo donde busco el criterio
             {
-                Tipo_buscarID(arrayB,sizeJ,arrayA[i].idUnico,&j);                            //Obtengo la posicion de la 2da entidad buscando por el campo en comun
-                printf("\nID A: %d\nID B: %d",
+                if(Tipo_buscarID(arrayB,sizeJ,arrayA[i].idUnico,&j)==-1)                 //cambiar Tipo, busco por el campo en comun
+                    j=-1;                                                                  //para marcar si no se encontró campo camún
+                if(j==-1)
+                    printf(" ");
+                else
+                {
+                    printf("\nID A: %d\nID B: %d",
                        arrayA[i].idUnico,arrayB[j].idUnico);
+                }
+                flag=0;
             }
         }
+        if(flag==-1)
+            printf("\nNo se han encontrado coincidencias");         //No se cumple el criterio o están todos vacios
         retorno=0;
     }
     return retorno;
@@ -42,45 +53,76 @@ int Informes_listarPorCriterio(Tipo arrayA[], Tipo arrayB[], int sizeI, int size
 * \return int Return (-1) si Error [Invalid length or NULL pointer] - (0) Ok
 *
 */
-//Lista un campo que se repite, lo imprime una sola vez y calcula contador y acumulado
-int Informes_listarCriterioContadorAcumulado(Tipo arrayA[], Tipo arrayB[], int sizeI, int sizeJ)         //cambiar Tipo
+//Cuenta las veces que se cumple un criterio en un arrayA y lo imprime una sola vez
+int Informes_listarCriterioContadorAcumulado(Tipo arrayA[], int sizeI)         //cambiar Tipo
 {
     int retorno=-1;
     int i;
-    int j;
     int k;
     int auxPosicion;
     int contador=0;
     int acumulado=0;
+    int flag=-1;
+
+    if(arrayA!=NULL && sizeI>=0)
+    {
+        for(i=0;i<sizeI;i++)
+        {
+            Tipo_buscarString(arrayA,i,arrayA[i].varString,&auxPosicion);                  //cambiar nombreFuncion y campo      va a analizar hasta <i
+            if(arrayA[i].isEmpty!=1 && auxPosicion==-1)                                                           //Si ese valor ya aparecio > continue
+            {
+                for(k=i,contador=0,acumulado=0;k<sizeI;k++)                                                            //Recorro por segunda vez el mismo array
+                {
+                    if(arrayA[k].isEmpty!=1 && strcmp(arrayA[k].varString,arrayA[i].varString)==0)     //Busco las coincidencias en el 2do array
+                    {
+                        contador++;
+                        acumulado+=(arrayA[k].varInt);
+                        flag=0;
+                    }
+                }
+                printf("\nCantidad: %d \nAcumulado: %d",contador,acumulado);
+            }
+        }
+        if(flag==-1)
+            printf("\n ");
+        retorno=0;
+    }
+    return retorno;
+}
+
+//cuenta las ocurrencias de A en B
+int Informes_ContadorAcumuladoOcurrencia(Tipo arrayA[], Tipo arrayB[], int sizeI, int sizeJ)         //cambiar Tipo
+{
+    int retorno=-1;
+    int i;
+    int j;
+    int contador=0;
+    int acumulado=0;
+    int flag=-1;
 
     if(arrayA!=NULL && sizeI>=0 && arrayB!=NULL && sizeJ>=0)
     {
         for(i=0;i<sizeI;i++)
         {
-            Tipo_buscarString(arrayA,i,arrayA[i].varString,&auxPosicion);                  //cambiar nombreFuncion y campo      va a analizar hasta <i
-            if(arrayA[i].isEmpty==1 && auxPosicion!=-1)
-                continue;                                                                 //Si ese valor ya aparecio > continue
-            else
+            if(arrayA[i].isEmpty!=1)                                                           //Si ese valor ya aparecio > continue
             {
-                printf("\nCampo: %s",arrayA[i].varString);                                   //Imprimo el valor que voy a listar
-                for(k=i,contador=0,acumulado=0;k<sizeI;k++)                                                            //Recorro por segunda vez el mismo array
+                for(j=0,contador=0,acumulado=0;j<sizeJ;j++)                                                            //Recorro por segunda vez el mismo array
                 {
-                    if(arrayA[k].isEmpty!=1 && strcmp(arrayA[k].varString,arrayA[i].varString)==0)     //Busco todas las veces que aparece ese cuit
+                    if(arrayB[j].isEmpty!=1 && arrayA[i].idUnico==arrayB[j].varInt)     //Busco todas las veces que aparece ese id
                     {
-                        Tipo_buscarID(arrayB,sizeJ,arrayA[k].idUnico,&j);                 //cambiar Tipo, busco por el campo en comun
-
                         contador++;
-                        acumulado+=(arrayA[k].varInt*arrayB[j].varInt);
-
-                        printf("\nID A: %d\nID B: %d",
-                                arrayA[k].idUnico,arrayB[j].idUnico);
                     }
                 }
                 printf("\nCantidad: %d \nAcumulado: %d",contador,acumulado);
-                //contador=0;
-                //acumulado=0;
+            }
+            if (contador<6)
+            {
+                //si se cumple alguna condicion de cantidad de veces
+                flag=0;
             }
         }
+        if(flag==-1)
+            printf("\n ");
         retorno=0;
     }
     return retorno;
@@ -99,81 +141,54 @@ int Informes_maxContadorAcumulado(Tipo arrayA[], Tipo arrayB[], int sizeI, int s
     int retorno=-1;
     int i;
     int j;
-    int k;
     int auxPosicion;
-    int maxAcumulado=0;
+    //int maxAcumulado=0;
     int maxContador=0;
     int acumulador=0;
     int contador=0;
-    int iMaxAcumulado [sizeI];
+    //int iMaxAcumulado [sizeI];
     int iMaxContador [sizeI];
 
     if(arrayA!=NULL && sizeI>=0 && arrayB!=NULL && sizeJ>=0)
     {
         for(i=0;i<sizeI;i++)
         {
-            Tipo_buscarString(arrayA,i,arrayA[i].varString,&auxPosicion);                  //cambiar nombreFuncion y campo
-            if(arrayA[i].isEmpty==1 && auxPosicion!=-1)
-                continue;                                                                 //Si ese valor ya aparecio > continue
-            else
+            //iMaxAcumulado[i]=-2;                        //Para marcar los lugares vacios
+            iMaxContador[i]=-2;
+            Tipo_buscarString(arrayA,i,arrayA[i].varString,&auxPosicion);                  //si busco las coincidencias dentro del mismo array  en el for j=i
+            if(arrayA[i].isEmpty==1 && auxPosicion==-1)
             {
-                printf("\nCampo: %s",arrayA[i].varString);                                   //Imprimo el valor que voy a listar
-                for(k=i;k<sizeI;k++)                                                            //Recorro por segunda vez el mismo array
+                for(j=0,contador=0;j<sizeJ;j++)                                                            //Recorro por segunda vez el mismo array
                 {
-                    if(arrayA[k].isEmpty!=1 && strcmp(arrayA[k].varString,arrayA[i].varString)==0)     //Busco todas las veces que aparece ese cuit
+                    if(arrayB[j].isEmpty!=1 && arrayA[i].idUnico==arrayB[j].varInt)     //Busco campo en comun
                     {
-
-                        Tipo_buscarID(arrayB,sizeJ,arrayA[k].idUnico,&j);                 //cambiar Tipo, busco por el campo en comun
-
                         contador++;                                                         //calculos acumulados y contador
-                        acumulador+=(arrayA[k].varInt*arrayB[j].varInt);
-
-                        printf("\nID A: %d\nID B: %d",                                         //imprimo datos que haya que mostrar
-                                arrayA[k].idUnico,arrayB[j].idUnico);
+                        acumulador+=(arrayA[i].varInt*arrayB[j].varInt);
                     }
                 }
                 //Guardo los max acumulado y contador
-                if(acumulador>maxAcumulado || i==0)
-                {
-                    maxAcumulado=acumulador;
-                    iMaxAcumulado[i-1]=-1;                       //Si mas de un cuit tiene la mayor facturacion
-                    iMaxAcumulado[i]=i;
-                }
-                else if(acumulador==maxAcumulado)
-                    iMaxAcumulado[i]=i;
-                else
-                    iMaxAcumulado[i]=-2;                         //Para marcar los lugares vacios
-
-                acumulador=0;
-
-                if(contador>maxContador)
+                if(i==0)
+                    maxContador=contador;
+                else if(contador>maxContador)
                 {
                     maxContador=contador;
-                    iMaxContador[i-1]=-1;                       //Si mas de un cuit tiene la mayor facturacion
+                    iMaxContador[i-1]=-1;
                     iMaxContador[i]=i;
                 }
                 else if(contador==maxContador)
                     iMaxContador[i]=i;
-                else
-                    iMaxContador[i]=-2;                         //Para marcar los lugares vacios
 
                 contador=0;
             }
         }
 
-        printf("\nMayor acumulado: %d \nMayor contador: %d \nI: ",maxAcumulado,maxContador);
-        for(;iMaxAcumulado[i]!=-1;i--)                                                      //Uno o el otro, sino agregar otro contador que no sea el i
-        {
-            if(iMaxAcumulado[i]!=-2)                         //Salteo los vacios
-            {
-                printf("\n          CUIT: %s",arrayA[iMaxAcumulado[i]].varString);
-            }
-        }
-        for(;iMaxContador[i]!=-1;i--)
+        printf("\nMax: %d",maxContador);
+        for(i--;iMaxContador[i]!=-1 && i>=0;i--)
         {
             if(iMaxContador[i]!=-2)                         //Salteo los vacios
             {
-                printf("\n          CUIT: %s",arrayA[iMaxContador[i]].varString);
+                printf("\n ID: %d   : %s  : %d: ",
+                       arrayA[iMaxContador[i]].idUnico,arrayA[iMaxContador[i]].varString,arrayA[iMaxContador[i]].varInt);
             }
         }
 
@@ -207,9 +222,7 @@ int Informes_listarAuxiliarOrdenar(Tipo arrayA[], Tipo arrayB[], int sizeI, int 
         for(i=0;i<sizeI;i++)
         {
             Tipo_buscarString(arrayA,i,arrayA[i].varString,&auxPosicion);                  //cambiar nombreFuncion y campo      va a analizar hasta <i
-            if(arrayA[i].isEmpty==1 && auxPosicion!=-1)
-                continue;                                                                 //Si ese valor ya aparecio > continue
-            else
+            if(arrayA[i].isEmpty!=1 && auxPosicion==-1)
             {
                 strcpy(arrayAux[i].varString,arrayA[i].varString);                              //cambio varstring
                 for(k=i;k<sizeI;k++)                                                            //Recorro por segunda vez el mismo array
