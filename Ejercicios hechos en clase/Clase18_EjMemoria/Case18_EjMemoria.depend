@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1558823387 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\tps\case18_ejmemoria\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+

@@ -1,0 +1,26 @@
+# depslib dependency file v1.0
+1558748119 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase18_ej02\utn.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+	<time.h>
+
+1558748119 f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase18_ej02\utn.h
+
+1558833037 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase18_ej02\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"empleado.h"
+	"utn.h"
+
+1558821922 f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase18_ej02\empleado.h
+
+1558831916 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase18_ej02\empleado.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"empleado.h"
+	"utn.h"
+
