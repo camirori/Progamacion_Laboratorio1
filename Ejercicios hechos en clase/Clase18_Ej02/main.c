@@ -6,65 +6,17 @@
 
 int main()
 {
-    FILE *pFile=NULL;
-    FILE *pFileBkp=NULL;
-    pFile=fopen("data.csv","r");    //direccìon archivo, modo de arpetura
-    pFileBkp=fopen("data_bkp.csv","w");
 
-    Empleado** pPuntero;     //puntero al array de punteros
-    Empleado** auxPuntero;
 
+    Empleado** pPuntero=NULL;     //puntero al array de punteros
     int index=0;
+    int id;     //hay que tener registro del màx id utilizado, sea ingresado o del archivo, para saber prox id a asignar
 
-    char bufferId[SIZE_STR];
-    char bufferNombre[SIZE_STR];
-    char bufferApellido[SIZE_STR];
-    char bufferEstado[SIZE_STR];
+    Emp_newArchivo(pPuntero,&index);
 
-
-    if(pFile!=NULL && pFileBkp!=NULL)
-    {
-        printf("\nOk1");
-        while(!feof(pFile))
-        {
-            fscanf(pFile,"%[^,],%[^,],%[^,],%[^\n]\n",bufferId,bufferNombre,bufferApellido,bufferEstado);
-            //printf("\nId: %s    Nombre: %s  Apellido: %s  Estado: %s",bufferId,bufferNombre,bufferApellido,bufferEstado);
-
-            if(strcmp(bufferNombre,"first_name")==0)
-                continue;
-
-            printf("\nOk2");
-            auxPuntero=Emp_newPointer(pPuntero,index+1);
-
-            if(auxPuntero!=NULL)
-            {
-                pPuntero=auxPuntero;
-
-                printf("\nOk3");
-
-                *(pPuntero+index)=Emp_newStr(bufferId,bufferNombre,bufferApellido,bufferEstado);
-                if((pPuntero+index)!=NULL)
-                {
-                    printf("\nOk9");
-
-                    printf("\nId: %d    Nombre: %s  Apellido: %s  Estado: %s",(*(pPuntero+index))->id,(*(pPuntero+index))->nombre,(*(pPuntero+index))->apellido,(*(pPuntero+index))->estado);
-                    index++;
-                }
-                else//realloc array punteros
-                {
-                    auxPuntero=Emp_newPointer(pPuntero,index);
-                    if(auxPuntero!=NULL)
-                    {
-                        pPuntero=auxPuntero;
-                    }
-                }
-            }
-            if(index==10)
-                    break;
-        }
-        fclose(pFile);
-        fclose(pFileBkp);
-    }
+    //las bajas pueden ser logicas (cambiar estado) o fisicas (borrar memoria)
 
     return 0;
 }
+
+//tengo que saber cual es la ultima posicion util del array

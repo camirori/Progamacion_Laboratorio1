@@ -17,6 +17,8 @@ typedef struct
 Empleado* Emp_new(void);
 Empleado* Emp_newStr(char *id, char *nombre, char *apellido, char *estado);
 Empleado** Emp_newPointer(Empleado* arrayPunteros[], int i);
+int Emp_newArchivo(Empleado** pPuntero, int* index);
+
 
 int Emp_delete(Empleado* this);
 int Emp_deleteP(Empleado** this);
@@ -38,3 +40,6 @@ int Emp_getApellido(Empleado* this, char* resultado);
 int Emp_setEstado(Empleado* this, int estado);
 int Emp_setEstadoStr(Empleado* this, char* estado);
 int Emp_getEstado(Empleado* this, int* resultado);
+
+
+int Empleado_buscarID(Empleado** this, int size, int valorBuscado, int* posicion);
