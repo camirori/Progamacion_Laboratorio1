@@ -48,13 +48,19 @@ int main()
                     printf("\nOk9");
 
                     printf("\nId: %d    Nombre: %s  Apellido: %s  Estado: %s",(*(pPuntero+index))->id,(*(pPuntero+index))->nombre,(*(pPuntero+index))->apellido,(*(pPuntero+index))->estado);
-
+                    index++;
                 }
-                index++;
-
-                if(index==10)
-                    break;
+                else//realloc array punteros
+                {
+                    auxPuntero=Emp_newPointer(pPuntero,index);
+                    if(auxPuntero!=NULL)
+                    {
+                        pPuntero=auxPuntero;
+                    }
+                }
             }
+            if(index==10)
+                    break;
         }
         fclose(pFile);
         fclose(pFileBkp);
