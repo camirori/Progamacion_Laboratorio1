@@ -7,8 +7,6 @@
 
 
 
-
-
 Empleado* Emp_new(void)       //constructor         //nuevo empleado
 {
     return (Empleado*) malloc(sizeof(Empleado));
@@ -75,13 +73,12 @@ int Emp_newArchivo(Empleado** pPuntero, int* index)
     char bufferApellido[SIZE_STR];
     char bufferEstado[SIZE_STR];
 
-    if(pFile!=NULL && pFileBkp!=NULL)
+    if(pFile!=NULL && pFileBkp!=NULL && index!=NULL)
     {
         //printf("\nOk1");
         while(!feof(pFile))
         {
             fscanf(pFile,"%[^,],%[^,],%[^,],%[^\n]\n",bufferId,bufferNombre,bufferApellido,bufferEstado);
-            //printf("\nId: %s    Nombre: %s  Apellido: %s  Estado: %s",bufferId,bufferNombre,bufferApellido,bufferEstado);
 
             if(strcmp(bufferNombre,"first_name")==0)
                 continue;
@@ -92,7 +89,6 @@ int Emp_newArchivo(Empleado** pPuntero, int* index)
             if(auxPuntero!=NULL)
             {
                 pPuntero=auxPuntero;
-
                 //printf("\nOk3");
 
                 *(pPuntero+*index)=Emp_newStr(bufferId,bufferNombre,bufferApellido,bufferEstado);
@@ -100,7 +96,7 @@ int Emp_newArchivo(Empleado** pPuntero, int* index)
                 {
                     //printf("\nOk9");
 
-                    printf("\nId: %d    Nombre: %s  Apellido: %s  Estado: %s",(*(pPuntero+*index))->id,(*(pPuntero+*index))->nombre,(*(pPuntero+*index))->apellido,(*(pPuntero+*index))->estado);
+                    printf("\nId: %d    Nombre: %s  Apellido: %s  Estado: %d",(*(pPuntero+*index))->id,(*(pPuntero+*index))->nombre,(*(pPuntero+*index))->apellido,(*(pPuntero+*index))->estado);
                     (*index)++;
                 }
                 else//realloc array punteros
@@ -288,19 +284,30 @@ int Emp_setEstado(Empleado* this, int estado)       //transformo TRUE> 1
 int Emp_setEstadoStr(Empleado* this, char* estado)
 {
     int retorno=-1;
-    int bufferInt=0;
-    if(this!=NULL && id!=NULL)
+    if(this!=NULL && estado!=NULL)
     {
-        if(strcmp(estado,"TRUE")==0)
+        if(strcmp(estado,"true")==0)
             strcpy(estado,"1");
-        else if(strcmp(estado,"FALSE")==0)
+        else if(strcmp(estado,"false")==0)
             strcpy(estado,"0");
 
         if(isValidNumber(estado))
-            retorno=Emp_setId(this,atoi(id));
+            retorno=Emp_setEstado(this,atoi(estado));
     }
     return retorno;
 }
+/*
+int Emp_setEstadoStr(Empleado* this, char* estado)
+{
+    int retorno=-1;
+    if(this!=NULL && estado!=NULL)
+    {
+        strcpy(this->estado,estado);
+        retorno=0;
+    }
+    return retorno;
+}
+*/
 
 /*
 int Emp_getEstado(Empleado* this, int* resultado)
@@ -313,17 +320,6 @@ int Emp_getEstado(Empleado* this, int* resultado)
     }
     return retorno;
 }*/
-
-int Emp_setEstadoStr(Empleado* this, char* estado)
-{
-    int retorno=-1;
-    if(this!=NULL && estado!=NULL)
-    {
-        strcpy(this->estado,estado);
-        retorno=0;
-    }
-    return retorno;
-}
 
 
 
@@ -373,14 +369,17 @@ int Empleado_buscarID(Empleado** this, int size, int valorBuscado, int* posicion
 {
     int retorno=-1;
     int i;
+    int id;
 
     if(this!= NULL && size>=0)
     {
         for(i=0;i<size;i++)
         {
-            if((*(this+i))->estado==1)
-                continue;
-            else if((*(this+i))->id==valorBuscado)                                                   //cambiar campo ID
+            //if((*(this+i))->estado==1)        //que signifia el estado true?
+            //    continue;
+
+            Emp_getId(*(this+i),&id);
+            if(id==valorBuscado)                                                   //cambiar campo ID
             {
                 retorno=0;
                 *posicion=i;

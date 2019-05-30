@@ -6,7 +6,7 @@
 typedef struct
 {
     int id;
-    char estado[SIZE_STR];         //ya no se usa isEmpty
+    int estado;         //ya no se usa isEmpty
     char nombre[SIZE_STR];
     char apellido[SIZE_STR];
 }Empleado;
