@@ -74,3 +74,28 @@
 	"empleado.h"
 	"utn.h"
 
+1559263418 source:/home/alumno/workspace/Progamacion_Laboratorio1/Ejercicios hechos en clase/Clase18_Ej02 Empleado/main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"empleado.h"
+	"utn.h"
+
+1559263432 /home/alumno/workspace/Progamacion_Laboratorio1/Ejercicios hechos en clase/Clase18_Ej02 Empleado/empleado.h
+
+1559253378 /home/alumno/workspace/Progamacion_Laboratorio1/Ejercicios hechos en clase/Clase18_Ej02 Empleado/utn.h
+
+1559253378 source:/home/alumno/workspace/Progamacion_Laboratorio1/Ejercicios hechos en clase/Clase18_Ej02 Empleado/utn.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+	<time.h>
+
+1559261195 source:/home/alumno/workspace/Progamacion_Laboratorio1/Ejercicios hechos en clase/Clase18_Ej02 Empleado/empleado.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"empleado.h"
+	"utn.h"
+

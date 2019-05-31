@@ -6,6 +6,19 @@
 #include "utn.h"
 
 
+int Emp_parseo(FILE* pFile, char* bufferA, char* bufferB, char* bufferC, char* bufferD)
+{
+    int retorno=-1;
+    if(pFile!=NULL)
+    {
+
+        if(fscanf(pFile,"%[^,],%[^,],%[^,],%[^\n]\n",bufferA,bufferB,bufferC,bufferD)==4)
+            retorno=0;
+        if(strcmp(bufferB,"first_name")==0)
+            retorno=-1;
+    }
+    return retorno;
+}
 
 Empleado* Emp_new(void)       //constructor         //nuevo empleado
 {
@@ -21,7 +34,6 @@ Empleado* Emp_newStr(char *id, char *nombre, char *apellido, char *estado)      
         bufferP=Emp_new();
         if(bufferP!=NULL)
         {
-            //printf("\nOk4");
 
             if(!Emp_setIdStr(bufferP,id) &&                 //puedo poner retorno=-1,-2,-3 etc para saber cual es el param fuera de rango
                 !Emp_setNombre(bufferP,nombre) &&
@@ -58,7 +70,7 @@ Empleado* Emp_newStr(char *id, char *nombre, char *apellido, char *estado)      
     return retorno;
 }
 
-int Emp_newArchivo(Empleado** pPuntero, int* index)
+int Emp_newArchivo(Empleado** pPuntero, int* index, int* id)
 {
     int retorno=-1;
     Empleado** auxPuntero;
@@ -68,44 +80,27 @@ int Emp_newArchivo(Empleado** pPuntero, int* index)
     pFile=fopen("data.csv","r");    //direccìon archivo, modo de arpetura
     pFileBkp=fopen("data_bkp.csv","w");
 
-    char bufferId[SIZE_STR];
-    char bufferNombre[SIZE_STR];
-    char bufferApellido[SIZE_STR];
-    char bufferEstado[SIZE_STR];
+    char arrayBuffers[4][SIZE_STR];        //conviene hacer un array de strings?
 
     if(pFile!=NULL && pFileBkp!=NULL && index!=NULL)
     {
-        //printf("\nOk1");
         while(!feof(pFile))
         {
-            fscanf(pFile,"%[^,],%[^,],%[^,],%[^\n]\n",bufferId,bufferNombre,bufferApellido,bufferEstado);
-
-            if(strcmp(bufferNombre,"first_name")==0)
+            if(Emp_parseo(pFile,arrayBuffers[0],arrayBuffers[1],arrayBuffers[2],arrayBuffers[3])==-1)
                 continue;
 
-            //printf("\nOk2");
-            auxPuntero=Emp_newPointer(pPuntero,(*index)+1);
+            auxPuntero=Emp_reSizeLista(pPuntero,(*index)+1);
 
             if(auxPuntero!=NULL)
             {
                 pPuntero=auxPuntero;
-                //printf("\nOk3");
 
-                *(pPuntero+*index)=Emp_newStr(bufferId,bufferNombre,bufferApellido,bufferEstado);
+                *(pPuntero+*index)=Emp_newStr(arrayBuffers[0],arrayBuffers[1],arrayBuffers[2],arrayBuffers[3]);
                 if((pPuntero+*index)!=NULL)
                 {
-                    //printf("\nOk9");
-
                     printf("\nId: %d    Nombre: %s  Apellido: %s  Estado: %d",(*(pPuntero+*index))->id,(*(pPuntero+*index))->nombre,(*(pPuntero+*index))->apellido,(*(pPuntero+*index))->estado);
                     (*index)++;
-                }
-                else//realloc array punteros
-                {
-                    auxPuntero=Emp_newPointer(pPuntero,*index);
-                    if(auxPuntero!=NULL)
-                    {
-                        pPuntero=auxPuntero;
-                    }
+                    (*id)=(*(pPuntero+*index))->id;
                 }
             }
             if(*index==10)
@@ -120,12 +115,14 @@ int Emp_newArchivo(Empleado** pPuntero, int* index)
     return retorno;
 }
 
-Empleado** Emp_newPointer(Empleado** pPuntero, int i)       //constructor       //nuevo puntero a empleado
+Empleado** Emp_reSizeLista(Empleado** pPuntero, int i)       //constructor       //nuevo puntero a empleado
 {
     if(i==1)
-        return (Empleado**) malloc(i*sizeof(Empleado*));
+        return (Empleado**) malloc(i*10*sizeof(Empleado*));
+    else if(i>10)
+        return (Empleado**) realloc(pPuntero,i*sizeof(Empleado*));   //chequear si alcanza el tamaño actual, sino agrandar
     else
-        return (Empleado**) realloc(pPuntero,i*sizeof(Empleado*));
+        return pPuntero;
 }
 
 int Emp_delete(Empleado* this)       //destructor
@@ -139,16 +136,6 @@ int Emp_delete(Empleado* this)       //destructor
     return retorno;
 }
 
-int Emp_deleteP(Empleado** this)       //destructor     //borro puntero
-{
-    int retorno=-1;
-    if(this!=NULL)
-    {
-        free(this);
-        retorno=0;
-    }
-    return retorno;
-}
 
 int Emp_setId(Empleado* this, int id)      //para escribir
 {
@@ -228,7 +215,6 @@ int Emp_setNombre(Empleado* this, char* nombre)
     int retorno=-1;
     if(this!=NULL && nombre!=NULL)
     {
-
         strcpy(this->nombre,nombre);
         retorno=0;
     }
@@ -309,7 +295,7 @@ int Emp_setEstadoStr(Empleado* this, char* estado)
 }
 */
 
-/*
+
 int Emp_getEstado(Empleado* this, int* resultado)
 {
     int retorno=-1;
@@ -319,7 +305,7 @@ int Emp_getEstado(Empleado* this, int* resultado)
         retorno=0;
     }
     return retorno;
-}*/
+}
 
 
 
@@ -370,13 +356,15 @@ int Empleado_buscarID(Empleado** this, int size, int valorBuscado, int* posicion
     int retorno=-1;
     int i;
     int id;
+    int estado;
 
     if(this!= NULL && size>=0)
     {
         for(i=0;i<size;i++)
         {
-            //if((*(this+i))->estado==1)        //que signifia el estado true?
-            //    continue;
+            Emp_getEstado(*(this+i),&estado);
+            if(estado==0)        //que significa el estado true?
+                continue;
 
             Emp_getId(*(this+i),&id);
             if(id==valorBuscado)                                                   //cambiar campo ID
@@ -458,14 +446,14 @@ int Tipo_buscarString(Tipo array[], int size, char* valorBuscado, int* indice)  
 * \return int Return (-1) si Error [largo no valido o NULL pointer o no hay posiciones vacias] - (0) si se agrega un nuevo elemento exitosamente
 *
 */
-/*
-int Tipo_alta(Tipo array[], int size, int* contadorID)                          //cambiar Tipo
+
+int Emp_alta(Empleado** lista, int size, int* contadorID)                          //cambiar Tipo
 {
     int retorno=-1;
     int posicion;
-    if(array!=NULL && size>0 && contadorID!=NULL)
+    if(lista!=NULL && size>0 && contadorID!=NULL)
     {
-        if(Tipo_buscarEmpty(array,size,&posicion)==-1)                          //cambiar Tipo
+        if(Tipo_buscarEmpty(lista,size,&posicion)==-1)                          //cambiar Tipo
         {
             printf("\nNo hay lugares vacios");
         }
@@ -491,7 +479,7 @@ int Tipo_alta(Tipo array[], int size, int* contadorID)                          
         }
     }
     return retorno;
-}*/
+}
 /*
 Si me pide que uno de los campos tiene que existir en otro array sumo en parametros ese otro array y el tamaño
 int posicion(no se usa)
