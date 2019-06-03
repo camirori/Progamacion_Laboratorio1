@@ -6,13 +6,16 @@
 
 int main()
 {
-
-
     Empleado** lista=NULL;     //puntero al array de punteros
     int index=0;
-    int id;     //hay que tener registro del màx id utilizado, sea ingresado o del archivo, para saber prox id a asignar
+    int sizeLista=0;
+    int ultimoId;     //hay que tener registro del màx id utilizado, sea ingresado o del archivo, para saber prox id a asignar
 
-    Emp_newArchivo(lista,&index,&id);
+    Emp_newArchivo(lista,&index,&ultimoId,&sizeLista);
+    printf("Index %d Size lista %d Ultimo ID %d",index,sizeLista,ultimoId);
+    if(lista==NULL)
+        printf("NULL");
+    Emp_alta(lista,&sizeLista,&ultimoId,&index);
 
     //las bajas pueden ser logicas (cambiar estado) o fisicas (borrar memoria)
 

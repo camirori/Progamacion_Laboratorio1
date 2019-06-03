@@ -5,6 +5,8 @@
 #include "empleado.h"
 #include "utn.h"
 
+//**********************************************************************************************
+//Parseo
 
 int Emp_parseo(FILE* pFile, char* bufferA, char* bufferB, char* bufferC, char* bufferD)
 {
@@ -20,9 +22,25 @@ int Emp_parseo(FILE* pFile, char* bufferA, char* bufferB, char* bufferC, char* b
     return retorno;
 }
 
+//****************************************************************************************
+//New
+
 Empleado* Emp_new(void)       //constructor         //nuevo empleado
 {
     return (Empleado*) malloc(sizeof(Empleado));
+}
+
+Empleado** Emp_reSizeLista(Empleado** pPuntero, int* sizeLista, int i)       //constructor       //nuevo puntero a empleado
+{
+    if(i==1)
+        return (Empleado**) malloc(10*sizeof(Empleado*));
+    else if(i>=*sizeLista)
+    {
+        *sizeLista+=10;
+        return (Empleado**) realloc(pPuntero,(*sizeLista)*sizeof(Empleado*));   //chequea si alcanza el tamaño actual, sino agranda
+    }
+    else
+        return pPuntero;
 }
 
 Empleado* Emp_newStr(char *id, char *nombre, char *apellido, char *estado)       //constructor         //nuevo empleado con los campos cargados
@@ -70,39 +88,46 @@ Empleado* Emp_newStr(char *id, char *nombre, char *apellido, char *estado)      
     return retorno;
 }
 
-int Emp_newArchivo(Empleado** pPuntero, int* index, int* id)
+int Emp_newArchivo(Empleado** pLista, int* index, int* ultimoId, int* sizeLista)
 {
     int retorno=-1;
-    Empleado** auxPuntero;
+    Empleado* auxPuntero=NULL;
+    Empleado** auxPPuntero=NULL;
 
     FILE *pFile=NULL;
     FILE *pFileBkp=NULL;
     pFile=fopen("data.csv","r");    //direccìon archivo, modo de arpetura
-    pFileBkp=fopen("data_bkp.csv","w");
+    pFileBkp=fopen("data_bkp.csv","w");     //???
 
     char arrayBuffers[4][SIZE_STR];        //conviene hacer un array de strings?
 
-    if(pFile!=NULL && pFileBkp!=NULL && index!=NULL)
+    if(pFile!=NULL && pFileBkp!=NULL && index!=NULL && ultimoId!=NULL && sizeLista!=NULL)
     {
         while(!feof(pFile))
         {
-            if(Emp_parseo(pFile,arrayBuffers[0],arrayBuffers[1],arrayBuffers[2],arrayBuffers[3])==-1)
+            if(Emp_parseo(pFile,arrayBuffers[0],arrayBuffers[1],arrayBuffers[2],arrayBuffers[3])==-1)       //tomo datos del archivo
                 continue;
 
-            auxPuntero=Emp_reSizeLista(pPuntero,(*index)+1);
-
+            auxPuntero=Emp_newStr(arrayBuffers[0],arrayBuffers[1],arrayBuffers[2],arrayBuffers[3]);         //valido los datos y lo guardo en aux
             if(auxPuntero!=NULL)
             {
-                pPuntero=auxPuntero;
-
-                *(pPuntero+*index)=Emp_newStr(arrayBuffers[0],arrayBuffers[1],arrayBuffers[2],arrayBuffers[3]);
-                if((pPuntero+*index)!=NULL)
+                auxPPuntero=Emp_reSizeLista(pLista,sizeLista,(*index)+1);                                 //si los datos son validos aumento el size de la lista
+                if(auxPPuntero!=NULL)
                 {
-                    printf("\nId: %d    Nombre: %s  Apellido: %s  Estado: %d",(*(pPuntero+*index))->id,(*(pPuntero+*index))->nombre,(*(pPuntero+*index))->apellido,(*(pPuntero+*index))->estado);
                     (*index)++;
-                    (*id)=(*(pPuntero+*index))->id;
+                    pLista=auxPPuntero;                     //paso &lista de punteros
+                    *(pLista+*index)=auxPuntero;             //paso a la lista de punteros &nueva persona
+                    *ultimoId=(*(pLista+*index))->id;
+
+                    if((pLista+*index)!=NULL && pLista!=NULL)
+                    {
+                        printf("\nId: %d    Nombre: %s  Apellido: %s  Estado: %d",(*(pLista+*index))->id,(*(pLista+*index))->nombre,(*(pLista+*index))->apellido,(*(pLista+*index))->estado);
+                    }
                 }
             }
+            else
+                printf("\nError validacion");
+
             if(*index==10)
                     break;
         }
@@ -115,15 +140,7 @@ int Emp_newArchivo(Empleado** pPuntero, int* index, int* id)
     return retorno;
 }
 
-Empleado** Emp_reSizeLista(Empleado** pPuntero, int i)       //constructor       //nuevo puntero a empleado
-{
-    if(i==1)
-        return (Empleado**) malloc(i*10*sizeof(Empleado*));
-    else if(i>10)
-        return (Empleado**) realloc(pPuntero,i*sizeof(Empleado*));   //chequear si alcanza el tamaño actual, sino agrandar
-    else
-        return pPuntero;
-}
+
 
 int Emp_delete(Empleado* this)       //destructor
 {
@@ -447,37 +464,57 @@ int Tipo_buscarString(Tipo array[], int size, char* valorBuscado, int* indice)  
 *
 */
 
-int Emp_alta(Empleado** lista, int size, int* contadorID)                          //cambiar Tipo
+int Emp_alta(Empleado** pLista, int* sizeLista, int* ultimoId, int* index)
 {
     int retorno=-1;
-    int posicion;
-    if(lista!=NULL && size>0 && contadorID!=NULL)
-    {
-        if(Tipo_buscarEmpty(lista,size,&posicion)==-1)                          //cambiar Tipo
-        {
-            printf("\nNo hay lugares vacios");
-        }
-        else
-        {
-            if( utn_getUnsignedInt("\n: ","\nError",1,sizeof(int),1,&array[posicion].varInt) == 0 &&               //mensaje + cambiar campo varInt
-                utn_getFloat("\n: ","\nError",1,sizeof(float),1,&array[posicion].varFloat) == 0 &&              //mensaje + cambiar campo varFloat
-                utn_getName("\n: ","\nError",1,TEXT_SIZE,1,array[posicion].varString) == 0 &&                      //mensaje + cambiar campo varString
-                utn_getTexto("\n: ","\nError",1,TEXT_SIZE,1,array[posicion].varLongString) == 0)                 //mensaje + cambiar campo varLongString
-            {
-                (*contadorID)++;
-                array[posicion].idUnico=*contadorID;
-                array[posicion].isEmpty=0;
+    Empleado* auxPuntero=NULL;
+    Empleado** auxPPuntero=NULL;
 
-                printf("\n Posicion: %d\n ID: %d\n varInt: %d\n varFloat: %f\n varString: %s\n varLongString: %s",
-                       posicion, array[posicion].idUnico,array[posicion].varInt,array[posicion].varFloat,array[posicion].varString,array[posicion].varLongString);
-                retorno=0;
+    char arrayBuffers[2][SIZE_STR];
+    //pLista!=NULL &&
+    if( sizeLista!=NULL && ultimoId!=NULL && index!=NULL)
+    {
+        if( utn_getName("\nNombre: ","\nError",1,SIZE_STR,1,arrayBuffers[0]) == 0  &&    //deberia tomar todos los datos como string?
+            utn_getName("\nApellido: ","\nError",1,SIZE_STR,1,arrayBuffers[1]) == 0 )
+        {
+            auxPuntero=Emp_new();                                                               //creo nueva persona, si el alta no es exitosa cuando lo borro?
+            if(!Emp_setId(auxPuntero,(*ultimoId)+1) &&                                       //valido datos y los guardo en el aux
+                !Emp_setNombre(auxPuntero,arrayBuffers[0]) &&
+                !Emp_setApellido(auxPuntero,arrayBuffers[1]) &&
+                !Emp_setEstado(auxPuntero,1))
+            {
+                if(auxPuntero!=NULL)
+                {
+                    printf("Error 3");
+
+                    auxPPuntero=Emp_reSizeLista(pLista,sizeLista,(*index)+1);              //si los datos son validos aumento el size de la lista
+                    if(auxPPuntero!=NULL)
+                    {
+                        printf("Error 4");
+                        (*index)++;
+                        pLista=auxPPuntero;                     //paso &lista de punteros
+                        *(pLista+*index)=auxPuntero;             //paso a la lista de punteros &nueva persona
+                        *ultimoId=(*(pLista+*index))->id;
+
+                        if((pLista+*index)!=NULL && pLista!=NULL)
+                        {
+                            printf("\nId: %d    Nombre: %s  Apellido: %s  Estado: %d",(*(pLista+*index))->id,(*(pLista+*index))->nombre,(*(pLista+*index))->apellido,(*(pLista+*index))->estado);
+                            retorno=0;
+                        }
+                    }
+                }
             }
             else
-            {
-                printf("\nAlta no exitosa");
-            }
+                printf("\nError validacion");
         }
     }
+    if(retorno!=0)
+    {
+        printf("\nAlta no exitosa");
+
+    }
+
+
     return retorno;
 }
 /*

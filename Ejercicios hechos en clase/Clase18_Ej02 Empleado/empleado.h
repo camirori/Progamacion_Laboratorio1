@@ -16,8 +16,8 @@ typedef struct
 
 Empleado* Emp_new(void);
 Empleado* Emp_newStr(char *id, char *nombre, char *apellido, char *estado);
-Empleado** Emp_reSizeLista(Empleado* arrayPunteros[], int i);
-int Emp_newArchivo(Empleado** pPuntero, int* index, int* id);
+Empleado** Emp_reSizeLista(Empleado** pPuntero, int* sizeLista, int i);
+int Emp_newArchivo(Empleado** pLista, int* index, int* ultimoId, int* sizeLista);
 int Emp_parseo(FILE* pFile, char* bufferA, char* bufferB, char* bufferC, char* bufferD);
 
 
@@ -45,3 +45,4 @@ int Emp_getEstado(Empleado* this, int* resultado);
 
 
 int Empleado_buscarID(Empleado** this, int size, int valorBuscado, int* posicion);
+int Emp_alta(Empleado** pLista, int* sizeLista, int* ultimoId, int* index);

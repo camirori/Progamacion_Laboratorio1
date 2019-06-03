@@ -99,3 +99,28 @@
 	"empleado.h"
 	"utn.h"
 
+1559520514 source:/home/camila/Documents/Facu/Progamacion_Laboratorio1/Ejercicios hechos en clase/Clase18_Ej02 Empleado/utn.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+	<time.h>
+
+1559520514 /home/camila/Documents/Facu/Progamacion_Laboratorio1/Ejercicios hechos en clase/Clase18_Ej02 Empleado/utn.h
+
+1559534036 source:/home/camila/Documents/Facu/Progamacion_Laboratorio1/Ejercicios hechos en clase/Clase18_Ej02 Empleado/main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"empleado.h"
+	"utn.h"
+
+1559533193 /home/camila/Documents/Facu/Progamacion_Laboratorio1/Ejercicios hechos en clase/Clase18_Ej02 Empleado/empleado.h
+
+1559534588 source:/home/camila/Documents/Facu/Progamacion_Laboratorio1/Ejercicios hechos en clase/Clase18_Ej02 Empleado/empleado.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"empleado.h"
+	"utn.h"
+
