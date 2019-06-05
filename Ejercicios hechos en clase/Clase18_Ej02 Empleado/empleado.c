@@ -13,7 +13,6 @@ int Emp_parseo(FILE* pFile, char* bufferA, char* bufferB, char* bufferC, char* b
     int retorno=-1;
     if(pFile!=NULL)
     {
-
         if(fscanf(pFile,"%[^,],%[^,],%[^,],%[^\n]\n",bufferA,bufferB,bufferC,bufferD)==4)
             retorno=0;
         if(strcmp(bufferB,"first_name")==0)
