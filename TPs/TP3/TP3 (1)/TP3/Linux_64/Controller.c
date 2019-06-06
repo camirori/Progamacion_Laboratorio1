@@ -1,9 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "LinkedList.h"
 #include "Employee.h"
 #include "parser.h"
-
+#include "utn.h"
 
 /** \brief Carga los datos de los empleados desde el archivo data.csv (modo texto).
  *
@@ -54,9 +55,33 @@ int controller_loadFromBinary(char* path , LinkedList* pArrayListEmployee)
  * \return int
  *
  */
-int controller_addEmployee(LinkedList* pArrayListEmployee)
+int controller_addEmployee(LinkedList* pArrayListEmployee, int* ultimoId)       //en lugar de param, dentro de la funcion se tiene que llamar a buscarUltimoId()
 {
-    return 1;
+    int retorno=-1;
+    char arrayBuffers[4][STR_SIZE];
+    Employee* auxPuntero=NULL;
+    //int ultimoId;
+
+    if(pArrayListEmployee!=NULL)
+    {
+                                                //puedo ordenar por ID y obtener el ID del ultimo elemento???
+        (*ultimoId)++;
+        utn_getTexto("\nNombre ","\nError",1,STR_SIZE,1,arrayBuffers[1]);
+        utn_getTexto("\nHoras Trabajadas ","\nError",1,STR_SIZE,1,arrayBuffers[2]);
+        utn_getTexto("\nSueldo ","\nError",1,STR_SIZE,1,arrayBuffers[3]);
+        sprintf(arrayBuffers[0],"%d",*ultimoId);                                 //SIZE????
+
+        auxPuntero=employee_newParametros(arrayBuffers[0],arrayBuffers[1],arrayBuffers[2],arrayBuffers[3]);         //valido los datos y lo guardo en aux
+        if(auxPuntero!=NULL)
+        {
+            ll_add(pArrayListEmployee,auxPuntero);
+            retorno=0;
+            printf("\nAlta exitosa");
+        }
+        else
+            (*ultimoId)--;
+    }
+    return retorno;
 }
 
 /** \brief Modificar datos de empleado
@@ -111,7 +136,7 @@ int controller_ListEmployee(LinkedList* pArrayListEmployee)
             employee_getHorasTrabajadas(puntero,&bufferHoras);
             employee_getSueldo(puntero,&bufferSueldo);
 
-            printf("\n ID: %d\n Nombre: %s\n Horas: %d\n Sueldo: %d",bufferID,bufferNombre,bufferHoras,bufferSueldo);
+            printf("\n ID: %d   Nombre: %s  Horas: %d   Sueldo: %d",bufferID,bufferNombre,bufferHoras,bufferSueldo);
         }
         retorno=0;
     }

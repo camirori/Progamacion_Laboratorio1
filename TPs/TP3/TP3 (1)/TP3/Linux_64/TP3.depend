@@ -99,3 +99,51 @@
 
 1533133022 /home/alumno/Workspace/Progamacion_Laboratorio1/TPs/TP3/TP3 (1)/TP3/Linux_64/parser.h
 
+1559785936 source:/home/camila/Documents/Facu/Progamacion_Laboratorio1/TPs/TP3/TP3 (1)/TP3/Linux_64/Controller.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"LinkedList.h"
+	"Employee.h"
+	"parser.h"
+	"utn.h"
+
+1559783544 /home/camila/Documents/Facu/Progamacion_Laboratorio1/TPs/TP3/TP3 (1)/TP3/Linux_64/LinkedList.h
+
+1559783544 /home/camila/Documents/Facu/Progamacion_Laboratorio1/TPs/TP3/TP3 (1)/TP3/Linux_64/Employee.h
+
+1559783544 /home/camila/Documents/Facu/Progamacion_Laboratorio1/TPs/TP3/TP3 (1)/TP3/Linux_64/parser.h
+
+1559784485 source:/home/camila/Documents/Facu/Progamacion_Laboratorio1/TPs/TP3/TP3 (1)/TP3/Linux_64/Employee.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Employee.h"
+	"utn.h"
+
+1559783544 /home/camila/Documents/Facu/Progamacion_Laboratorio1/TPs/TP3/TP3 (1)/TP3/Linux_64/utn.h
+
+1559785783 source:/home/camila/Documents/Facu/Progamacion_Laboratorio1/TPs/TP3/TP3 (1)/TP3/Linux_64/main.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"Controller.h"
+	"Employee.h"
+	"utn.h"
+
+1559785815 /home/camila/Documents/Facu/Progamacion_Laboratorio1/TPs/TP3/TP3 (1)/TP3/Linux_64/Controller.h
+
+1559783544 source:/home/camila/Documents/Facu/Progamacion_Laboratorio1/TPs/TP3/TP3 (1)/TP3/Linux_64/utn.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+	<time.h>
+
+1559785205 source:/home/camila/Documents/Facu/Progamacion_Laboratorio1/TPs/TP3/TP3 (1)/TP3/Linux_64/parser.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"LinkedList.h"
+	"Employee.h"
+

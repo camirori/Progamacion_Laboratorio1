@@ -25,19 +25,29 @@ int main()
 {
     int option = 0;
     LinkedList* listaEmpleados = ll_newLinkedList();
+    int ultimoId=1;
 
     do{
-        utn_getUnsignedInt("\nOpcion","\nError",1,3,1,&option);
+        utn_getUnsignedInt("\nOpcion ","\nError",1,3,1,&option);
         switch(option)
         {
             case 1:
                 controller_loadFromText("data.csv",listaEmpleados);
-                //controller_ListEmployee(listaEmpleados);
+                break;
 
+            case 3:
+                controller_addEmployee(listaEmpleados, &ultimoId);
+                break;
 
+            case 6:
+                printf("Lista");
+                controller_ListEmployee(listaEmpleados);
                 break;
         }
     }while(option != 10);
     return 0;
 }
 
+/*
+F() para obtener el ultimo ID
+*/

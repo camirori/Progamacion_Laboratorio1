@@ -29,18 +29,12 @@ int parser_EmployeeFromText(FILE* pFile , LinkedList* pArrayListEmployee)
             auxPuntero=employee_newParametros(arrayBuffers[0],arrayBuffers[1],arrayBuffers[2],arrayBuffers[3]);         //valido los datos y lo guardo en aux
             if(auxPuntero!=NULL)
             {
-                    //(*index)++;
-                        //pArrayListEmployee.pFirstNode.pElement=auxPuntero;             //paso a la lista de punteros &nueva persona           get nçNode???
-
                 ll_add(pArrayListEmployee,auxPuntero);
-                auxPuntero=ll_get(pArrayListEmployee,pArrayListEmployee->size);
 
-                            printf("a");
-
+                /*
+                auxPuntero=ll_get(pArrayListEmployee,(pArrayListEmployee->size)-1);
                 if(auxPuntero!=NULL)
                 {
-                                                                printf("a");
-
                     int bufferID;
                     int bufferHoras;
                     int bufferSueldo;
@@ -49,12 +43,11 @@ int parser_EmployeeFromText(FILE* pFile , LinkedList* pArrayListEmployee)
                     employee_getNombre(auxPuntero,bufferNombre);
                     employee_getHorasTrabajadas(auxPuntero,&bufferHoras);
                     employee_getSueldo(auxPuntero,&bufferSueldo);
-                    printf("\n ID: %d\n Nombre: %s\n Horas: %d\n Sueldo: %d",bufferID,bufferNombre,bufferHoras,bufferSueldo);
-                    //(pArrayListEmployee->size)++;
+                    printf("\n ID: %d Nombre: %s Horas: %d Sueldo: %d",bufferID,bufferNombre,bufferHoras,bufferSueldo);
                     retorno=0;
-                }
+                }*/
 
-                        //*ultimoId=(*(pLista+*index))->id;
+
             }
             else
                 printf("\nError validacion");

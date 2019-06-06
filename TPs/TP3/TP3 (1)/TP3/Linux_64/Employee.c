@@ -110,7 +110,7 @@ int employee_setHorasTrabajadasStr(Employee* this,char* horasTrabajadas)
     int retorno=-1;
     if(this!=NULL && horasTrabajadas!=NULL && isValidNumber(horasTrabajadas))
     {
-        retorno=employee_setId(this,atoi(horasTrabajadas));
+        retorno=employee_setHorasTrabajadas(this,atoi(horasTrabajadas));
     }
     return retorno;
 }
@@ -168,5 +168,6 @@ int employee_getSueldo(Employee* this,int* sueldo)
     }
     return retorno;
 }
+
 
 
