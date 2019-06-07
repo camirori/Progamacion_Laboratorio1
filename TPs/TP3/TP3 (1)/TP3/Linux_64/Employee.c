@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "LinkedList.h"
 #include "Employee.h"
 #include "utn.h"
 
@@ -85,7 +86,7 @@ int employee_getId(Employee* this,int* id)
 int employee_setNombre(Employee* this,char* nombre)
 {
     int retorno=-1;
-    if(this!=NULL && nombre!=NULL)
+    if(this!=NULL && nombre!=NULL && isValidName(nombre))
     {
         strcpy(this->nombre,nombre);
         retorno=0;
@@ -169,5 +170,91 @@ int employee_getSueldo(Employee* this,int* sueldo)
     return retorno;
 }
 
+//*******************************************************************
 
 
+int employee_searchId(LinkedList* pArrayListEmployee, int valorBuscado, int* index)
+{
+    int retorno=-1;
+    int i;
+    int bufferID;
+    int size=ll_len(pArrayListEmployee);
+    Employee* puntero=NULL;
+
+    if(pArrayListEmployee!=NULL && size>=0)
+    {
+        for(i=0;i<size;i++)
+        {
+            puntero=ll_get(pArrayListEmployee,i);
+            employee_getId(puntero,&bufferID);
+
+            if(valorBuscado==bufferID)
+            {
+                *index=i;
+                retorno=0;
+            }
+        }
+    }
+    return retorno;
+}
+
+int employee_cmpId(void* this1, void* this2)
+{
+    int retorno=-1;
+
+    int bufferIdI;
+    int bufferIdJ;
+
+    if(this1!=NULL && this2!=NULL)
+    {
+        employee_getId((Employee*)this1,&bufferIdI);
+        employee_getId((Employee*)this2,&bufferIdJ);
+        if(bufferIdI==bufferIdJ)
+            retorno=0;
+        else if(bufferIdI>bufferIdJ)
+            retorno=1;
+        else if(bufferIdI<bufferIdJ)
+            retorno=-1;
+    }
+    return retorno;
+}
+
+int employee_cmpName(void* this1, void* this2)          //el sort es generico asique se usa el puntero generico void
+{
+    int retorno=-1;
+
+    char bufferI[STR_SIZE];
+    char bufferJ[STR_SIZE];
+
+    if(this1!=NULL && this2!=NULL)
+    {
+        employee_getNombre((Employee*)this1,bufferI);
+        employee_getNombre((Employee*)this2,bufferJ);
+        if(strcmp(bufferI,bufferJ)==0)
+            retorno=0;
+        if(strcmp(bufferI,bufferJ)>0)
+            retorno=1;
+        if(strcmp(bufferI,bufferJ)<0)
+            retorno=-1;
+    }
+    return retorno;
+}
+
+int employee_searchMaxId(LinkedList* pArrayListEmployee, int* maxID)
+{
+    int retorno=-1;
+    Employee* puntero=NULL;
+    int size=ll_len(pArrayListEmployee);
+
+    if(pArrayListEmployee!=NULL && maxID!=NULL)
+    {
+        ll_sort(pArrayListEmployee,employee_cmpId,1);              //-1 ascendente
+        puntero=ll_get(pArrayListEmployee,size-1);
+        if(puntero!=NULL)
+        {
+            employee_getId(puntero,maxID);
+            retorno=1;
+        }
+    }
+    return retorno;
+}

@@ -30,4 +30,11 @@ int employee_setSueldoStr(Employee* this,char* sueldo);
 int employee_setSueldo(Employee* this,int sueldo);
 int employee_getSueldo(Employee* this,int* sueldo);
 
+int employee_cmpId(void* punteroI, void* punteroJ);
+int employee_cmpName(void* this1, void* this2);
+
+int employee_searchId(LinkedList* pArrayListEmployee, int valorBuscado, int* index);
+int employee_searchMaxId(LinkedList* pArrayListEmployee, int* maxID);
+
+
 #endif // employee_H_INCLUDED

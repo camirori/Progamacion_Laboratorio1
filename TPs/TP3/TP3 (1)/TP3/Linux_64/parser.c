@@ -47,10 +47,11 @@ int parser_EmployeeFromText(FILE* pFile , LinkedList* pArrayListEmployee)
                     retorno=0;
                 }*/
 
-
             }
             else
+            {
                 printf("\nError validacion");
+            }
         }
     }
     return retorno;

@@ -53,51 +53,55 @@
 	"LinkedList.h"
 	"Employee.h"
 
-1559697025 source:/home/alumno/Workspace/Progamacion_Laboratorio1/TPs/TP3/TP3 (1)/TP3/Linux_64/Controller.c
+1559869416 source:/home/alumno/Workspace/Progamacion_Laboratorio1/TPs/TP3/TP3 (1)/TP3/Linux_64/Controller.c
 	<stdio.h>
 	<stdlib.h>
+	<string.h>
 	"LinkedList.h"
 	"Employee.h"
 	"parser.h"
+	"utn.h"
 
-1533133022 /home/alumno/Workspace/Progamacion_Laboratorio1/TPs/TP3/TP3 (1)/TP3/Linux_64/LinkedList.h
+1559857569 /home/alumno/Workspace/Progamacion_Laboratorio1/TPs/TP3/TP3 (1)/TP3/Linux_64/LinkedList.h
 
-1559690571 /home/alumno/Workspace/Progamacion_Laboratorio1/TPs/TP3/TP3 (1)/TP3/Linux_64/Employee.h
+1559867637 /home/alumno/Workspace/Progamacion_Laboratorio1/TPs/TP3/TP3 (1)/TP3/Linux_64/Employee.h
 
-1559696988 source:/home/alumno/Workspace/Progamacion_Laboratorio1/TPs/TP3/TP3 (1)/TP3/Linux_64/main.c
+1559868661 source:/home/alumno/Workspace/Progamacion_Laboratorio1/TPs/TP3/TP3 (1)/TP3/Linux_64/main.c
 	<stdio.h>
 	<stdlib.h>
+	<string.h>
 	"LinkedList.h"
 	"Controller.h"
 	"Employee.h"
 	"utn.h"
 
-1533133022 /home/alumno/Workspace/Progamacion_Laboratorio1/TPs/TP3/TP3 (1)/TP3/Linux_64/Controller.h
+1559863281 /home/alumno/Workspace/Progamacion_Laboratorio1/TPs/TP3/TP3 (1)/TP3/Linux_64/Controller.h
 
-1559697244 source:/home/alumno/Workspace/Progamacion_Laboratorio1/TPs/TP3/TP3 (1)/TP3/Linux_64/parser.c
+1559864825 source:/home/alumno/Workspace/Progamacion_Laboratorio1/TPs/TP3/TP3 (1)/TP3/Linux_64/parser.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"LinkedList.h"
 	"Employee.h"
 
-1559684474 source:/home/alumno/Workspace/Progamacion_Laboratorio1/TPs/TP3/TP3 (1)/TP3/Linux_64/utn.c
+1559857569 source:/home/alumno/Workspace/Progamacion_Laboratorio1/TPs/TP3/TP3 (1)/TP3/Linux_64/utn.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"utn.h"
 	<time.h>
 
-1559684474 /home/alumno/Workspace/Progamacion_Laboratorio1/TPs/TP3/TP3 (1)/TP3/Linux_64/utn.h
+1559857569 /home/alumno/Workspace/Progamacion_Laboratorio1/TPs/TP3/TP3 (1)/TP3/Linux_64/utn.h
 
-1559697153 source:/home/alumno/Workspace/Progamacion_Laboratorio1/TPs/TP3/TP3 (1)/TP3/Linux_64/Employee.c
+1559868876 source:/home/alumno/Workspace/Progamacion_Laboratorio1/TPs/TP3/TP3 (1)/TP3/Linux_64/Employee.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
+	"LinkedList.h"
 	"Employee.h"
 	"utn.h"
 
-1533133022 /home/alumno/Workspace/Progamacion_Laboratorio1/TPs/TP3/TP3 (1)/TP3/Linux_64/parser.h
+1559857569 /home/alumno/Workspace/Progamacion_Laboratorio1/TPs/TP3/TP3 (1)/TP3/Linux_64/parser.h
 
 1559785936 source:/home/camila/Documents/Facu/Progamacion_Laboratorio1/TPs/TP3/TP3 (1)/TP3/Linux_64/Controller.c
 	<stdio.h>

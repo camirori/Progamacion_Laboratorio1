@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "LinkedList.h"
 #include "Controller.h"
 #include "Employee.h"
@@ -25,7 +26,6 @@ int main()
 {
     int option = 0;
     LinkedList* listaEmpleados = ll_newLinkedList();
-    int ultimoId=1;
 
     do{
         utn_getUnsignedInt("\nOpcion ","\nError",1,3,1,&option);
@@ -35,13 +35,36 @@ int main()
                 controller_loadFromText("data.csv",listaEmpleados);
                 break;
 
+            case 2:
+                controller_loadFromBinary("data.csv",listaEmpleados);
+                break;
+
             case 3:
-                controller_addEmployee(listaEmpleados, &ultimoId);
+                printf("\nAlta");
+                controller_addEmployee(listaEmpleados);
+                break;
+
+            case 4:
+                controller_editEmployee(listaEmpleados);
+                break;
+
+            case 5:
+                controller_removeEmployee(listaEmpleados);
                 break;
 
             case 6:
-                printf("Lista");
+                printf("\nLista");
                 controller_ListEmployee(listaEmpleados);
+                break;
+
+            case 7:
+                controller_sortEmployee(listaEmpleados);
+                break;
+
+            case 8:
+
+            case 9:
+                controller_saveAsBinary("data.bin",listaEmpleados);
                 break;
         }
     }while(option != 10);
@@ -50,4 +73,12 @@ int main()
 
 /*
 F() para obtener el ultimo ID
+*/
+
+/*
+//Puntero a funcion
+int fx(int i, int(*pFuncion)(void*,void*))
+{
+    pFuncion(a,b);
+}
 */
