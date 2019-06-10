@@ -14,10 +14,8 @@ Employee* employee_new(void)       //constructor         //nuevo empleado
 
 Employee* employee_newParametros(char* idStr,char* nombreStr,char* horasTrabajadasStr, char* sueldoStr)
 {
-
     Employee* retorno=NULL;
     Employee* bufferP;
-
 
     if(idStr!=NULL && nombreStr!=NULL && horasTrabajadasStr!=NULL && sueldoStr!=NULL)
     {
@@ -28,6 +26,38 @@ Employee* employee_newParametros(char* idStr,char* nombreStr,char* horasTrabajad
                 !employee_setNombre(bufferP,nombreStr) &&
                 !employee_setHorasTrabajadasStr(bufferP,horasTrabajadasStr) &&
                 !employee_setSueldoStr(bufferP,sueldoStr))
+            {
+                retorno=bufferP;
+            }
+            else
+            {
+                employee_delete(bufferP);
+            }
+        }
+    }
+    return retorno;
+}
+
+Employee* employee_newBinario(Employee empleado)
+{
+    Employee* retorno=NULL;
+    Employee* bufferP;
+
+    char arrayBuffers[3][STR_SIZE];
+
+    sprintf(arrayBuffers[0],"%d",empleado.id);
+    sprintf(arrayBuffers[1],"%d",empleado.horasTrabajadas);
+    sprintf(arrayBuffers[2],"%d",empleado.sueldo);
+
+    if(arrayBuffers[0]!=NULL && empleado.nombre!=NULL && arrayBuffers[1]!=NULL && arrayBuffers[2]!=NULL)
+    {
+        bufferP=employee_new();
+        if(bufferP!=NULL)
+        {
+            if(!employee_setIdStr(bufferP,arrayBuffers[0]) &&
+                !employee_setNombre(bufferP,empleado.nombre) &&
+                !employee_setHorasTrabajadasStr(bufferP,arrayBuffers[1]) &&
+                !employee_setSueldoStr(bufferP,arrayBuffers[2]))
             {
                 retorno=bufferP;
             }
@@ -245,16 +275,24 @@ int employee_searchMaxId(LinkedList* pArrayListEmployee, int* maxID)
     int retorno=-1;
     Employee* puntero=NULL;
     int size=ll_len(pArrayListEmployee);
+    int i;
+    int bufferId;
+    int bufferMaxId=*maxID;
 
     if(pArrayListEmployee!=NULL && maxID!=NULL)
     {
-        ll_sort(pArrayListEmployee,employee_cmpId,1);              //-1 ascendente
-        puntero=ll_get(pArrayListEmployee,size-1);
-        if(puntero!=NULL)
+        for(i=0;i<size;i++)
         {
-            employee_getId(puntero,maxID);
-            retorno=1;
+            puntero=ll_get(pArrayListEmployee,i);
+            if(puntero!=NULL)
+            {
+                employee_getId(puntero,&bufferId);
+                if(bufferId>bufferMaxId)
+                    bufferMaxId=bufferId;
+            }
         }
+        *maxID=bufferMaxId;
+
     }
     return retorno;
 }

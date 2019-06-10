@@ -13,6 +13,8 @@ typedef struct
 
 Employee* employee_new();
 Employee* employee_newParametros(char* idStr,char* nombreStr,char* horasTrabajadasStr, char* sueldo);
+Employee* employee_newBinario(Employee empleado);
+
 void employee_delete();
 
 int employee_setIdStr(Employee* this,char* id);
