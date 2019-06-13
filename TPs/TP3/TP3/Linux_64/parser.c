@@ -6,7 +6,7 @@
 
 /** \brief Parsea los datos los datos de los empleados desde el archivo data.csv (modo texto).
  *
- * \param path char*
+ * \param pFile FILE*
  * \param pArrayListEmployee LinkedList*
  * \return int
  *
@@ -31,22 +31,6 @@ int parser_EmployeeFromText(FILE* pFile , LinkedList* pArrayListEmployee)
             {
                 ll_add(pArrayListEmployee,auxPuntero);
                 retorno=1;
-                /*
-                auxPuntero=ll_get(pArrayListEmployee,(pArrayListEmployee->size)-1);
-                if(auxPuntero!=NULL)
-                {
-                    int bufferID;
-                    int bufferHoras;
-                    int bufferSueldo;
-                    char bufferNombre[STR_SIZE];
-                    employee_getId(auxPuntero,&bufferID);
-                    employee_getNombre(auxPuntero,bufferNombre);
-                    employee_getHorasTrabajadas(auxPuntero,&bufferHoras);
-                    employee_getSueldo(auxPuntero,&bufferSueldo);
-                    printf("\n ID: %d Nombre: %s Horas: %d Sueldo: %d",bufferID,bufferNombre,bufferHoras,bufferSueldo);
-
-                }*/
-
             }
             else
             {
@@ -60,7 +44,7 @@ int parser_EmployeeFromText(FILE* pFile , LinkedList* pArrayListEmployee)
 
 /** \brief Parsea los datos los datos de los empleados desde el archivo data.csv (modo binario).
  *
- * \param path char*
+ * \param pFile FILE*
  * \param pArrayListEmployee LinkedList*
  * \return int
  *
@@ -73,7 +57,8 @@ int parser_EmployeeFromBinary(FILE* pFile , LinkedList* pArrayListEmployee)
 
     if(pFile!=NULL && pArrayListEmployee!=NULL)
     {
-        fread(&auxEmpleado,sizeof(Employee),1,pFile);
+        if(fread(&auxEmpleado,sizeof(Employee),1,pFile)==sizeof(Employee))
+            printf("\nOk");
         pEmpleado=employee_newBinario(auxEmpleado);
 
         if(pEmpleado!=NULL)
@@ -84,7 +69,6 @@ int parser_EmployeeFromBinary(FILE* pFile , LinkedList* pArrayListEmployee)
         }
         else
         {
-            employee_delete(pEmpleado);
             retorno=-2;
         }
     }

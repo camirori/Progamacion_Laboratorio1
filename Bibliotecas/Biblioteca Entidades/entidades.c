@@ -221,20 +221,22 @@ int Tipo_baja(Tipo array[], int sizeArray)                                      
     int id;
     if(array!=NULL && sizeArray>0)
     {
-        utn_getUnsignedInt("\nID a cancelar: ","\nError",1,sizeof(int),1,&id);          //cambiar si no se busca por ID
-        if(Tipo_buscarID(array,sizeArray,id,&posicion)==-1)                                   //cambiar si no se busca por ID
+        if(utn_getUnsignedInt("\nID a cancelar: ","\nError",1,sizeof(int),1,&id)==0)         //cambiar si no se busca por ID
         {
-            printf("\nNo existe este ID");                                                          //cambiar si no se busca por ID
-        }
-        else
-        {
-            array[posicion].isEmpty=1;
-            array[posicion].idUnico=0;                                                                   //cambiar campo id
-            array[posicion].varInt=0;                                                               //cambiar campo varInt
-            array[posicion].varFloat=0;                                                             //cambiar campo varFloat
-            strcpy(array[posicion].varString,"");                                                   //cambiar campo varString
-            strcpy(array[posicion].varLongString,"");                                               //cambiar campo varLongString
-            retorno=0;
+            if(Tipo_buscarID(array,sizeArray,id,&posicion)==-1)                                   //cambiar si no se busca por ID
+            {
+                printf("\nNo existe este ID");                                                          //cambiar si no se busca por ID
+            }
+            else
+            {
+                array[posicion].isEmpty=1;
+                array[posicion].idUnico=0;                                                                   //cambiar campo id
+                array[posicion].varInt=0;                                                               //cambiar campo varInt
+                array[posicion].varFloat=0;                                                             //cambiar campo varFloat
+                strcpy(array[posicion].varString,"");                                                   //cambiar campo varString
+                strcpy(array[posicion].varLongString,"");                                               //cambiar campo varLongString
+                retorno=0;
+            }
         }
     }
     return retorno;
@@ -289,39 +291,41 @@ int Tipo_modificar(Tipo array[], int sizeArray)                                /
     char opcion;
     if(array!=NULL && sizeArray>0)
     {
-        utn_getUnsignedInt("\nID a modificar: ","\nError",1,sizeof(int),1,&id);         //cambiar si no se busca por ID
-        if(Tipo_buscarID(array,sizeArray,id,&posicion)==-1)                                   //cambiar si no se busca por ID
+        if(utn_getUnsignedInt("\nID a modificar: ","\nError",1,sizeof(int),1,&id)==0)         //cambiar si no se busca por ID
         {
-            printf("\nNo existe este ID");                                                          //cambiar si no se busca por ID
-        }
-        else
-        {
-            do
-            {       //copiar printf de alta
-                printf("\n Posicion: %d\n ID: %d\n varInt: %d\n varFloat: %f\n varString: %s\n varLongString: %s",
-                       posicion, array[posicion].idUnico,array[posicion].varInt,array[posicion].varFloat,array[posicion].varString,array[posicion].varLongString);
-                utn_getLetra("\nModificar: A B C D S(salir)","\nError",1,&opcion);
-                switch(opcion)
-                {
-                    case 'A':
-                        utn_getUnsignedInt("\n: ","\nError",1,sizeof(int),1,&array[posicion].varInt);           //mensaje + cambiar campo varInt
-                        break;
-                    case 'B':
-                        utn_getFloat("\n: ","\nError",1,sizeof(float),1,&array[posicion].varFloat);             //mensaje + cambiar campo varFloat
-                        break;
-                    case 'C':
-                        utn_getName("\n: ","\nError",1,TEXT_SIZE,1,array[posicion].varString);                      //mensaje + cambiar campo varString
-                        break;
-                    case 'D':
-                        utn_getTexto("\n: ","\nError",1,TEXT_SIZE,1,array[posicion].varLongString);             //mensaje + cambiar campo varLongString
-                        break;
-                    case 'S':
-                        break;
-                    default:
-                        printf("\nOpcion no valida");
-                }
-            }while(opcion!='S');
-            retorno=0;
+            if(Tipo_buscarID(array,sizeArray,id,&posicion)==-1)                                   //cambiar si no se busca por ID
+            {
+                printf("\nNo existe este ID");                                                          //cambiar si no se busca por ID
+            }
+            else
+            {
+                do
+                {       //copiar printf de alta
+                    printf("\n Posicion: %d\n ID: %d\n varInt: %d\n varFloat: %f\n varString: %s\n varLongString: %s",
+                           posicion, array[posicion].idUnico,array[posicion].varInt,array[posicion].varFloat,array[posicion].varString,array[posicion].varLongString);
+                    utn_getLetra("\nModificar: A B C D S(salir)","\nError",1,&opcion);
+                    switch(opcion)
+                    {
+                        case 'A':
+                            utn_getUnsignedInt("\n: ","\nError",1,sizeof(int),1,&array[posicion].varInt);           //mensaje + cambiar campo varInt
+                            break;
+                        case 'B':
+                            utn_getFloat("\n: ","\nError",1,sizeof(float),1,&array[posicion].varFloat);             //mensaje + cambiar campo varFloat
+                            break;
+                        case 'C':
+                            utn_getName("\n: ","\nError",1,TEXT_SIZE,1,array[posicion].varString);                      //mensaje + cambiar campo varString
+                            break;
+                        case 'D':
+                            utn_getTexto("\n: ","\nError",1,TEXT_SIZE,1,array[posicion].varLongString);             //mensaje + cambiar campo varLongString
+                            break;
+                        case 'S':
+                            break;
+                        default:
+                            printf("\nOpcion no valida");
+                    }
+                }while(opcion!='S');
+                retorno=0;
+            }
         }
     }
     return retorno;

@@ -87,3 +87,21 @@
 	"utn.h"
 	<time.h>
 
+1560386666 source:/home/camila/Documents/Facu/Progamacion_Laboratorio1/Bibliotecas/Biblioteca Entidades/informes.c
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	"utn.h"
+	"entidades.h"
+
+1560386666 /home/camila/Documents/Facu/Progamacion_Laboratorio1/Bibliotecas/Biblioteca Entidades/utn.h
+
+1560386666 /home/camila/Documents/Facu/Progamacion_Laboratorio1/Bibliotecas/Biblioteca Entidades/entidades.h
+
+1560386666 source:/home/camila/Documents/Facu/Progamacion_Laboratorio1/Bibliotecas/Biblioteca Entidades/main.c
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	"utn.h"
+	"entidades.h"
+

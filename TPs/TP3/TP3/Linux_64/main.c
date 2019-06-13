@@ -85,12 +85,3 @@ int main()
     }while(option != 10);
     return 0;
 }
-
-
-/*
-//Puntero a funcion
-int fx(int i, int(*pFuncion)(void*,void*))
-{
-    pFuncion(a,b);
-}
-*/

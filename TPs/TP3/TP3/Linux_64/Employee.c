@@ -6,12 +6,26 @@
 #include "Employee.h"
 #include "utn.h"
 
-
+/** \brief Reserva espacio en memoria para un empleado
+ *
+ * \param void
+ * \return Employee*
+ *
+ */
 Employee* employee_new(void)       //constructor         //nuevo empleado
 {
     return (Employee*) malloc(sizeof(Employee));
 }
 
+/** \brief Valida los campos y los carga en una variable Employee
+ *
+ * \param idStr char*
+ * \param nombreStr char*
+ * \param horasTrabajadasStr char*
+ * \param sueldoStr char*
+ * \return Employee*
+ *
+ */
 Employee* employee_newParametros(char* idStr,char* nombreStr,char* horasTrabajadasStr, char* sueldoStr)
 {
     Employee* retorno=NULL;
@@ -38,6 +52,12 @@ Employee* employee_newParametros(char* idStr,char* nombreStr,char* horasTrabajad
     return retorno;
 }
 
+/** \brief Valida los campos y los carga en una variable Employee
+ *
+ * \param empleado Employee
+ * \return Employee*
+ *
+ */
 Employee* employee_newBinario(Employee empleado)
 {
     Employee* retorno=NULL;
@@ -70,6 +90,12 @@ Employee* employee_newBinario(Employee empleado)
     return retorno;
 }
 
+/** \brief Libera el espacio reservado en memoria para un empleado
+ *
+ * \param this Employee*
+ * \return void
+ *
+ */
 void employee_delete(Employee* this)
 {
     if(this!=NULL)
@@ -81,6 +107,14 @@ void employee_delete(Employee* this)
 //********************************************************************************************************************
 //Setter+getters
 
+
+/** \brief Valida un campo y lo carga en la variable Employee
+ *
+ * \param this Employee*
+ * \param id char*
+ * \return int
+ *
+ */
 int employee_setIdStr(Employee* this,char* id)
 {
     int retorno=-1;
@@ -91,6 +125,13 @@ int employee_setIdStr(Employee* this,char* id)
     return retorno;
 }
 
+/** \brief Valida un campo y lo carga en la variable Employee
+ *
+ * \param this Employee*
+ * \param id int
+ * \return int
+ *
+ */
 int employee_setId(Employee* this,int id)
 {
     int retorno=-1;
@@ -102,6 +143,13 @@ int employee_setId(Employee* this,int id)
     return retorno;
 }
 
+/** \brief Devulve el valor contenido en un campo de una variable Employee
+ *
+ * \param this Employee*
+ * \param id int*
+ * \return int
+ *
+ */
 int employee_getId(Employee* this,int* id)
 {
     int retorno=-1;
@@ -113,6 +161,13 @@ int employee_getId(Employee* this,int* id)
     return retorno;
 }
 
+/** \brief Valida un campo y lo carga en la variable Employee
+ *
+ * \param this Employee*
+ * \param nombre char*
+ * \return int
+ *
+ */
 int employee_setNombre(Employee* this,char* nombre)
 {
     int retorno=-1;
@@ -124,6 +179,13 @@ int employee_setNombre(Employee* this,char* nombre)
     return retorno;
 }
 
+/** \brief Devulve el valor contenido en un campo de una variable Employee
+ *
+ * \param this Employee*
+ * \param nombre char*
+ * \return int
+ *
+ */
 int employee_getNombre(Employee* this,char* nombre)
 {
     int retorno=-1;
@@ -135,7 +197,13 @@ int employee_getNombre(Employee* this,char* nombre)
     return retorno;
 }
 
-
+/** \brief Valida un campo y lo carga en la variable Employee
+ *
+ * \param this Employee*
+ * \param horasTrabajadas char*
+ * \return int
+ *
+ */
 int employee_setHorasTrabajadasStr(Employee* this,char* horasTrabajadas)
 {
     int retorno=-1;
@@ -146,6 +214,13 @@ int employee_setHorasTrabajadasStr(Employee* this,char* horasTrabajadas)
     return retorno;
 }
 
+/** \brief Valida un campo y lo carga en la variable Employee
+ *
+ * \param this Employee*
+ * \param horasTrabajadas int
+ * \return int
+ *
+ */
 int employee_setHorasTrabajadas(Employee* this,int horasTrabajadas)
 {
     int retorno=-1;
@@ -157,6 +232,13 @@ int employee_setHorasTrabajadas(Employee* this,int horasTrabajadas)
     return retorno;
 }
 
+/** \brief Devulve el valor contenido en un campo de una variable Employee
+ *
+ * \param this Employee*
+ * \param horasTrabajadas int*
+ * \return int
+ *
+ */
 int employee_getHorasTrabajadas(Employee* this,int* horasTrabajadas)
 {
     int retorno=-1;
@@ -168,6 +250,13 @@ int employee_getHorasTrabajadas(Employee* this,int* horasTrabajadas)
     return retorno;
 }
 
+/** \brief Valida un campo y lo carga en la variable Employee
+ *
+ * \param this Employee*
+ * \param sueldo char*
+ * \return int
+ *
+ */
 int employee_setSueldoStr(Employee* this,char* sueldo)
 {
     int retorno=-1;
@@ -178,6 +267,13 @@ int employee_setSueldoStr(Employee* this,char* sueldo)
     return retorno;
 }
 
+/** \brief Valida un campo y lo carga en la variable Employee
+ *
+ * \param this Employee*
+ * \param sueldo int
+ * \return int
+ *
+ */
 int employee_setSueldo(Employee* this,int sueldo)
 {
     int retorno=-1;
@@ -189,6 +285,13 @@ int employee_setSueldo(Employee* this,int sueldo)
     return retorno;
 }
 
+/** \brief Devulve el valor contenido en un campo de una variable Employee
+ *
+ * \param this Employee*
+ * \param sueldo int*
+ * \return int
+ *
+ */
 int employee_getSueldo(Employee* this,int* sueldo)
 {
     int retorno=-1;
@@ -202,7 +305,14 @@ int employee_getSueldo(Employee* this,int* sueldo)
 
 //*******************************************************************
 
-
+/** \brief Busca un ID y devuelve el indice
+ *
+ * \param pArrayListEmployee LinkedList*
+ * \param valorBuscado int
+ * \param index int*
+ * \return int
+ *
+ */
 int employee_searchId(LinkedList* pArrayListEmployee, int valorBuscado, int* index)
 {
     int retorno=-1;
@@ -228,6 +338,13 @@ int employee_searchId(LinkedList* pArrayListEmployee, int valorBuscado, int* ind
     return retorno;
 }
 
+/** \brief Compara dos ID
+ *
+ * \param this1 void*
+ * \param this2 void*
+ * \return int
+ *
+ */
 int employee_cmpId(void* this1, void* this2)
 {
     int retorno=-1;
@@ -249,6 +366,13 @@ int employee_cmpId(void* this1, void* this2)
     return retorno;
 }
 
+/** \brief Compara dos Nombres
+ *
+ * \param this1 void*
+ * \param this2 void*
+ * \return int
+ *
+ */
 int employee_cmpName(void* this1, void* this2)          //el sort es generico asique se usa el puntero generico void
 {
     int retorno=-1;
@@ -270,6 +394,13 @@ int employee_cmpName(void* this1, void* this2)          //el sort es generico as
     return retorno;
 }
 
+/** \brief Busca el maximo ID
+ *
+ * \param pArrayListEmployee LinkedList*
+ * \param maxID int*
+ * \return int
+ *
+ */
 int employee_searchMaxId(LinkedList* pArrayListEmployee, int* maxID)
 {
     int retorno=-1;
@@ -292,6 +423,7 @@ int employee_searchMaxId(LinkedList* pArrayListEmployee, int* maxID)
             }
         }
         *maxID=bufferMaxId;
+        retorno=0;
 
     }
     return retorno;

@@ -32,7 +32,7 @@ utn_getDate
 int getString(char* msg, char* msgError, int min, int max, int* reintentos, char* resultado)
 {
     int retorno=-1;
-    char bufferStr[max+10];
+    char bufferStr[max+20];             //si lo ingresado es mayor a este buffer lo va a tomar en el proximo codigo a ejecutar
 
     if(msg!=NULL && msgError!=NULL && min<=max && reintentos>=0 && resultado!=NULL)
     {
