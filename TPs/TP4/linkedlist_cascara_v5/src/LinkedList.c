@@ -98,31 +98,30 @@ static int addNode(LinkedList* this, int nodeIndex,void* pElement)
 
     if(this!=NULL && nodeIndex>=0 && nodeIndex<=ll_len(this))     //no se valida el elemento  && pElement!=NULL
     {
-        pAuxNew = (Node *)malloc(sizeof(Node));
+        pAuxNew = (Node*)malloc(sizeof(Node));
         pAuxPrev=getNode(this,nodeIndex-1);
 
         if(pAuxNew!=NULL)
         {
             pAuxNew->pElement=pElement;
-            pAuxNew->pNextNode=getNode(this,nodeIndex);           //si es el ultimo elemento el get va a dar NULL, por lo que no apunta a nada
+            pAuxNew->pNextNode=getNode(this,nodeIndex);          //si es el ultimo elemento el get va a dar NULL, por lo que no apunta a nada
 
             if(nodeIndex==0)                    //Previo: donde almaceno la & del nuevo nodo
             {
                 this->pFirstNode=pAuxNew;
-                returnAux=0;
             }
-            else if(pAuxPrev!=NULL)
+            else if(pAuxPrev!=NULL)             //el unico caso en que seria NULL es en index=0, asi que no es necesario checkear !=NULL
             {
                 pAuxPrev->pNextNode=pAuxNew;
-                returnAux=0;
             }
-        }
-        if(returnAux==0)
             this->size++;
+            returnAux=0;
+        }
     }
     return returnAux;
 }
-
+// si el index ya està ocupado lo tengo que insertar
+// si quiero insertar en un index mayor al tamaño? (no hay uno anterior)
 
 /** \brief Permite realizar el test de la funcion addNode la cual es privada
  *
@@ -150,11 +149,16 @@ int ll_add(LinkedList* this, void* pElement)
 {
     int returnAux = -1;
 
+    if(this!=NULL)
+    {
+        if(addNode(this,ll_len(this),pElement)==0)
+            returnAux=0;
+    }
     return returnAux;
 }
 
 /** \brief Permite realizar el test de la funcion addNode la cual es privada
- *
+ *          Retorna un puntero al elemento que se encuentra en el índice especificado
  * \param this LinkedList* Puntero a la lista
  * \param nodeIndex int Ubicacion del elemento a obtener
  * \return void* Retorna    (NULL) Error: si el puntero a la lista es NULL o (si el indice es menor a 0 o mayor al len de la lista)
@@ -164,7 +168,14 @@ int ll_add(LinkedList* this, void* pElement)
 void* ll_get(LinkedList* this, int index)
 {
     void* returnAux = NULL;
+    Node* pAux=NULL;
 
+    if(this!=NULL && index>=0 && index<ll_len(this))
+    {
+        pAux=getNode(this,index);           //puntero al nodo
+        if(pAux!=NULL)
+            returnAux=pAux->pElement;      //devuelve el puntero almacenado en el campo pElement
+    }
     return returnAux;
 }
 
@@ -181,7 +192,17 @@ void* ll_get(LinkedList* this, int index)
 int ll_set(LinkedList* this, int index,void* pElement)
 {
     int returnAux = -1;
+    Node* pAux=NULL;
 
+    if(this!=NULL && index>=0 && index<ll_len(this))
+    {
+        pAux=getNode(this,index);                   //puntero al nodo
+        if(pAux!=NULL)
+        {
+            pAux->pElement=pElement;                //almaceno nuevo elemento
+            returnAux=0;
+        }
+    }
     return returnAux;
 }
 
@@ -198,6 +219,29 @@ int ll_remove(LinkedList* this,int index)
 {
     int returnAux = -1;
 
+    Node* pAuxActual=NULL;
+    Node* pAuxPrev=NULL;
+
+    if(this!=NULL && index>=0 && index<ll_len(this) && ll_len(this)>0)
+    {
+        pAuxActual=getNode(this,index);
+        pAuxPrev=getNode(this,index-1);
+
+        if(pAuxActual!=NULL)
+        {
+            if(index==0)                    //Previo: donde almaceno la & del nodo siguiente
+            {
+                this->pFirstNode=pAuxActual->pNextNode;
+            }
+            else if(pAuxPrev!=NULL)
+            {
+                pAuxPrev->pNextNode=pAuxActual->pNextNode;
+            }
+            free(pAuxActual);
+            this->size--;
+            returnAux=0;
+        }
+    }
     return returnAux;
 }
 
@@ -212,10 +256,21 @@ int ll_remove(LinkedList* this,int index)
 int ll_clear(LinkedList* this)
 {
     int returnAux = -1;
+    int i;
+
+    if(this!=NULL)
+    {
+        for(i=0;i<ll_len(this);i++)
+            ll_remove(this,i);
+
+        if(ll_len(this)==0)
+            returnAux=0;
+    }
 
     return returnAux;
 }
 
+//recorrer el arrayList (con el get) y uso remove p/c index, cuidado con el size que se va achicando, pedir siempre el 0 o el size (de atras p/adelante)
 
 /** \brief Elimina todos los elementos de la lista y la lista
  *
@@ -228,8 +283,15 @@ int ll_deleteLinkedList(LinkedList* this)
 {
     int returnAux = -1;
 
+    if(this!=NULL)
+    {
+        ll_clear(this);
+        free(this);
+        returnAux=0;
+    }
     return returnAux;
 }
+//Si la verificación falla la función retorna (-1), si esta vacío (1) y si contiene elementos (0).
 
 /** \brief Busca el indice de la primer ocurrencia del elemento pasado como parametro
  *
@@ -242,7 +304,18 @@ int ll_deleteLinkedList(LinkedList* this)
 int ll_indexOf(LinkedList* this, void* pElement)
 {
     int returnAux = -1;
+    int i=-1;
+    void* pAux=NULL;
 
+    if(this!=NULL)
+    {
+        for(i=0;i<ll_len(this);i++)
+        {
+            pAux=ll_get(this,i);
+            if(pAux==pElement)
+                returnAux=i;
+        }
+    }
     return returnAux;
 }
 
@@ -257,10 +330,29 @@ int ll_indexOf(LinkedList* this, void* pElement)
 int ll_isEmpty(LinkedList* this)
 {
     int returnAux = -1;
+    //int i;
+    //void* pAux=NULL;
 
+    if(this!=NULL)
+    {
+        returnAux=1;
+        /*
+        for(i=0;i<ll_len(this);i++)
+        {
+            pAux=ll_get(this,i);
+            if(pAux!=NULL)
+            {
+                returnAux=0;        //si alguno no es NULL hay un elemento cargado
+                break;
+            }
+        }*/
+        if(ll_len(this)>0)
+            returnAux=0;
+
+    }
     return returnAux;
 }
-
+//true>size=0
 /** \brief Inserta un nuevo elemento en la lista en la posicion indicada
  *
  * \param this LinkedList* Puntero a la lista
@@ -273,7 +365,11 @@ int ll_isEmpty(LinkedList* this)
 int ll_push(LinkedList* this, int index, void* pElement)
 {
     int returnAux = -1;
-
+    if(this!=NULL && index>=0 && index<=ll_len(this))       //==len se agrega al final
+    {
+        if(addNode(this,index,pElement)==0)
+            returnAux=0;
+    }
     return returnAux;
 }
 
@@ -290,9 +386,14 @@ void* ll_pop(LinkedList* this,int index)
 {
     void* returnAux = NULL;
 
+    if(this!=NULL && index>=0 && index<ll_len(this))
+    {
+        returnAux=ll_get(this,index);
+        ll_remove(this,index);
+    }
     return returnAux;
 }
-
+//conserva el puntero del elemento (get + remove)
 
 /** \brief  Determina si la lista contiene o no el elemento pasado como parametro
  *
@@ -306,9 +407,16 @@ int ll_contains(LinkedList* this, void* pElement)
 {
     int returnAux = -1;
 
+    if(this!=NULL)
+    {
+        returnAux=0;
+        if(ll_indexOf(this,pElement)!=-1)
+            returnAux=1;
+    }
     return returnAux;
 }
 
+//si index !=NULL true
 /** \brief  Determina si todos los elementos de la lista (this2)
             estan contenidos en la lista (this)
  *
@@ -321,10 +429,26 @@ int ll_contains(LinkedList* this, void* pElement)
 int ll_containsAll(LinkedList* this,LinkedList* this2)
 {
     int returnAux = -1;
+    int i;
+    void* pElement=NULL;
 
+    if(this!=NULL && this2!=NULL)
+    {
+        returnAux=1;
+        for(i=0;i<ll_len(this2);i++)
+        {
+            pElement=ll_get(this2,i);
+            if(ll_contains(this,pElement)!=1)
+            {
+                returnAux=0;
+                break;
+            }
+        }
+    }
     return returnAux;
 }
 
+// si dentro de la lista1 se encuentran todos los elementos de la lista 2
 /** \brief Crea y retorna una nueva lista con los elementos indicados
  *
  * \param pList LinkedList* Puntero a la lista
@@ -338,11 +462,20 @@ int ll_containsAll(LinkedList* this,LinkedList* this2)
 LinkedList* ll_subList(LinkedList* this,int from,int to)
 {
     LinkedList* cloneArray = NULL;
+    int i;
+
+    if(this!=NULL && from<to)
+    {
+        for(i=from;i<=to;i++)
+        {
+
+        }
+    }
 
     return cloneArray;
 }
 
-
+//construir un nuevo arrayList (get+ add )
 
 /** \brief Crea y retorna una nueva lista con los elementos de la lista pasada como parametro
  *
@@ -357,6 +490,7 @@ LinkedList* ll_clone(LinkedList* this)
     return cloneArray;
 }
 
+//caso particular del sublist, desde 0 hasta len
 
 /** \brief Ordena los elementos de la lista utilizando la funcion criterio recibida como parametro
  * \param pList LinkedList* Puntero a la lista
@@ -373,3 +507,6 @@ int ll_sort(LinkedList* this, int (*pFunc)(void* ,void*), int order)
 
 }
 
+//map: similar a sort
+//filter: similar a sublista, pero antes de agregar llama a una funcion que chequea que se cumpla un criterio, devuelve un linkedList
+//reduce: no crea una nueva lista sino que aplica el filtro sobre la existente
