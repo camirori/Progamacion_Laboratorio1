@@ -424,7 +424,6 @@ int employee_searchMaxId(LinkedList* pArrayListEmployee, int* maxID)
         }
         *maxID=bufferMaxId;
         retorno=0;
-
     }
     return retorno;
 }

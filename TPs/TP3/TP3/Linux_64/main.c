@@ -85,5 +85,3 @@ int main()
     }while(option != 10);
     return 0;
 }
-
-//davilamr.80@gmail.com

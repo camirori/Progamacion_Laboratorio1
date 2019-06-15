@@ -6,7 +6,7 @@
 #include "parser.h"
 #include "utn.h"
 
-/** \brief Carga los datos de los empleados desde el archivo data.csv (modo texto).
+/** \brief Carga los datos de los empleados desde el archivo indicado (modo texto).
  *
  * \param path char* Nombre del archivo
  * \param pArrayListEmployee LinkedList*
@@ -23,7 +23,7 @@ int controller_loadFromText(char* path , LinkedList* pArrayListEmployee)
 
     FILE *pFile=NULL;
 
-    utn_getUnsignedInt("\n\nSe reiniciara la lista con los elementos cargados desde el archivo. Desea continuar? \n1) Si 2) No","\nError",1,2,1,&option);
+    utn_getUnsignedInt("\n\nSe reiniciara la lista con los elementos cargados desde el archivo. Desea continuar? \n1) Si 2) No ","\nError",1,2,1,&option);
     if(option==1)
     {
         if(path!=NULL && pArrayListEmployee!=NULL)
@@ -51,7 +51,7 @@ int controller_loadFromText(char* path , LinkedList* pArrayListEmployee)
     return retorno;
 }
 
-/** \brief Carga los datos de los empleados desde el archivo data.csv (modo binario).
+/** \brief Carga los datos de los empleados desde el archivo indicado (modo binario).
  *
  * \param path char* Nombre del archivo
  * \param pArrayListEmployee LinkedList*
@@ -67,7 +67,7 @@ int controller_loadFromBinary(char* path , LinkedList* pArrayListEmployee)
     int option=0;
 
     FILE *pFile=NULL;
-    utn_getUnsignedInt("\n\nSe reiniciara la lista con los elementos cargados desde el archivo. Desea continuar? \n1) Si 2) No","\nError",1,2,1,&option);
+    utn_getUnsignedInt("\n\nSe reiniciara la lista con los elementos cargados desde el archivo. Desea continuar? \n1) Si 2) No ","\nError",1,2,1,&option);
     if(option==1)
     {
         if(path!=NULL && pArrayListEmployee!=NULL)
@@ -260,7 +260,7 @@ int controller_ListEmployee(LinkedList* pArrayListEmployee)
     return retorno;
 }
 
-/** \brief Ordenar empleados
+/** \brief Ordena empleados por nombre (diferencia mayusculas y minusculas)
  *
  * \param pArrayListEmployee LinkedList*
  * \return int -1 Error (parametros nulos) / 0 parametros validos
@@ -277,7 +277,7 @@ int controller_sortEmployee(LinkedList* pArrayListEmployee)
     return retorno;
 }
 
-/** \brief Guarda los datos de los empleados en el archivo data.csv (modo texto).
+/** \brief Guarda los datos de los empleados en el archivo indicado (modo texto).
  *
  * \param path char* Nombre del archivo
  * \param pArrayListEmployee LinkedList*
@@ -320,7 +320,7 @@ int controller_saveAsText(char* path , LinkedList* pArrayListEmployee)
     return retorno;
 }
 
-/** \brief Guarda los datos de los empleados en el archivo data.csv (modo binario).
+/** \brief Guarda los datos de los empleados en el archivo indicado (modo binario).
  *
  * \param path char*
  * \param pArrayListEmployee LinkedList*
