@@ -464,14 +464,14 @@ LinkedList* ll_subList(LinkedList* this,int from,int to)
     LinkedList* cloneArray = NULL;
     int i;
 
-    if(this!=NULL && from<to)
+    if(this!=NULL && from<to && from>=0 && to<ll_len(this))
     {
-        for(i=from;i<=to;i++)
+        cloneArray=ll_newLinkedList();
+        for(i=from;i<=to;i++)                               //el to se incluye? si lo incluyo da error el primer test (0-1), falla porque to==len (1)
         {
-
+            addNode(cloneArray,i,ll_get(this,i));
         }
     }
-
     return cloneArray;
 }
 
@@ -486,7 +486,16 @@ LinkedList* ll_subList(LinkedList* this,int from,int to)
 LinkedList* ll_clone(LinkedList* this)
 {
     LinkedList* cloneArray = NULL;
+    int i;
 
+    if(this!=NULL)
+    {
+        cloneArray=ll_newLinkedList();
+        for(i=0;i<ll_len(this);i++)
+        {
+            addNode(cloneArray,i,ll_get(this,i));
+        }
+    }
     return cloneArray;
 }
 
@@ -502,9 +511,28 @@ LinkedList* ll_clone(LinkedList* this)
 int ll_sort(LinkedList* this, int (*pFunc)(void* ,void*), int order)
 {
     int returnAux =-1;
+    int i,j;
+    Node* auxNode=NULL;
 
+    if(this!=NULL && pFunc!=NULL && order>=-1 && order<=1)               //segun el test el orden solo puede ser 0 o 1, no -1, pero s/ PDF pueden ser los 3
+    {
+        for(i=0;i<ll_len(this);i++)
+        {
+            auxNode=getNode(this,i);
+            j = i - 1;
+            while ((j >= 0) && pFunc(auxNode->pElement,(getNode(this,j)->pElement))!=order)
+            {
+                j--;
+            }
+            if(j!=i-1)
+            {
+                addNode(this,j+1,auxNode->pElement);
+                ll_remove(this,i+1);
+            }
+        }
+        returnAux=0;
+    }
     return returnAux;
-
 }
 
 //map: similar a sort
