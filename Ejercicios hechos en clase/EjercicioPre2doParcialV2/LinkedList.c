@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "../inc/LinkedList.h"
+#include "LinkedList.h"
 
 
 static Node* getNode(LinkedList* this, int nodeIndex);
@@ -555,21 +555,19 @@ int ll_map(LinkedList* this, int (*pFunc)(void*))
     return retorno;
 }
 
+
 LinkedList* ll_filter(LinkedList* this, int (*pFunc)(void* ,void*), void* criterio, int resultado)
 {
     LinkedList* cloneArray = NULL;
-    int i,j;
+    int i;
 
     if(this!=NULL && pFunc!=NULL)
     {
         cloneArray=ll_newLinkedList();
         for(i=0;i<ll_len(this);i++)
         {
-            if(pFunc(ll_get(this,i),criterio)==resultado)                         //el filtro es un puntero?
-            {
-                addNode(cloneArray,j,ll_get(this,i));
-                j++;
-            }
+            if(pFunc(ll_get(this,i),criterio)==resultado)                                //el filtro es un puntero?
+                addNode(cloneArray,i,ll_get(this,i));
         }
     }
     return cloneArray;
@@ -584,7 +582,7 @@ int ll_reduce(LinkedList* this, int (*pFunc)(void* ,void*), void* criterio, int 
     {
         for(i=0;i<ll_len(this);i++)
         {
-            if(pFunc(ll_get(this,i),criterio)!=resultado)                        //el filtro es un puntero?
+            if(pFunc(ll_get(this,i),criterio)!=resultado)                            //el filtro es un puntero?
             {
                 ll_remove(this,i);
                 i--;
