@@ -2,18 +2,18 @@
 #include <stdlib.h>
 #include <string.h>
 #include "LinkedList.h"
-#include "Empleado.h"
-#include "Parser.h"
+#include "Cliente.h"                          //Replace Cliente (tipo) y cliente (f)     campos: Int1 + int1 // Int2 + int2 // Apellido + apellido
+#include "File.h"
 #include "utn.h"
 
 /** \brief Carga los datos de los empleados desde el archivo indicado (modo texto).
  *
  * \param path char* Nombre del archivo
- * \param pArrayListEmployee LinkedList*
+ * \param pArrayList LinkedList*
  * \return int -1 Error(parametros nulos o 0 elemetos cargados) 0 Carga exitosa (al menos un elemento cargado)
  *
- *//*
-int controller_loadFromText(char* path , LinkedList* pArrayListEmployee)
+ */
+int controllerCliente_loadFromText(char* path , LinkedList* pArrayList)
 {
     int retorno=-1;
     int contadorError=0;
@@ -26,16 +26,16 @@ int controller_loadFromText(char* path , LinkedList* pArrayListEmployee)
     utn_getUnsignedInt("\n\nSe reiniciara la lista con los elementos cargados desde el archivo. Desea continuar? \n1) Si 2) No ","\nError",1,2,1,&option);
     if(option==1)
     {
-        if(path!=NULL && pArrayListEmployee!=NULL)
+        if(path!=NULL && pArrayList!=NULL)
         {
-            ll_clear(pArrayListEmployee);
-            pFile=fopen(path,"r");    //direccìon archivo, modo de arpetura
+            ll_clear(pArrayList);
+            pFile=fopen(path,"r");    //direccion archivo, modo de arpetura
 
             if(pFile!=NULL)
             {
                 while(!feof(pFile))
                 {
-                    retornoParser=parser_EmployeeFromText(pFile,pArrayListEmployee);
+                    retornoParser=parser_ClienteFromText(pFile,pArrayList);
                     if(retornoParser==-2)
                         contadorError++;
                     else if(retornoParser==1)
@@ -49,16 +49,16 @@ int controller_loadFromText(char* path , LinkedList* pArrayListEmployee)
         }
     }
     return retorno;
-}*/
+}
 
 /** \brief Carga los datos de los empleados desde el archivo indicado (modo binario).
  *
  * \param path char* Nombre del archivo
- * \param pArrayListEmployee LinkedList*
+ * \param pArrayList LinkedList*
  * \return int -1 Error(parametros nulos o 0 elemetos cargados) 0 Carga exitosa (al menos un elemento cargado)
  *
  *//*
-int controller_loadFromBinary(char* path , LinkedList* pArrayListEmployee)
+int controllerCliente_loadFromBinary(char* path , LinkedList* pArrayList)
 {
     int retorno=-1;
     int contadorError=0;
@@ -70,16 +70,16 @@ int controller_loadFromBinary(char* path , LinkedList* pArrayListEmployee)
     utn_getUnsignedInt("\n\nSe reiniciara la lista con los elementos cargados desde el archivo. Desea continuar? \n1) Si 2) No ","\nError",1,2,1,&option);
     if(option==1)
     {
-        if(path!=NULL && pArrayListEmployee!=NULL)
+        if(path!=NULL && pArrayList!=NULL)
         {
-            ll_clear(pArrayListEmployee);
-            pFile=fopen(path,"r");    //direccìon archivo, modo de arpetura
+            ll_clear(pArrayList);
+            pFile=fopen(path,"r");    //direcc�on archivo, modo de arpetura
 
             if(pFile!=NULL)
             {
-                while(!feof(pFile))                                        //armar un constructor que reciba como param un empleado
+                while(!feof(pFile))
                 {
-                    retornoParser=parser_EmployeeFromBinary(pFile,pArrayListEmployee);
+                    retornoParser=parser_ClienteFromBinary(pFile,pArrayList);
                     if(retornoParser==-2)
                         contadorError++;
                     else if(retornoParser==0)
@@ -95,30 +95,30 @@ int controller_loadFromBinary(char* path , LinkedList* pArrayListEmployee)
     return retorno;
 }*/
 
-/** \brief Alta de empleados
+/** \brief Alta de Cliente
  *
- * \param pArrayListEmployee LinkedList*
+ * \param pArrayList LinkedList*
  * \param ultimoId int* Puntero al maximo ID actual de la lista
  * \return int -1 Error / 0 Alta exitosa
  *
- *//*
-int controller_addEmployee(LinkedList* pArrayListEmployee, int* ultimoId)
+ */
+int controllerCliente_addCliente(LinkedList* pArrayList, int* ultimoId)
 {
     int retorno=-1;
-    char arrayBuffers[4][STR_SIZE];
-    Employee* auxPuntero=NULL;
+    char arrayBuffers[4][STR_SIZE];             //cambiar por cantidad de campos
+    Cliente* auxPuntero=NULL;
 
-    if(pArrayListEmployee!=NULL)
+    if(pArrayList!=NULL)
     {
         utn_getTexto("\nNombre ","\nError",1,STR_SIZE,1,arrayBuffers[1]);
-        utn_getTexto("\nHoras Trabajadas ","\nError",1,STR_SIZE,1,arrayBuffers[2]);
-        utn_getTexto("\nSueldo ","\nError",1,STR_SIZE,1,arrayBuffers[3]);
+        utn_getTexto("\nApellido ","\nError",1,STR_SIZE,1,arrayBuffers[2]);           //cambiar
+        utn_getTexto("\nDNI ","\nError",1,STR_SIZE,1,arrayBuffers[3]);
         sprintf(arrayBuffers[0],"%d",(*ultimoId)+1);
 
-        auxPuntero=employee_newParametros(arrayBuffers[0],arrayBuffers[1],arrayBuffers[2],arrayBuffers[3]);         //valido los datos y lo guardo en aux
+        auxPuntero=cliente_newParametros(arrayBuffers[0],arrayBuffers[1],arrayBuffers[2],arrayBuffers[3]);         //valido los datos y lo guardo en aux
         if(auxPuntero!=NULL)
         {
-            ll_add(pArrayListEmployee,auxPuntero);
+            ll_add(pArrayList,auxPuntero);
             retorno=0;
             (*ultimoId)++;
             printf("\nAlta exitosa");
@@ -128,14 +128,14 @@ int controller_addEmployee(LinkedList* pArrayListEmployee, int* ultimoId)
     }
     return retorno;
 }
-*/
-/** \brief Modificar datos de empleado
+
+/** \brief Modificar datos de Cliente
  *
- * \param pArrayListEmployee LinkedList*
+ * \param pArrayList LinkedList*
  * \return int -1 Error / 0 Modificacion exitosa
  *
- *//*
-int controller_editEmployee(LinkedList* pArrayListEmployee)
+ */
+int controllerCliente_editCliente(LinkedList* pArrayList)
 {
     int retorno=-1;
     int id;
@@ -143,16 +143,16 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
     char opcion;
     char bufferModificacion[STR_SIZE];
     int bufferID;
-    int bufferHoras;
-    int bufferSueldo;
     char bufferNombre[STR_SIZE];
-    Employee* puntero=NULL;
+    char bufferApellido[STR_SIZE];
+    char bufferDni[STR_SIZE];
+    Cliente* puntero=NULL;
 
-    if(pArrayListEmployee!=NULL)
+    if(pArrayList!=NULL)
     {
         if(utn_getUnsignedInt("\nID a modificar: ","\nError",1,8,1,&id)==0)
         {
-            if(employee_searchId(pArrayListEmployee,id,&indice)==-1)
+            if(cliente_searchId(pArrayList,id,&indice)==-1)
             {
                 printf("\nNo existe este ID");
             }
@@ -160,27 +160,27 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
             {
                 do
                 {
-                    puntero=ll_get(pArrayListEmployee,indice);
-                    employee_getId(puntero,&bufferID);
-                    employee_getNombre(puntero,bufferNombre);
-                    employee_getHorasTrabajadas(puntero,&bufferHoras);
-                    employee_getSueldo(puntero,&bufferSueldo);
-                    printf("\n ID: %d   Nombre: %s  Horas: %d   Sueldo: %d",bufferID,bufferNombre,bufferHoras,bufferSueldo);
+                    puntero=ll_get(pArrayList,indice);
+                    cliente_getId(puntero,&bufferID);
+                    cliente_getNombre(puntero,bufferNombre);
+                    cliente_getApellido(puntero,bufferApellido);
+                    cliente_getDni(puntero,bufferDni);
+                    printf("\n ID: %d   Nombre: %s   Apellido: %s  DNI: %s   ",bufferID,bufferNombre,bufferApellido,bufferDni);                       //cambiar
 
-                    utn_getLetra("\nModificar: A Nombre B Horas C Sueldo S(salir)","\nError",1,&opcion);
+                    utn_getLetra("\nModificar: A Nombre B Apellido C DNI S(salir)","\nError",1,&opcion);                      //cambiar
                     switch(opcion)
                     {
                         case 'A':
-                            utn_getName("\nNombre: ","\nError",1,STR_SIZE,1,bufferModificacion);
-                            employee_setNombre(puntero,bufferModificacion);
+                            utn_getName("\nNombre: ","\nError",1,STR_SIZE,1,bufferModificacion);                     //cambiar
+                            cliente_setNombre(puntero,bufferModificacion);
                             break;
                         case 'B':
-                            utn_getTexto("\nHoras: ","\nError",1,sizeof(int),1,bufferModificacion);
-                            employee_setHorasTrabajadasStr(puntero,bufferModificacion);
+                            utn_getName("\nApellido: ","\nError",1,STR_SIZE,1,bufferModificacion);                     //cambiar
+                            cliente_setApellido(puntero,bufferModificacion);
                             break;
                         case 'C':
-                            utn_getTexto("\nSueldo: ","\nError",1,sizeof(int),1,bufferModificacion);
-                            employee_setSueldoStr(puntero,bufferModificacion);
+                            utn_getName("\nDNI: ","\nError",1,STR_SIZE,1,bufferModificacion);                     //cambiar
+                            cliente_setDni(puntero,bufferModificacion);
                             break;
 
                         case 'S':
@@ -194,122 +194,123 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
         }
     }
     return retorno;
-}*/
+}
 
-/** \brief Baja de empleado
+/** \brief Baja de Cliente
  *
- * \param pArrayListEmployee LinkedList*
+ * \param pArrayList LinkedList*
  * \return int -1 Error / 0 Baja exitosa
  *
- *//*
-int controller_removeEmployee(LinkedList* pArrayListEmployee)
+ */
+int controllerCliente_removeCliente(LinkedList* pArrayList)
 {
     int retorno=-1;
     int id;
     int indice;
-    if(pArrayListEmployee!=NULL)
+    if(pArrayList!=NULL)
     {
         if(utn_getUnsignedInt("\nID a cancelar: ","\nError",1,8,1,&id)==0)
         {
-            if(employee_searchId(pArrayListEmployee,id,&indice)==-1)
+            if(cliente_searchId(pArrayList,id,&indice)==-1)
             {
                 printf("\nNo existe este ID");
             }
             else
             {
-                ll_remove(pArrayListEmployee,indice);
+                ll_remove(pArrayList,indice);
                 printf("\nBaja exitosa");
                 retorno=0;
             }
         }
     }
     return retorno;
-}*/
+}
 
-/** \brief Listar empleados
+/** \brief Listar Cliente
  *
- * \param pArrayListEmployee LinkedList*
+ * \param pArrayList LinkedList*
  * \return int -1 Error (parametros nulos) / 0 parametros validos
  *
  */
-int controller_ListEmployee(LinkedList* pArrayListEmployee)
+int controllerCliente_ListCliente(LinkedList* pArrayList)
 {
     int retorno=-1;
     int i;
     int bufferID;
-    int bufferHoras;
-    int bufferSueldo;
     char bufferNombre[STR_SIZE];
-    int size=ll_len(pArrayListEmployee);
-    Empleado* puntero;
+    char bufferApellido[STR_SIZE];
+    char bufferDni[STR_SIZE];
 
-    if(pArrayListEmployee!=NULL && size>=0)
+    int size=ll_len(pArrayList);
+    Cliente* puntero;
+
+    if(pArrayList!=NULL && size>=0)
     {
         for(i=0;i<size;i++)
         {
-            puntero=ll_get(pArrayListEmployee,i);
-            employee_getId(puntero,&bufferID);
-            employee_getNombre(puntero,bufferNombre);
-            employee_getHorasTrabajadas(puntero,&bufferHoras);
-            employee_getSueldo(puntero,&bufferSueldo);
+            puntero=ll_get(pArrayList,i);
+            cliente_getId(puntero,&bufferID);
+            cliente_getNombre(puntero,bufferNombre);
+            cliente_getApellido(puntero,bufferNombre);
+            cliente_getDni(puntero,bufferDni);
 
-            printf("\n ID: %d   Nombre: %s  Horas: %d   Sueldo: %d",bufferID,bufferNombre,bufferHoras,bufferSueldo);
+            printf("\n ID: %d   Nombre: %s   Apellido: %s  DNI: %s",bufferID,bufferNombre,bufferApellido,bufferDni);                       //cambiar
         }
         retorno=0;
     }
     return retorno;
 }
 
-/** \brief Ordena empleados por nombre (diferencia mayusculas y minusculas)
+/** \brief Ordena Cliente por nombre (diferencia mayusculas y minusculas)
  *
- * \param pArrayListEmployee LinkedList*
+ * \param pArrayList LinkedList*
  * \return int -1 Error (parametros nulos) / 0 parametros validos
  *
- *//*
-int controller_sortEmployee(LinkedList* pArrayListEmployee)
+ */
+int controllerCliente_sortCliente(LinkedList* pArrayList)
 {
     int retorno=-1;
-    if(pArrayListEmployee!=NULL)
+    if(pArrayList!=NULL)
     {
-        ll_sort(pArrayListEmployee,employee_cmpName,1);
+        ll_sort(pArrayList,cliente_cmpName,1);
         retorno=0;
     }
     return retorno;
 }
-*/
+
 /** \brief Guarda los datos de los empleados en el archivo indicado (modo texto).
  *
  * \param path char* Nombre del archivo
- * \param pArrayListEmployee LinkedList*
+ * \param pArrayList LinkedList*
  * \return int -1 Error / 0 Apertura de archivo exitosa
  *
- *//*
-int controller_saveAsText(char* path , LinkedList* pArrayListEmployee)
+ */
+int controllerCliente_saveAsText(char* path , LinkedList* pArrayList)
 {
     int i;
-    Employee* pEmpleado=NULL;
+    Cliente* pCliente=NULL;
     int retorno=-1;
     FILE *pFile=NULL;
     int bufferID;
-    int bufferHoras;
-    int bufferSueldo;
     char bufferNombre[STR_SIZE];
+    char bufferApellido[STR_SIZE];
+    char bufferDni[STR_SIZE];
     int contador=0;
 
-    if(path!=NULL && pArrayListEmployee!=NULL)
+    if(path!=NULL && pArrayList!=NULL)
     {
         pFile=fopen(path,"w");
         if(pFile!=NULL)
         {
-            for(i=0;i<ll_len(pArrayListEmployee);i++)
+            for(i=0;i<ll_len(pArrayList);i++)
             {
-                pEmpleado=ll_get(pArrayListEmployee,i);
-                employee_getId(pEmpleado,&bufferID);
-                employee_getNombre(pEmpleado,bufferNombre);
-                employee_getHorasTrabajadas(pEmpleado,&bufferHoras);
-                employee_getSueldo(pEmpleado,&bufferSueldo);
+                pCliente=ll_get(pArrayList,i);
+                cliente_getId(pCliente,&bufferID);
+                cliente_getNombre(pCliente,bufferNombre);
+                cliente_getApellido(pCliente,bufferNombre);
+                cliente_getDni(pCliente,bufferDni);
 
-                if(fprintf(pFile,"%d,%s,%d,%d\n",bufferID,bufferNombre,bufferHoras,bufferSueldo)>8)
+                if(fprintf(pFile,"%d,%s,%s,%s\n",bufferID,bufferNombre,bufferApellido,bufferDni)>8)                       //cambiar
                     contador++;
             }
             retorno=0;
@@ -318,31 +319,31 @@ int controller_saveAsText(char* path , LinkedList* pArrayListEmployee)
         }
     }
     return retorno;
-}*/
+}
 
-/** \brief Guarda los datos de los empleados en el archivo indicado (modo binario).
+/** \brief Guarda los datos de los Cliente en el archivo indicado (modo binario).
  *
  * \param path char*
- * \param pArrayListEmployee LinkedList*
+ * \param pArrayList LinkedList*
  * \return int -1 Error / 0 Apertura de archivo exitosa
  *
  *//*
-int controller_saveAsBinary(char* path , LinkedList* pArrayListEmployee)
+int controllerCliente_saveAsBinary(char* path , LinkedList* pArrayList)
 {
     int i;
-    Employee* pEmpleado=NULL;
+    Cliente* pCliente=NULL;
     int retorno=-1;
     FILE *pFile=NULL;
     int contador=0;
-    if(path!=NULL && pArrayListEmployee!=NULL)
+    if(path!=NULL && pArrayList!=NULL)
     {
         pFile=fopen(path,"w");
         if(pFile!=NULL)
         {
-            for(i=0;i<ll_len(pArrayListEmployee);i++)
+            for(i=0;i<ll_len(pArrayList);i++)
             {
-                pEmpleado=ll_get(pArrayListEmployee,i);         //obtengo el puntero de c/empleado
-                contador+=fwrite(pEmpleado,sizeof(Employee),1,pFile);        //1 > cuantos empleados se guardan en cada iteracion
+                pCliente=ll_get(pArrayList,i);         //obtengo el puntero de c/empleado
+                contador+=fwrite(pCliente,sizeof(Cliente),1,pFile);        //1 > cuantos empleados se guardan en cada iteracion
             }
             retorno=0;
             fclose(pFile);

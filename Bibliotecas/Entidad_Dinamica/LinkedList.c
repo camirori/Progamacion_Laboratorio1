@@ -499,7 +499,6 @@ LinkedList* ll_clone(LinkedList* this)
     return cloneArray;
 }
 
-//caso particular del sublist, desde 0 hasta len
 
 /** \brief Ordena los elementos de la lista utilizando la funcion criterio recibida como parametro
  * \param pList LinkedList* Puntero a la lista
@@ -535,10 +534,13 @@ int ll_sort(LinkedList* this, int (*pFunc)(void* ,void*), int order)
     return returnAux;
 }
 
-//map: similar a sort
-//filter: similar a sublista, pero antes de agregar llama a una funcion que chequea que se cumpla un criterio, devuelve un linkedList
-//reduce: no crea una nueva lista sino que aplica el filtro sobre la existente
 
+/** \brief Recorre la lista y ejecuta la funcion criterio recibida como parametro
+ * \param pList LinkedList* Puntero a la lista
+ * \param pFunc (*pFunc) Puntero a la funcion criterio
+ * \return int Retorna  (-1) Error: si el puntero a la listas es NULL
+                                ( 0) Si ok
+ */
 int ll_map(LinkedList* this, int (*pFunc)(void*))
 {
     int retorno=-1;
@@ -555,24 +557,42 @@ int ll_map(LinkedList* this, int (*pFunc)(void*))
     return retorno;
 }
 
-
+/** \brief Crea una nueva lista resultado de aplicar un filtro sobre la lista original utilizando la lista utilizando la funcion criterio recibida como parametro
+ * \param pList LinkedList* Puntero a la lista
+ * \param pFunc (*pFunc) Puntero a la funcion criterio
+ * \param criterio void* Valor criterio para crear la lista
+ * \param resultado int Resultado de la funcion comparacion
+ * \return LinkedList* Retorna  (NULL) Error: si el puntero a la listas es NULL
+                                (puntero a la nueva lista) Si ok
+ */
 LinkedList* ll_filter(LinkedList* this, int (*pFunc)(void* ,void*), void* criterio, int resultado)
 {
     LinkedList* cloneArray = NULL;
-    int i;
+    int i,j;
 
     if(this!=NULL && pFunc!=NULL)
     {
         cloneArray=ll_newLinkedList();
         for(i=0;i<ll_len(this);i++)
         {
-            if(pFunc(ll_get(this,i),criterio)==resultado)                                //el filtro es un puntero?
-                addNode(cloneArray,i,ll_get(this,i));
+            if(pFunc(ll_get(this,i),criterio)==resultado)
+            {
+                addNode(cloneArray,j,ll_get(this,i));
+                j++;
+            }
         }
     }
     return cloneArray;
 }
 
+/** \brief Filtra los elementos de la lista utilizando la funcion criterio recibida como parametro
+ * \param pList LinkedList* Puntero a la lista
+ * \param pFunc (*pFunc) Puntero a la funcion criterio
+ * \param criterio void* Valor criterio para crear la lista
+ * \param resultado int Resultado de la funcion comparacion
+ * \return int Retorna  (-1) Error: si el puntero a la listas o pFunc es NULL
+                                ( 0) Si ok
+ */
 int ll_reduce(LinkedList* this, int (*pFunc)(void* ,void*), void* criterio, int resultado)
 {
     int retorno=-1;
@@ -582,7 +602,7 @@ int ll_reduce(LinkedList* this, int (*pFunc)(void* ,void*), void* criterio, int 
     {
         for(i=0;i<ll_len(this);i++)
         {
-            if(pFunc(ll_get(this,i),criterio)!=resultado)                            //el filtro es un puntero?
+            if(pFunc(ll_get(this,i),criterio)!=resultado)
             {
                 ll_remove(this,i);
                 i--;

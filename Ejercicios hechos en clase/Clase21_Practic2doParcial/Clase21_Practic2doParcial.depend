@@ -1,0 +1,83 @@
+# depslib dependency file v1.0
+1561333401 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase21_practic2doparcial\file.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"LinkedList.h"
+	"Cliente.h"
+	"Venta.h"
+
+1561342400 f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase21_practic2doparcial\linkedlist.h
+
+1561231217 f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase21_practic2doparcial\fantasma.h
+
+1561228395 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase21_practic2doparcial\linkedlist.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"LinkedList.h"
+
+1561343131 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase21_practic2doparcial\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"LinkedList.h"
+	"ControllerCliente.h"
+	"ControllerVenta.h"
+	"utn.h"
+
+1561226704 f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase21_practic2doparcial\controller.h
+
+1561226704 f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase21_practic2doparcial\utn.h
+
+1561226704 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase21_practic2doparcial\utn.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+	<time.h>
+
+1561334584 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase21_practic2doparcial\cliente.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"LinkedList.h"
+	"Cliente.h"
+	"utn.h"
+
+1561325599 f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase21_practic2doparcial\cliente.h
+
+1561334552 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase21_practic2doparcial\controllercliente.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"LinkedList.h"
+	"Cliente.h"
+	"File.h"
+	"utn.h"
+
+1561333912 f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase21_practic2doparcial\file.h
+
+1561343340 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase21_practic2doparcial\venta.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"LinkedList.h"
+	"Venta.h"
+	"utn.h"
+
+1561343360 f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase21_practic2doparcial\venta.h
+
+1561331017 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase21_practic2doparcial\controllerventa.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"LinkedList.h"
+	"Venta.h"
+	"File.h"
+	"utn.h"
+
+1561335216 f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase21_practic2doparcial\controllercliente.h
+
+1561336577 f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase21_practic2doparcial\controllerventa.h
+

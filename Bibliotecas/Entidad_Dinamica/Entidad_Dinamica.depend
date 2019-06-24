@@ -1,0 +1,57 @@
+# depslib dependency file v1.0
+1561233199 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\bibliotecas\entidad_dinamica\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"LinkedList.h"
+	"Controller.h"
+	"Fantasma.h"
+	"utn.h"
+
+1561226704 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\bibliotecas\entidad_dinamica\utn.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+	<time.h>
+
+1561226704 f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\bibliotecas\entidad_dinamica\utn.h
+
+1561228395 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\bibliotecas\entidad_dinamica\linkedlist.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"LinkedList.h"
+
+1561226704 f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\bibliotecas\entidad_dinamica\linkedlist.h
+
+1561324167 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\bibliotecas\entidad_dinamica\file.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"LinkedList.h"
+	"Fantasma.h"
+
+1561324115 f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\bibliotecas\entidad_dinamica\fantasma.h
+
+1561323968 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\bibliotecas\entidad_dinamica\fantasma.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"LinkedList.h"
+	"Fantasma.h"
+	"utn.h"
+
+1561326068 f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\bibliotecas\entidad_dinamica\controller.h
+
+1561324150 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\bibliotecas\entidad_dinamica\controller.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"LinkedList.h"
+	"Fantasma.h"
+	"File.h"
+	"utn.h"
+
+1561231385 f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\bibliotecas\entidad_dinamica\file.h
+
