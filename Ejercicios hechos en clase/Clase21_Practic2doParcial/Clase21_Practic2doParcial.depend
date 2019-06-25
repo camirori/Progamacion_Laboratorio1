@@ -17,7 +17,7 @@
 	<string.h>
 	"LinkedList.h"
 
-1561343131 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase21_practic2doparcial\main.c
+1561423124 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase21_practic2doparcial\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -25,6 +25,7 @@
 	"ControllerCliente.h"
 	"ControllerVenta.h"
 	"utn.h"
+	"Informes.h"
 
 1561226704 f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase21_practic2doparcial\controller.h
 
@@ -37,7 +38,7 @@
 	"utn.h"
 	<time.h>
 
-1561334584 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase21_practic2doparcial\cliente.c
+1561423676 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase21_practic2doparcial\cliente.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -80,4 +81,17 @@
 1561335216 f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase21_practic2doparcial\controllercliente.h
 
 1561336577 f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase21_practic2doparcial\controllerventa.h
+
+1561422699 source:f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase21_practic2doparcial\informes.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"LinkedList.h"
+	"ControllerCliente.h"
+	"ControllerVenta.h"
+	"utn.h"
+	"Venta.h"
+	"Cliente.h"
+
+1561422756 f:\cami\estudios\facultad\programación\01 programacion_laboratorio_1\repositorio\progamacion_laboratorio1\ejercicios hechos en clase\clase21_practic2doparcial\informes.h
 

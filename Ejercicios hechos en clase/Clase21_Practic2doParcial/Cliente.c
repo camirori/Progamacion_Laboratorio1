@@ -67,7 +67,7 @@ Cliente* cliente_newParametros(char* idStr,char* nombreStr,char* apellidoStr,cha
             if(!cliente_setIdStr(bufferP,idStr) &&
                 !cliente_setNombre(bufferP,nombreStr) &&
                 !cliente_setApellido(bufferP,apellidoStr) &&
-                !cliente_setApellido(bufferP,dniStr))
+                !cliente_setDni(bufferP,dniStr))
             {
                 retorno=bufferP;
             }

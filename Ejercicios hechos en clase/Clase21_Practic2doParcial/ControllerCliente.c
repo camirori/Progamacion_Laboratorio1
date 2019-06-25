@@ -179,7 +179,7 @@ int controllerCliente_editCliente(LinkedList* pArrayList)
                             cliente_setApellido(puntero,bufferModificacion);
                             break;
                         case 'C':
-                            utn_getName("\nDNI: ","\nError",1,STR_SIZE,1,bufferModificacion);                     //cambiar
+                            utn_getTexto("\nDNI: ","\nError",1,STR_SIZE,1,bufferModificacion);                     //cambiar
                             cliente_setDni(puntero,bufferModificacion);
                             break;
 

@@ -123,7 +123,7 @@ int informes_ListVentaPorProducto(LinkedList* pArrayList)
  * \return int -1 Error / 0 Apertura de archivo exitosa
  *
  */
-int informes_saveAsText(char* path , LinkedList* pArrayList)
+int informes_saveAsText(char* path , LinkedList* pArrayListA, LinkedList* pArrayListB)
 {
     int i;
     Venta* pVenta=NULL;
@@ -143,22 +143,22 @@ int informes_saveAsText(char* path , LinkedList* pArrayList)
     char bufferDni[STR_SIZE];
     Cliente* pCliente;
 
-    if(path!=NULL && pArrayList!=NULL)
+    if(path!=NULL && pArrayListA!=NULL && pArrayListB!=NULL)
     {
         pFile=fopen(path,"w");
         if(pFile!=NULL)
         {
-            for(i=0;i<ll_len(pArrayList);i++)
+            for(i=0;i<ll_len(pArrayListA);i++)
             {
-                pVenta=ll_get(pArrayList,i);
+                pVenta=ll_get(pArrayListA,i);
                 venta_getId(pVenta,&bufferIDVenta);
                 venta_getCantidad(pVenta,&bufferCantidad);
                 venta_getPrecio(pVenta,&bufferPrecio);
                 venta_getIdCliente(pVenta,&bufferIdCliente);                       //cambiar
                 venta_getCodProducto(pVenta,&bufferCodProducto);
 
-                cliente_searchId(pArrayList,bufferIdCliente,&j);
-                pCliente=ll_get(pArrayList,j);
+                cliente_searchId(pArrayListB,bufferIdCliente,&j);
+                pCliente=ll_get(pArrayListB,j);
                 cliente_getNombre(pCliente,bufferNombre);
                 cliente_getApellido(pCliente,bufferNombre);
                 cliente_getDni(pCliente,bufferDni);
@@ -172,6 +172,71 @@ int informes_saveAsText(char* path , LinkedList* pArrayList)
             fclose(pFile);
             printf("\nElementos guardados exitosamente: %d",contador);
         }
+    }
+    return retorno;
+}
+
+//10.Informar cantidad de ventas por cliente: Listará por pantalla a los clientes indicando la cantidad de compras que tienen asociadas cada uno y el monto total de dichas​ ​compras
+/** \brief Busca un valor repetido y lo lista una sola vez, junto con otros elementos de dos arrays vinculados
+* \param arrayA Tipo Array de Tipo
+* \param arrayB Tipo Array de Tipo
+* \param sizeI int Tamaño del arrayA
+* \param sizeJ int Tamaño del arrayB
+* \return int Return (-1) si Error [Invalid length or NULL pointer] - (0) Ok
+*
+*/
+//Cuenta las veces que se cumple un criterio en un arrayA y lo imprime una sola vez
+int Informes_listarCriterioContadorAcumulado(LinkedList* pArrayListA, LinkedList* pArrayListB)         //cambiar Tipo
+{
+    int retorno=-1;
+    int i;
+    int k;
+    int contador=0;
+    int acumulado=0;
+    int flag=-1;
+    int sizeI=ll_len(pArrayListA);
+    int sizeJ=ll_len(pArrayListB);
+
+    int bufferID;
+    int bufferIdCliente;
+    char bufferNombre[STR_SIZE];
+    char bufferApellido[STR_SIZE];
+    char bufferDni[STR_SIZE];
+    int bufferCantidad;
+    float bufferPrecio;
+    Cliente* pCliente=NULL;
+    Venta* pVenta=NULL;
+
+    if(pArrayListA!=NULL && sizeI>0 && pArrayListB!=NULL)
+    {
+        for(i=0;i<sizeI;i++)
+        {
+                pCliente=ll_get(pArrayListA,i);
+                cliente_getId(pCliente,&bufferID);
+                cliente_getNombre(pCliente,bufferNombre);
+                cliente_getApellido(pCliente,bufferNombre);
+                cliente_getDni(pCliente,bufferDni);
+
+                printf("\n ID: %d   Nombre: %s   Apellido: %s  DNI: %s",bufferID,bufferNombre,bufferApellido,bufferDni);                       //cambiar
+
+                for(k=0,contador=0,acumulado=0;k<sizeJ;k++)                                                            //Recorro por segunda vez el mismo array
+                {
+                    pVenta=ll_get(pArrayListB,k);
+                    venta_getIdCliente(pVenta,&bufferIdCliente);
+                    venta_getPrecio(pVenta,&bufferPrecio);
+                    venta_getCantidad(pVenta,&bufferCantidad);
+                    if(bufferIdCliente==bufferID)     //Busco las coincidencias en el 2do array
+                    {
+                        contador++;
+                        acumulado+=(bufferPrecio*bufferCantidad);
+                        flag=0;
+                    }
+                }
+                printf("Cantidad ventas: %d \nMonto acumulado: %d",contador,acumulado);
+        }
+        if(flag==-1)
+            printf("\nNo se encontraron clientes ");
+        retorno=0;
     }
     return retorno;
 }
