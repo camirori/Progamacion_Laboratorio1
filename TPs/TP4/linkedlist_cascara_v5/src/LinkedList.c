@@ -464,18 +464,16 @@ LinkedList* ll_subList(LinkedList* this,int from,int to)
     LinkedList* cloneArray = NULL;
     int i;
 
-    if(this!=NULL && from<to && from>=0 && to<ll_len(this))
+    if(this!=NULL && from<to && from>=0 && to<=ll_len(this)) // to == len porque recorre hasta <to, si tiene 1 elemento va a ser from 0 to 1
     {
         cloneArray=ll_newLinkedList();
-        for(i=from;i<=to;i++)                               //el to se incluye? si lo incluyo da error el primer test (0-1), falla porque to==len (1)
+        for(i=from;i<to;i++)
         {
             addNode(cloneArray,i,ll_get(this,i));
         }
     }
     return cloneArray;
 }
-
-//construir un nuevo arrayList (get+ add )
 
 /** \brief Crea y retorna una nueva lista con los elementos de la lista pasada como parametro
  *
@@ -513,8 +511,10 @@ int ll_sort(LinkedList* this, int (*pFunc)(void* ,void*), int order)
     int i,j;
     Node* auxNode=NULL;
 
-    if(this!=NULL && pFunc!=NULL && order>=-1 && order<=1)               //segun el test el orden solo puede ser 0 o 1, no -1, pero s/ PDF pueden ser los 3
+    if(this!=NULL && pFunc!=NULL && (order==0 || order==1))
     {
+        if(order==0)
+            order=-1;
         for(i=0;i<ll_len(this);i++)
         {
             auxNode=getNode(this,i);

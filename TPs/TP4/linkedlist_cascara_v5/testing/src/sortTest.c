@@ -78,7 +78,7 @@ void sortTestCase02(void)
         ll_add(list,pAux[i]);
     }
 
-    ll_sort(list, compareEmployee,-1);          // original orden=0
+    ll_sort(list, compareEmployee,0);
 
     for(i=0; i < LENGTH; i++)
     {
@@ -130,5 +130,5 @@ void sortTestCase05(void)
     }
     r = ll_sort(list, compareEmployee,-1);
     utest_assertEqualsIntMsg(r,-1,"\nError en el valor de retorno de <sort> si el orden es distinto de 1 o 0\n la funcion sort retorna -1\n");
-            //el orden deberia poder ser -1
+
 }
